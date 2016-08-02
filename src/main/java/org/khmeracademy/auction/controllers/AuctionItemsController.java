@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,4 +43,65 @@ public class AuctionItemsController {
 		}
 		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/add-auction-item", method = RequestMethod.POST)
+	private ResponseEntity<Map<String, Object>> addAuctionItem(@RequestBody AuctionItems auctionItem){
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			if(aucItemsService.addAuctionItem(auctionItem)){
+				map.put("STATUS", true);
+				map.put("MESSAGE", "Auction item has been inserted.");
+			}else{
+				map.put("STATUS", false);
+				map.put("MESSAGE", "Auction item has not been inserted.");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			map.put("STATUS", false);
+			map.put("MESSAGE", "Error!");
+		}
+		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/update-auction-item", method = RequestMethod.PUT)
+	private ResponseEntity<Map<String, Object>> updateAuctionItem(@RequestBody AuctionItems auctionItem){
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			if(aucItemsService.updateActionItem(auctionItem)){
+				map.put("STATUS", true);
+				map.put("MESSAGE", "Auction item has been updated.");
+			}else{
+				map.put("STATUS", false);
+				map.put("MESSAGE", "Auction item has not been updated.");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			map.put("STATUS", false);
+			map.put("MESSAGE", "Error!");
+		}
+		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/delete-auction-item", method = RequestMethod.PUT)
+	private ResponseEntity<Map<String, Object>> deleteAuctionItem(@RequestBody AuctionItems auctionItem){
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			if(aucItemsService.deleteActionItem(auctionItem)){
+				map.put("STATUS", true);
+				map.put("MESSAGE", "Auction item has been deleted.");
+			}else{
+				map.put("STATUS", false);
+				map.put("MESSAGE", "Auction item has not been deleted.");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			map.put("STATUS", false);
+			map.put("MESSAGE", "Error!");
+		}
+		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+	}
+
 }

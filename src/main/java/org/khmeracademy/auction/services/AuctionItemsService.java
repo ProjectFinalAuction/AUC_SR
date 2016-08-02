@@ -11,5 +11,5 @@ public interface AuctionItemsService {
 
 	public boolean deleteActionItem(AuctionItems auctionItem);
 
-	public boolean updateActionItem(AuctionItems aucitonItem);
+	public boolean updateActionItem(AuctionItems auctionItem);
 }
