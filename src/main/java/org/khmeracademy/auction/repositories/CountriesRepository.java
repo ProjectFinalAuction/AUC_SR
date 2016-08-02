@@ -14,7 +14,7 @@ public interface CountriesRepository {
 	final String C_COUNTRY = "INSERT INTO countries(country_name) VALUES(#{country_name })";
 	final String RA_COUNTRIES = "SELECT * FROM countries";
 	final String R_COUNTRY = "SELECT * FROM countries WHERE country_id = #{country_id}";
-	final String U_COUNTRY = "UPDATE countries SET country_named = #{country_name} WHERE country_id = #{country_id}";
+	final String U_COUNTRY = "UPDATE countries SET country_name = #{country_name} WHERE country_id = #{country_id}";
 	final String D_COUNTRY = "DELETE FROM countries WHERE country_id = #{country_id}";
 	
 	@Insert(C_COUNTRY)
@@ -23,16 +23,16 @@ public interface CountriesRepository {
 	@Select(RA_COUNTRIES)
 	@Results(value = {
 			@Result(property="country_id", column="country_id"),
-			@Result(property="country_id", column="country_name")
+			@Result(property="country_name", column="country_name")
 	})
 	public ArrayList<Countries> getAllCountries();
 	
 	@Select(R_COUNTRY)
 	@Results(value = {
 			@Result(property="country_id", column="country_id"),
-			@Result(property="country_id", column="country_name")
+			@Result(property="country_name", column="country_name")
 	})
-	public Countries getCountry();
+	public Countries getCountry(int id);
 	
 	@Update(U_COUNTRY)
 	public boolean updateCountry(Countries c);

@@ -10,7 +10,7 @@ public interface CountriesService {
 	
 	public ArrayList<Countries> getAllCountries();	
 	
-	public Countries getCountry();	
+	public Countries getCountry(int id);	
 	
 	public boolean updateCountry(Countries c);	
 	

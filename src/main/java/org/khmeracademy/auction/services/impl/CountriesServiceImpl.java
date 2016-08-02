@@ -25,8 +25,8 @@ public class CountriesServiceImpl implements CountriesService{
 	}
 
 	@Override
-	public Countries getCountry() {
-		return countryRepository.getCountry();
+	public Countries getCountry(int id) {
+		return countryRepository.getCountry(id);
 	}
 
 	@Override
