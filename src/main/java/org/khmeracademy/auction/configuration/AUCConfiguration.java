@@ -10,7 +10,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 @Configuration
-@MapperScan("org.khmeracademy.auction.repository")
+@MapperScan("org.khmeracademy.auction.repositories")
 public class AUCConfiguration {
 		@Bean 
 		public DataSource getDataSource(){

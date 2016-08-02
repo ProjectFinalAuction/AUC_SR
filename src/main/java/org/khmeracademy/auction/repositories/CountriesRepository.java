@@ -9,13 +9,14 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.Countries;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public interface CountriesRepository {
-	final String C_COUNTRY = "INSERT INTO countries(country_name) VALUES(#{country_name })";
-	final String RA_COUNTRIES = "SELECT * FROM countries";
-	final String R_COUNTRY = "SELECT * FROM countries WHERE country_id = #{country_id}";
-	final String U_COUNTRY = "UPDATE countries SET country_name = #{country_name} WHERE country_id = #{country_id}";
-	final String D_COUNTRY = "DELETE FROM countries WHERE country_id = #{country_id}";
+	final String C_COUNTRY = "INSERT INTO auc_countries(country_name) VALUES(#{country_name })";
+	final String RA_COUNTRIES = "SELECT * FROM auc_countries";
+	final String R_COUNTRY = "SELECT * FROM auc_countries WHERE country_id = #{country_id}";
+	final String U_COUNTRY = "UPDATE auc_countries SET country_name = #{country_name} WHERE country_id = #{country_id}";
+	final String D_COUNTRY = "DELETE FROM auc_countries WHERE country_id = #{country_id}";
 	
 	@Insert(C_COUNTRY)
 	public boolean insertCountry(Countries c);

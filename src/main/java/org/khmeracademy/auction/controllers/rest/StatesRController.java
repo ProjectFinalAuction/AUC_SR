@@ -1,4 +1,4 @@
-package org.khmeracademy.auction.controllers;
+package org.khmeracademy.auction.controllers.rest;
 
 import java.util.ArrayList;
 import java.util.HashMap;

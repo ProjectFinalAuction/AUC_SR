@@ -9,7 +9,8 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.States;
-
+import org.springframework.stereotype.Repository;
+@Repository	
 public interface StatesRepository {
 	final String C_STATE = "INSERT INTO states(country_id, state_name) VALUES(#{country_id},#{state_name })";
 	final String RA_STATES = "SELECT * FROM states";
