@@ -10,15 +10,15 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 @Configuration
-@MapperScan("org.khmeracademy.auction.repository")
+@MapperScan("org.khmeracademy.auction.repositories")
 public class AUCConfiguration {
 		@Bean 
 		public DataSource getDataSource(){
 			DriverManagerDataSource dataSource = new DriverManagerDataSource();
 			dataSource.setDriverClassName("org.postgresql.Driver");
-			dataSource.setUrl("jdbc:postgresql://120.136.24.174:5432/AUCTION_SR_DB");
-			dataSource.setUsername("AUCTION_SR");
-			dataSource.setPassword("AUCTION_SR");
+			dataSource.setUrl("jdbc:postgresql://localhost:5432/AUCTION_SR_DB");
+			dataSource.setUsername("postgres");
+			dataSource.setPassword("123");
 			return dataSource;
 		}
 		
