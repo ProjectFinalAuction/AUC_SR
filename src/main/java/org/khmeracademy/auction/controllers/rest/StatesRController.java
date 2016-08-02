@@ -43,7 +43,7 @@ public class StatesRController {
 	}
 	
 	@RequestMapping(value="/get-state/{id}",method=RequestMethod.GET)
-	public ResponseEntity<Map<String,Object>> getState(
+	public ResponseEntity<Map<String,Object>> getStateById(
 			@PathVariable int id
 			){
 		Map<String, Object> map = new HashMap<String, Object>();

@@ -44,7 +44,7 @@ public class CountriesRController {
 	}
 	
 	@RequestMapping(value="/get-country-by-id/{id}", method=RequestMethod.GET)
-	public ResponseEntity <Map<String, Object>> getCountry(
+	public ResponseEntity <Map<String, Object>> getCountryById(
 			@PathVariable int id
 			){
 		Map<String, Object> map = new HashMap<String, Object>();

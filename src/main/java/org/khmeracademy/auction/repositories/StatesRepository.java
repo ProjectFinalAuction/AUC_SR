@@ -12,11 +12,11 @@ import org.khmeracademy.auction.entities.States;
 import org.springframework.stereotype.Repository;
 @Repository	
 public interface StatesRepository {
-	final String C_STATE = "INSERT INTO states(country_id, state_name) VALUES(#{country_id},#{state_name })";
-	final String RA_STATES = "SELECT * FROM states";
-	final String R_STATE = "SELECT * FROM states WHERE state_id = #{state_id}";
-	final String U_STATE = "UPDATE states SET state_name = #{state_name} WHERE state_id = #{state_id}";
-	final String D_STATE = "DELETE FROM states WHERE state_id = #{state_id}";
+	final String C_STATE = "INSERT INTO auc_states(country_id, state_name) VALUES(#{country_id},#{state_name })";
+	final String RA_STATES = "SELECT * FROM auc_states";
+	final String R_STATE = "SELECT * FROM auc_states WHERE state_id = #{state_id}";
+	final String U_STATE = "UPDATE auc_states SET state_name = #{state_name} WHERE state_id = #{state_id}";
+	final String D_STATE = "DELETE FROM auc_states WHERE state_id = #{state_id}";
 	
 	@Insert(C_STATE)
 	public boolean insertState(States s);
