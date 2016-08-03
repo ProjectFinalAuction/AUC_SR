@@ -89,11 +89,11 @@ public class CountriesRController {
 	public ResponseEntity <Map<String, Object>> updateCountry(@RequestBody Countries c){
 		Map<String, Object> map = new HashMap<String, Object>();
 		try{
-			if(cs.insertCountry(c)){				
-				map.put("MESSAGE", "Insert country successfully!");
+			if(cs.updateCountry(c)){				
+				map.put("MESSAGE", "update country successfully!");
 				map.put("STATUS", true);
 			} else {
-				map.put("MESSAGE", "Cannot insert country!");
+				map.put("MESSAGE", "Cannot update country!");
 				map.put("STATUS", true);
 			}
 		}catch(Exception e){
