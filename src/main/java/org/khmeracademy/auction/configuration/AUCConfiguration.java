@@ -16,6 +16,9 @@ public class AUCConfiguration {
 		public DataSource getDataSource(){
 			DriverManagerDataSource dataSource = new DriverManagerDataSource();
 			dataSource.setDriverClassName("org.postgresql.Driver");
+//			dataSource.setUrl("jdbc:postgresql://localhost:5432/AUCTION_SR_DB");
+//			dataSource.setUsername("postgres");
+//			dataSource.setPassword("123");
 			dataSource.setUrl("jdbc:postgresql://120.136.24.174:5432/AUCTION_SR_DB");
 			dataSource.setUsername("AUCTION_SR");
 			dataSource.setPassword("AUCTION_SR");
