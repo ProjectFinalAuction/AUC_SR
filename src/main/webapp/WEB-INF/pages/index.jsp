@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>CAMBODIA AUCTION</title>
+<jsp:include page="header.jsp"/>
 </head>
 <body>
-
+<jsp:include page="menu.jsp"/>
+	
+<jsp:include page="footer.jsp"/>
 </body>
 </html>
