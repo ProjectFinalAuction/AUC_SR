@@ -1,23 +1,40 @@
 <!-- Sweet Alert CSS -->
-<link href="${pageContext.request.contextPath}/resources/static/assets/plugins/sweetalert/dist/sweetalert.css"
+<link
+	href="${pageContext.request.contextPath}/resources/static/assets/plugins/sweetalert/dist/sweetalert.css"
 	rel="stylesheet" type="text/css">
 
-<link href="${pageContext.request.contextPath}/resources/static/assets/css/bootstrap.min.css" rel="stylesheet"
-	type="text/css" />
-<link href="${pageContext.request.contextPath}/resources/static/assets/css/core.css" rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/resources/static/assets/css/components.css" rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/resources/static/assets/css/icons.css" rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/resources/static/assets/css/pages.css" rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/resources/static/assets/css/responsive.css" rel="stylesheet" type="text/css" />
+<!--Form Wizard-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/static/assets/plugins/jquery.steps/demo/css/jquery.steps.css" />
+
+<link
+	href="${pageContext.request.contextPath}/resources/static/assets/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="${pageContext.request.contextPath}/resources/static/assets/css/core.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="${pageContext.request.contextPath}/resources/static/assets/css/components.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="${pageContext.request.contextPath}/resources/static/assets/css/icons.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="${pageContext.request.contextPath}/resources/static/assets/css/pages.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="${pageContext.request.contextPath}/resources/static/assets/css/responsive.css"
+	rel="stylesheet" type="text/css" />
 
 <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 
-<script src="${pageContext.request.contextPath}/resources/static/assets/js/modernizr.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/static/assets/js/modernizr.min.js"></script>
 
 <script>
 	(function(i, s, o, g, r, a, m) {
@@ -35,5 +52,10 @@
 	ga('create', 'UA-69506598-1', 'auto');
 	ga('send', 'pageview');
 </script>
+
+<!-- angular -->
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
 
 </head>

@@ -48,10 +48,10 @@
                 return $form_container.valid();
             },
             onFinished: function (event, currentIndex) {
-                alert("Submitted!");
+                alert("Submitted to database !");
             }
         });
-
+ 
         return $form_container;
     },
     //creates vertical form
