@@ -9,7 +9,8 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.khmeracademy.auction.entities.Image;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,8 +25,8 @@ import net.coobird.thumbnailator.name.Rename;
 public class RestUploadController {
 
 	@RequestMapping(method = RequestMethod.POST)
-	public Image uploading(@RequestParam("image") CommonsMultipartFile file, HttpServletRequest request) {
-		Image image = new Image();
+	public ResponseEntity<Map<String,Object>> uploading(@RequestParam("image") CommonsMultipartFile file, HttpServletRequest request) {
+		//Image image = new Image();
 		System.out.println("FILE=" + file.getOriginalFilename());
 		
 		String filename = "";
@@ -73,7 +74,7 @@ public class RestUploadController {
 				try {
 					//TODO: USING THUMBNAILS TO RESIZE THE IMAGE
 					Thumbnails.of(originalSavePath + filename)
-						.forceSize(320, 320)
+						.forceSize(24, 24)
 						.toFiles(originalPath, Rename.SUFFIX_HYPHEN_THUMBNAIL);					
 					
 				} catch (Exception ex) {
@@ -81,18 +82,28 @@ public class RestUploadController {
 					stream.write(bytes);
 					stream.close();
 				}
-				image.setOriginalImage("http://localhost:9999" + "/files/images/" + filename);
-				image.setThumbnailImage("http://localhost:9999" + "/files/images/" + randomUUIDFileName + "-thumbnail" + "." + extension);
+				//image.setOriginalImage("http://localhost:9999" + "/files/images/" + filename);
+				//image.setThumbnailImage("http://localhost:9999" + "/files/images/" + randomUUIDFileName + "-thumbnail" + "." + extension);
 				System.out.println("You successfully uploaded " + originalSavePath + filename + "!");
-				return image;
+				//return image;
+				map.put("DATA", "http://localhost:9999" + "/files/images/" + filename);
+				map.put("MESSAGE", "SUCCESS");
+				map.put("STATUS", true);
+				
 			} catch (Exception e) {
 				System.out.println("You failed to upload " + filename + " => " + e.getMessage());
 				map.put("IMAGE_URL", originalSavePath + File.separator + filename);
-				return image;
+				//return image;
+				map.put("MESSAGE", "ERROR");
+				map.put("STATUS", false);
 			}
 		} else {
 			System.out.println("You failed to upload " + filename + " because the file was empty.");
-			return image;
+			//return image;
+			map.put("MESSAGE", "UNSUCCESS");
+			map.put("STATUS", true);
 		}
+		
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 }

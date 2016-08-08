@@ -16,6 +16,9 @@
  		<h1>THUMBNAIL</h1>
  		<img src="" id="resultThumbnail"/>
  		
+ 		<input type="text" id="productID" />
+ 		<button id="btnSave"> SAVE</button>
+ 		
 	<script>
  		$(function(){
  			$("#image").change(function(){
@@ -36,14 +39,41 @@
  		  	        },
  		            success: function(data) {
  		            	console.log(data);
- 		            	$("#result").attr("src", data.ORIGINAL_IMAGE);
- 		            	$("#resultThumbnail").attr("src", data.THUMBNAIL_IMAGE);
+ 		            	$("#result").attr("src", data.DATA);
+ 		            	$("#resultThumbnail").attr("src", data.DATA);
  		            },
  		         	error: function(data){
  		         		console.log(data);
  					}
  		        });
  			});
+ 			
+ 			$("#btnSave").click(function(){
+ 				alert($("#result").attr("src"));
+ 				$.ajax({
+ 					url: "http://localhost:9999/api/add-image",
+ 					type: "POST",
+ 					data: JSON.stringify({
+ 						"image_id": 1,
+ 						"image_path":$("#result").attr("src"),
+ 						"product_id": $("#productID").val()
+ 						 
+ 					}),
+ 					beforeSend: function(xhr) {
+ 						//xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+ 						xhr.setRequestHeader('Content-Type', 'application/json');
+ 						//xhr.setRequestHeader('Authorization', 'Basic ZWxpYnJhcnlBRE1JTjplbGlicmFyeVBAU1NXT1JE');
+ 		  	        },
+ 					
+ 					success: function(data) {
+ 		            	alert(data);
+ 		            },
+ 		         	error: function(data){
+ 		         		alert("Error");
+ 					}
+ 				
+ 				});
+ 			}); 
  		});	
 	</script>
 </body>
