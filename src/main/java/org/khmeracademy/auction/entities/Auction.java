@@ -3,6 +3,7 @@ package org.khmeracademy.auction.entities;
 import java.sql.Date;
 
 public class Auction {
+	
 	private int auction_id; 
 	private int product_id;
 	private String product_condition;
