@@ -42,6 +42,34 @@ public class UserRController {
 		}
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
+	
+	//Request User by id
+	@RequestMapping(value="/get-user-by-id/{user_id}", method= RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findUserById(@PathVariable int user_id) {
+		Map<String, Object> map= new HashMap<String, Object>();
+		try {
+			User user = userService.findUserById(user_id);
+			if(user!=null){
+				map.put("DATA", user);
+				map.put("STATUS", true);
+				map.put("MESSAGE", "DATA FOUND!");
+			}
+			else{
+				map.put("STATUS", true);
+				map.put("MESSAGE", "DATA NOT FOUND!");
+			}
+		} catch (Exception e) {
+			map.put("STATUS", false);
+			map.put("MESSAGE", "Error!");
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
 	//Request User by Name
 	@RequestMapping(value="/get-user-by-name/{user_name}", method= RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> getUserByName(@PathVariable String user_name){

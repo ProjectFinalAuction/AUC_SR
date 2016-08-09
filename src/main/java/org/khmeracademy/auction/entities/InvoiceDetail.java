@@ -1,21 +1,21 @@
 package org.khmeracademy.auction.entities;
 
 public class InvoiceDetail {
-	private int invoice_id;
-	private int auction_id;
+	private Invoice invoice;
+	private Auction auction;
 	private double buy_price;
 	private int qty;
-	public int getInvoice_id() {
-		return invoice_id;
+	public Invoice getInvoice() {
+		return invoice;
 	}
-	public void setInvoice_id(int invoice_id) {
-		this.invoice_id = invoice_id;
+	public void setInvoice(Invoice invoice) {
+		this.invoice = invoice;
 	}
-	public int getAuction_id() {
-		return auction_id;
+	public Auction getAuction() {
+		return auction;
 	}
-	public void setAuction_id(int auction_id) {
-		this.auction_id = auction_id;
+	public void setAuction(Auction auction) {
+		this.auction = auction;
 	}
 	public double getBuy_price() {
 		return buy_price;
@@ -29,6 +29,8 @@ public class InvoiceDetail {
 	public void setQty(int qty) {
 		this.qty = qty;
 	}
+	
+	
 	
 
 }

@@ -2,10 +2,10 @@ package org.khmeracademy.auction.entities;
 
 import java.sql.Date;
 
-public class BidHistory {
+public class BidHistoryInputUpdate {
 	private int bid_id;
-	private Auction auction;
-	private User user;
+	private int auction_id;
+	private int user_id;
 	private double current_price;
 	private Date bid_date;
 	public int getBid_id() {
@@ -14,17 +14,17 @@ public class BidHistory {
 	public void setBid_id(int bid_id) {
 		this.bid_id = bid_id;
 	}
-	public Auction getAuction() {
-		return auction;
+	public int getAuction_id() {
+		return auction_id;
 	}
-	public void setAuction(Auction auction) {
-		this.auction = auction;
+	public void setAuction_id(int auction_id) {
+		this.auction_id = auction_id;
 	}
-	public User getUser() {
-		return user;
+	public int getUser_id() {
+		return user_id;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 	public double getCurrent_price() {
 		return current_price;
@@ -40,4 +40,5 @@ public class BidHistory {
 	}
 	
 	
+
 }

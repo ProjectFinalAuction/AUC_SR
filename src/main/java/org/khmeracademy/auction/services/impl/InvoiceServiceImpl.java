@@ -3,7 +3,7 @@ package org.khmeracademy.auction.services.impl;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import org.khmeracademy.auction.entities.Invoice;
+import org.khmeracademy.auction.entities.InvoiceInputUpdate;
 import org.khmeracademy.auction.repositories.InvoiceRepository;
 import org.khmeracademy.auction.services.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,27 +15,27 @@ public class InvoiceServiceImpl implements InvoiceService{
 	private InvoiceRepository invoiceRepository;
 
 	@Override
-	public ArrayList<Invoice> findAllInvoices() {
+	public ArrayList<InvoiceInputUpdate> findAllInvoices() {
 		return invoiceRepository.findAllInvoices();
 	}
 
 	@Override
-	public ArrayList<Invoice> findInvoiceByUserName(String user_name) {
+	public ArrayList<InvoiceInputUpdate> findInvoiceByUserName(String user_name) {
 		return invoiceRepository.findInvoiceByUserName(user_name);
 	}
 
 	@Override
-	public ArrayList<Invoice> findInvoiceByDate(Date invoice_date) {
+	public ArrayList<InvoiceInputUpdate> findInvoiceByDate(Date invoice_date) {
 		return invoiceRepository.findInvoiceByDate(invoice_date);
 	}
 
 	@Override
-	public boolean addInvoice(Invoice inv) {
+	public boolean addInvoice(InvoiceInputUpdate inv) {
 		return invoiceRepository.addInvoice(inv);
 	}
 
 	@Override
-	public boolean updateInvoice(Invoice inv) {
+	public boolean updateInvoice(InvoiceInputUpdate inv) {
 		return invoiceRepository.updateInvoice(inv);
 	}
 

@@ -19,6 +19,12 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userRepository.getAllUsers();
 	}
+	
+	@Override
+	public User findUserById(int user_id) {
+		// TODO Auto-generated method stub
+		return userRepository.findUserById(user_id);
+	}
 
 	@Override
 
@@ -55,5 +61,9 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userRepository.deleteUsers(userId);
 	}
+
+
+
+	
 
 }

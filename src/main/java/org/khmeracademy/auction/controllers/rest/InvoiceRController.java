@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.khmeracademy.auction.entities.Invoice;
+import org.khmeracademy.auction.entities.InvoiceInputUpdate;
 import org.khmeracademy.auction.services.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ public class InvoiceRController {
 	/**
 	 * Help method to get map object when select query
 	 */
-	public Map<String,Object> getMapObject(ArrayList<Invoice> arr){
+	public Map<String,Object> getMapObject(ArrayList<InvoiceInputUpdate> arr){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
 			if(!arr.isEmpty()){
@@ -64,33 +64,33 @@ public class InvoiceRController {
 	}
 	@RequestMapping(value="/find-all-invoices",method=RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAllInvoices(){
-		ArrayList<Invoice> arr = invoiceService.findAllInvoices();
+		ArrayList<InvoiceInputUpdate> arr = invoiceService.findAllInvoices();
 		Map<String,Object> map = getMapObject(arr);
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);	
 	}
 	
 	@RequestMapping(value="/find-invoice-by-user-name/{user_name}",method=RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findInvoiceByUserName(@PathVariable String user_name){
-		ArrayList<Invoice> arr = invoiceService.findInvoiceByUserName(user_name);
+		ArrayList<InvoiceInputUpdate> arr = invoiceService.findInvoiceByUserName(user_name);
 		Map<String,Object> map = getMapObject(arr);
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/find-invoice-by-date/{invoice_date}", method=RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findInvoiceByDate(@PathVariable Date invoice_date){
-		ArrayList<Invoice> arr = invoiceService.findInvoiceByDate(invoice_date);
+		ArrayList<InvoiceInputUpdate> arr = invoiceService.findInvoiceByDate(invoice_date);
 		Map<String,Object> map = getMapObject(arr);
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/add-invoice", method=RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> addInvoice(@RequestBody Invoice inv){
+	public ResponseEntity<Map<String,Object>> addInvoice(@RequestBody InvoiceInputUpdate inv){
 		Map<String,Object> map = getMapObjectAfterTransaction(invoiceService.addInvoice(inv));
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/update-invoice", method=RequestMethod.PUT)
-	public ResponseEntity<Map<String,Object>> updateInvoice(@RequestBody Invoice inv){
+	public ResponseEntity<Map<String,Object>> updateInvoice(@RequestBody InvoiceInputUpdate inv){
 		Map<String,Object> map = getMapObjectAfterTransaction(invoiceService.updateInvoice(inv));
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}

@@ -8,6 +8,8 @@ public interface UserService {
 	
 	public ArrayList<User> getAllUsers();
 	
+	public User findUserById(int user_id);
+	
 	public User getUserByName(String user_name);
 	
 	public User getUserByEmail(String email);

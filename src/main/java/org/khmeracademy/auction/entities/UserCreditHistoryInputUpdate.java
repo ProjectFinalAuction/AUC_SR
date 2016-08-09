@@ -2,10 +2,10 @@ package org.khmeracademy.auction.entities;
 
 import java.sql.Date;
 
-public class UserCreditHistory {
+public class UserCreditHistoryInputUpdate {
 	private int credit_id;
 	private Date credit_date;
-	private User user;
+	private int user_id;
 	private double beginning_amount;
 	private String transaction_type;
 	private double amount;
@@ -22,11 +22,11 @@ public class UserCreditHistory {
 	public void setCredit_date(Date credit_date) {
 		this.credit_date = credit_date;
 	}
-	public User getUser() {
-		return user;
+	public int getUser_id() {
+		return user_id;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 	public double getBeginning_amount() {
 		return beginning_amount;
@@ -52,7 +52,6 @@ public class UserCreditHistory {
 	public void setEnding_amount(double ending_amount) {
 		this.ending_amount = ending_amount;
 	}
-	
 	
 	
 

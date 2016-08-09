@@ -15,6 +15,10 @@ public interface UserRepository {
 	String R_USERS="SELECT *  FROM auc_user  ";
 	
 	//get user by name(name | first | last)
+	String R_USER_ByID="SELECT * FROM auc_user WHERE user_id = #{user_id}";
+	
+	
+	//get user by name(name | first | last)
 	String R_USER_ByNAME="SELECT * FROM auc_user WHERE user_name = #{user_name} or first_name = #{user_name} or last_name = #{user_name}";
 	
 	//get user by email
@@ -106,6 +110,9 @@ public interface UserRepository {
 	
 	@Select(R_USERS)
 	public ArrayList<User> getAllUsers();
+	
+	@Select(R_USER_ByID)
+	public User findUserById(int user_id);
 	
 	@Select(R_USER_ByNAME)
 	public User getUserByName(String user_name);
