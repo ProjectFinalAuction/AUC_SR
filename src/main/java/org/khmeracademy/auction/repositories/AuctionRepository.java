@@ -3,14 +3,30 @@ package org.khmeracademy.auction.repositories;
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.khmeracademy.auction.entities.Auction;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AuctionRepository {
-	final String FIND_ALL_AUCTIONS = "SELECT * FROM auc_auction";
+	final String FIND_ALL_AUCTIONS = "SELECT a.*, p.product_name, p.product_description, p.status, b.brand_name, b.brand_description, "
+			+ "b.status, c.category_description, c.status, c.category_name, s.contact_name, s.address, s.phone, s.email "
+			+ "FROM "
+			+ "auc_auction a" 
+			+ "inner join auc_product p "
+			+ "on a.product_id=p.product_id inner join auc_supplier s on s.supplier_id=p.supplier_id "
+			+ "inner join auc_brand b on b.brand_id=p.brand_id "
+			+ "inner join auc_category c on c.category_id=p.category_id";
 	@Select(FIND_ALL_AUCTIONS)
+	@Results(value={
+			@Result(property="product.product_id", column="product_id"),
+			@Result(property="product.product_name", column="product_name"),
+			@Result(property="product.product_description", column="product_description"),
+			@Result(property="product.status", column="status"),
+			@Result(property="product.status", column="status"),
+	})
 	public ArrayList<Auction> findAllAuctions();
 	
 	final String FIND_AUCTION_BY_PRODUCT_NAME = 
