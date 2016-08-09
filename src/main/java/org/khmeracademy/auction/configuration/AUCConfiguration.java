@@ -77,6 +77,10 @@ public class AUCConfiguration  extends WebMvcConfigurerAdapter{
 		public void addResourceHandlers(ResourceHandlerRegistry registry) {
 			registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 			registry.addResourceHandler("/files/images/**").addResourceLocations("file:/opt/images/");
+			registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+			registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
 		}
+		
+		
 
 }
