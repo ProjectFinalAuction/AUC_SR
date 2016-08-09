@@ -3,6 +3,7 @@ package org.khmeracademy.auction.services.impl;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Auction;
+import org.khmeracademy.auction.entities.AuctionInputUpdate;
 import org.khmeracademy.auction.repositories.AuctionRepository;
 import org.khmeracademy.auction.services.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +31,12 @@ public class AuctionServiceImpl implements AuctionService{
 	}
 
 	@Override
-	public boolean addAuction(Auction a) {
+	public boolean addAuction(AuctionInputUpdate a) {
 		return auctionRepository.addAuction(a);
 	}
 
 	@Override
-	public boolean updateAuction(Auction a) {
+	public boolean updateAuction(AuctionInputUpdate a) {
 		return auctionRepository.updateAuction(a);
 	}
 

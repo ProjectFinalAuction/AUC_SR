@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.khmeracademy.auction.entities.Auction;
+import org.khmeracademy.auction.entities.AuctionInputUpdate;
 import org.khmeracademy.auction.services.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -89,14 +90,14 @@ public class AuctionRController {
 	}
 
 	@RequestMapping(value="/add-auction", method=RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> addAuction(@RequestBody Auction a) {
+	public ResponseEntity<Map<String,Object>> addAuction(@RequestBody AuctionInputUpdate a) {
 		Map<String,Object> map = getMapObjectAfterTransaction(auctionService.addAuction(a));
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 
 	
 	@RequestMapping(value="/update-auction", method=RequestMethod.PUT)
-	public ResponseEntity<Map<String,Object>> updateAuction(@RequestBody Auction a) {
+	public ResponseEntity<Map<String,Object>> updateAuction(@RequestBody AuctionInputUpdate a) {
 		Map<String,Object> map = getMapObjectAfterTransaction(auctionService.updateAuction(a));		
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}

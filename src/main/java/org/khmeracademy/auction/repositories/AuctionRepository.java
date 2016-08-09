@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.khmeracademy.auction.entities.Auction;
+import org.khmeracademy.auction.entities.AuctionInputUpdate;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -54,20 +55,7 @@ public interface AuctionRepository {
 	public ArrayList<Auction> findAuctionByDate(String trans_date);
 	
 	final String ADD_AUCTION= 
-					"	INSERT INTO auc_auction(	"+
-					"	product_id,	"+
-					"	product_condition,	"+
-					"	start_price,	"+
-					"	buy_price,	"+
-					"	increment_price,	"+
-					"	current_price,	"+
-					"	start_date,	"+
-					"	end_date,	"+
-					"	status,	"+
-					"	created_by,	"+
-					"	created_date,	"+
-					"	comment)	"+
-					"	VALUES (	"+
+					"	SELECT pr_add_auction (	"+
 					"	#{product_id},	"+
 					"	#{product_condition},	"+
 					"	#{start_price},	"+
@@ -82,23 +70,23 @@ public interface AuctionRepository {
 					"	#{comment}	"+
 					"	)	";
 	@Insert(ADD_AUCTION)
-	public boolean addAuction(Auction a);	
+	public boolean addAuction(AuctionInputUpdate a);	
 	
 	
 	final String UPDATE_AUCTION= 
-					"	UPDATE auc_auction	"+
-					"	SET product_id = #{product_id},	"+
-					"	product_condition = #{product_condition},	"+
-					"	start_price = #{start_price},	"+
-					"	buy_price = #{buy_price},	"+
-					"	increment_price = #{increment_price},	"+
-					"	current_price = #{current_price},	"+
-					"	start_date = #{start_date},	"+
-					"	end_date = #{end_date},	"+
-					"	status = #{status},	"+
-					"	comment = #{comment}	"+
-					"	WHERE auction_id = #{auction_id}	";
-	public boolean updateAuction(Auction a);
+					"	SELECT pr_update_auction (	"+
+					"	#{product_id},	"+
+					"	#{product_condition},	"+
+					"	#{start_price},	"+
+					"	#{buy_price},	"+
+					"	#{increment_price},	"+
+					"	#{current_price},	"+
+					"	#{start_date},	"+
+					"	#{end_date},	"+
+					"	#{status},	"+
+					"	#{comment}	)";
+					
+	public boolean updateAuction(AuctionInputUpdate a);
 
 	final String DELETE_AUCTION= "UPDATE auc_auction SET status = false WHERE auction_id = #{auction_id}";
 	public boolean deleteAuction(int auction_id);	
