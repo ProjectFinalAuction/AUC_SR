@@ -22,22 +22,22 @@ public interface AuctionRepository {
 			@Result(property="product.status", column="product_status"),
 			
 			// Brand
-			@Result(property="brand.brand_id", column="brand_id"),
-			@Result(property="brand.brand_name", column="brand_name"),
-			@Result(property="brand.brand_description", column="brand_description"),
-			@Result(property="brand.status", column="brand_status"),
+			@Result(property="product.brand.brand_id", column="brand_id"),
+			@Result(property="product.brand.brand_name", column="brand_name"),
+			@Result(property="product.brand.brand_description", column="brand_description"),
+			@Result(property="product.brand.status", column="brand_status"),
 			
 			//Category
-			@Result(property="category.category_id", column="category_id"),
-			@Result(property="category.category_name", column="category_name"),
-			@Result(property="category.category_description", column="category_description"),
+			@Result(property="product.category.category_id", column="category_id"),
+			@Result(property="product.category.category_name", column="category_name"),
+			@Result(property="product.category.category_description", column="category_description"),
 			
 			//Supplier
-			@Result(property="supplier.supplier_id", column="supplier_id"),
-			@Result(property="supplier.contact_name", column="contact_name"),
-			@Result(property="supplier.address", column="address"),
-			@Result(property="supplier.phone", column="phone"),
-			@Result(property="supplier.email", column="email")
+			@Result(property="product.supplier.supplier_id", column="supplier_id"),
+			@Result(property="product.supplier.contact_name", column="contact_name"),
+			@Result(property="product.supplier.address", column="address"),
+			@Result(property="product.supplier.phone", column="phone"),
+			@Result(property="product.supplier.email", column="email")
 			
 	})
 	public ArrayList<Auction> findAllAuctions();
