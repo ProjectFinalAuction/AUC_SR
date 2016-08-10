@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.Gallery;
@@ -12,16 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GalleryRepository {
 	//READ
-	String R_GALLERY="	SELECT	"+
-			"	G.image_path,	"+
-			"	G.product_id,	"+
-			"	G.image_id,	"+
-			"	auc_product.product_name	"+
-			"	FROM	"+
-			"	auc_gallery G	"+
-			"	INNER JOIN auc_product ON auc_product.product_id = G.product_id	"+
-			"	WHERE	"+
-			"	auc_product.product_name = #{product_name}";
+	String R_GALLERY="SELECT * FROM v_find_all_gallery WHERE product_name = #{product_name}";
 	
 	//CREATE
 	String C_GALLERY=" INSERT INTO "
@@ -42,6 +35,26 @@ public interface GalleryRepository {
 	String D_GALLERY=" DELETE FROM auc_gallery WHERE image_id = #{image_id} ";
 	
 	@Select(R_GALLERY)
+	@Results(value={
+			// product
+			@Result(property="product.product_name", column="product_name"),
+			@Result(property="product.product_description", column="product_description"),
+			@Result(property="product.qty", column="qty"),
+			@Result(property="product.status", column="status"),
+			@Result(property="product.supplier_id", column="supplier_id"),
+			
+			// supplier
+			@Result(property="supplier.contact_name", column="contact_name"),
+			@Result(property="supplier.address", column="address"),
+			@Result(property="supplier.phone", column="phone"),
+			@Result(property="supplier.email", column="email"),
+			
+			// category
+			@Result(property="category.category_id", column="category_id"),
+			@Result(property="category.category_name", column="category_name"),
+			@Result(property="category.category_description", column="category_description")
+			
+	})
 	public ArrayList<Gallery> findImageByProductName(String supplier_name);
 	
 	@Insert(C_GALLERY)

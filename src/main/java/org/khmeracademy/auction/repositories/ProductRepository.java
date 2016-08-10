@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.Product;
+import org.khmeracademy.auction.entities.ProductInputUpdate;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -89,10 +90,10 @@ public interface ProductRepository {
 	public ArrayList<Product> findProductByCategory(String category_name );
 	
 	@Insert(C_PRODUCT)
-	public boolean addProduct(Product p);
+	public boolean addProduct(ProductInputUpdate p);
 	
 	@Update(U_PRODUCT)
-	public boolean updateProduct(Product p);
+	public boolean updateProduct(ProductInputUpdate p);
 	
 	@Delete(D_PRODUCT)
 	public boolean deleteProduct(int  product_id);
