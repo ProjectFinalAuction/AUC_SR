@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.khmeracademy.auction.entities.Product;
+import org.khmeracademy.auction.entities.ProductInputUpdate;
 import org.khmeracademy.auction.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -87,13 +88,13 @@ public class ProductRController {
 	}
 	
 	@RequestMapping(value="/add-product", method= RequestMethod.POST)
-	public ResponseEntity<Map<String, Object>> addProduct(@RequestBody Product p){
+	public ResponseEntity<Map<String, Object>> addProduct(@RequestBody ProductInputUpdate p){
 		Map<String, Object> map= getMapObjectAfterTransaction(ps.addProduct(p));
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/update-product", method=RequestMethod.PUT)
-	public ResponseEntity<Map<String, Object>> updateProduct(@RequestBody Product p ){
+	public ResponseEntity<Map<String, Object>> updateProduct(@RequestBody ProductInputUpdate p ){
 		Map<String, Object> map= getMapObjectAfterTransaction(ps.updateProduct(p));
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}

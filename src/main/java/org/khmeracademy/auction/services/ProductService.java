@@ -3,6 +3,8 @@ package org.khmeracademy.auction.services;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Product;
+import org.khmeracademy.auction.entities.ProductInputUpdate;
+
 
 public interface ProductService {
 
@@ -14,9 +16,9 @@ public interface ProductService {
  
 	public ArrayList<Product> findProductByCategory(String category_name );
 
-	public boolean addProduct(Product p);
+	public boolean addProduct(ProductInputUpdate p);
 
-	public boolean updateProduct(Product p);
+	public boolean updateProduct(ProductInputUpdate p);
 
 	public boolean deleteProduct(int  product_id);
 }

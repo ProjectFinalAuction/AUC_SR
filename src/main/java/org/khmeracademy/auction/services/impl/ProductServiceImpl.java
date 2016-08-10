@@ -3,6 +3,7 @@ package org.khmeracademy.auction.services.impl;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Product;
+import org.khmeracademy.auction.entities.ProductInputUpdate;
 import org.khmeracademy.auction.repositories.ProductRepository;
 import org.khmeracademy.auction.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +40,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public boolean addProduct(Product p) {
+	public boolean addProduct(ProductInputUpdate p) {
 		// TODO Auto-generated method stub
 		return pr.addProduct(p);
 	}
 
 	@Override
-	public boolean updateProduct(Product p) {
+	public boolean updateProduct(ProductInputUpdate p) {
 		// TODO Auto-generated method stub
 		return pr.updateProduct(p);
 	}

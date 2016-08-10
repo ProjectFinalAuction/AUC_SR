@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.BidHistory;
@@ -12,30 +14,47 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BidHistoryRepository {
-	final String FIND_ALL_BID_HISTORY = "SELECT * FROM auc_bid_history";
+	final String FIND_ALL_BID_HISTORY = "SELECT * FROM v_find_all_bid_history";
 	@Select(FIND_ALL_BID_HISTORY)
+	@Results(value={
+			// user
+			@Result(property="user.user_name", column="user_name"),
+			@Result(property="user.first_name", column="first_name"),
+			@Result(property="user.last_name", column="last_name"),
+			@Result(property="user.first_name", column="first_name"),
+			@Result(property="user.gender", column="gender"),
+			@Result(property="user.dob", column="dob"),
+			@Result(property="user.email", column="email"),
+			@Result(property="user.photo", column="photo"),
+			@Result(property="user.type", column="type"),
+			@Result(property="user.status", column="status"),
+			
+			// auction
+			@Result(property="auction.product_id", column="product_id"),
+			@Result(property="auction.product_condition", column="product_condition"),
+			@Result(property="auction.start_price", column="start_price"),
+			@Result(property="auction.buy_price", column="buy_price"),
+			@Result(property="auction.increment_price", column="increment_price"),
+			@Result(property="auction.current_price", column="auction_current_price"),
+			@Result(property="auction.start_date", column="start_date"),
+			@Result(property="auction.end_date", column="end_date"),
+			
+			// product
+			@Result(property="product.product_name", column="product_name"),
+			@Result(property="product.product_description", column="product_description")
+						
+	})
 	public ArrayList<BidHistory> findAllBidHistory();
 
-	final String FIND_BID_HISTORY_BY_AUCTION_ID="SELECT * FROM auc_bid_history WHERE auction_id = #{auction_id}";
+	final String FIND_BID_HISTORY_BY_AUCTION_ID="SELECT * FROM v_find_all_bid_history WHERE auction_id = #{auction_id}";
 	@Select(FIND_BID_HISTORY_BY_AUCTION_ID)
 	public ArrayList<BidHistory> findBidHistoryByAuctionId(int auction_id);
 	
-	final String FIND_BID_HISTORY_BY_USER_NAME=
-					"	SELECT "+
-					"	b.bid_id, "+
-					"	b.auction_id, "+
-					"	b.user_id, "+
-					"	b.current_price, "+
-					"	b.bid_date "+
-					"	FROM "+
-					"	auc_bid_history b "+
-					"	INNER JOIN auc_user u ON u.user_id = b.user_id "+
-					"	WHERE	 "+
-					"	u.user_name = #{user_name} ";
+	final String FIND_BID_HISTORY_BY_USER_NAME="SELECT * FROM v_find_all_bid_history WHERE u.user_name = #{user_name} ";
 	@Select(FIND_BID_HISTORY_BY_USER_NAME)
 	public ArrayList<BidHistory> findBidHistoryByUserName(String user_name);
 
-	final String FIND_BID_HISTORY_BY_DATE="SELECT * FROM auc_bid_history WHERE bid_date = #{bid_date}";
+	final String FIND_BID_HISTORY_BY_DATE="SELECT * FROM v_find_all_bid_history WHERE bid_date = #{bid_date}";
 	@Select(FIND_BID_HISTORY_BY_DATE)
 	public ArrayList<BidHistory> findBidHistoryByDate(Date bid_date);
 
