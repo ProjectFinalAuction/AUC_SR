@@ -4,11 +4,11 @@ import java.sql.Date;
 
 public class TopUp {
 	private int top_up_id;
-	private User user;
+	private User user;     // user object
 	private String currency;
 	private double amount;
 	private Date top_up_date;
-	private PaymentMethod paymentMethod;
+	private PaymentMethod paymentMethod; // paymentMethod object
 	public int getTop_up_id() {
 		return top_up_id;
 	}
