@@ -1,6 +1,5 @@
 package org.khmeracademy.auction.repositories;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Delete;
@@ -108,7 +107,7 @@ public interface BidHistoryRepository {
 	})
 	public ArrayList<BidHistory> findBidHistoryByUserName(String user_name);
 
-	final String FIND_BID_HISTORY_BY_DATE="SELECT * FROM v_find_all_bid_history WHERE bid_date = #{bid_date}";
+	final String FIND_BID_HISTORY_BY_DATE="SELECT * FROM v_find_all_bid_history WHERE bid_date::TEXT = #{bid_date}";
 	@Select(FIND_BID_HISTORY_BY_DATE)
 	@Results(value={
 			// user
