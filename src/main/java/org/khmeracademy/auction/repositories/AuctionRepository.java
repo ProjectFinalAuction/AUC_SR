@@ -74,7 +74,7 @@ public interface AuctionRepository {
 	})
 	public ArrayList<Auction> findAuctionByProductName(String product_name);
 	
-	final String FIND_AUCTION_BY_DATE= "SELECT * FROM v_find_all_auctions WHERE start_date = #{trans_date} OR end_date = #{trans_date}";
+	final String FIND_AUCTION_BY_DATE= "SELECT * FROM v_find_all_auctions WHERE start_date:: TEXT = #{trans_date} OR end_date :: TEXT = #{trans_date}";
 	@Select(FIND_AUCTION_BY_DATE)
 	@Results(value={
 			// Product
@@ -104,37 +104,52 @@ public interface AuctionRepository {
 	})
 	public ArrayList<Auction> findAuctionByDate(String trans_date);
 	
+
 	final String ADD_AUCTION= 
-					"	SELECT pr_add_auction (	"+
-					"	#{product_id},	"+
-					"	#{product_condition},	"+
-					"	#{start_price},	"+
-					"	#{buy_price},	"+
-					"	#{increment_price},	"+
-					"	#{current_price},	"+
-					"	#{start_date},	"+
-					"	#{end_date},	"+
-					"	#{status},	"+
-					"	#{created_by},	"+
-					"	#{created_date},	"+
-					"	#{comment}	"+
-					"	)	";
+			"	INSERT INTO auc_auction(	"+
+			"	product_id,	"+
+			"	product_condition,	"+
+			"	start_price,	"+
+			"	buy_price,	"+
+			"	increment_price,	"+
+			"	current_price,	"+
+			"	start_date,	"+
+			"	end_date,	"+
+			"	status,	"+
+			"	created_by,	"+
+			"	created_date,	"+
+			"	comment)	"+
+			"	VALUES (	"+
+			"	#{product_id},	"+
+			"	#{product_condition},	"+
+			"	#{start_price},	"+
+			"	#{buy_price},	"+
+			"	#{increment_price},	"+
+			"	#{current_price},	"+
+			"	#{start_date},	"+
+			"	#{end_date},	"+
+			"	#{status},	"+
+			"	#{created_by},	"+
+			"	#{created_date},	"+
+			"	#{comment}	"+
+			"	)	";
 	@Insert(ADD_AUCTION)
 	public boolean addAuction(AuctionInputUpdate a);	
 	
 	
 	final String UPDATE_AUCTION= 
-					"	SELECT pr_update_auction (	"+
-					"	#{product_id},	"+
-					"	#{product_condition},	"+
-					"	#{start_price},	"+
-					"	#{buy_price},	"+
-					"	#{increment_price},	"+
-					"	#{current_price},	"+
-					"	#{start_date},	"+
-					"	#{end_date},	"+
-					"	#{status},	"+
-					"	#{comment}	)";
+			"	UPDATE auc_auction	"+
+			"	SET product_id = #{product_id},	"+
+			"	product_condition = #{product_condition},	"+
+			"	start_price = #{start_price},	"+
+			"	buy_price = #{buy_price},	"+
+			"	increment_price = #{increment_price},	"+
+			"	current_price = #{current_price},	"+
+			"	start_date = #{start_date},	"+
+			"	end_date = #{end_date},	"+
+			"	status = #{status},	"+
+			"	comment = #{comment}	"+
+			"	WHERE auction_id = #{auction_id}	";
 					
 	public boolean updateAuction(AuctionInputUpdate a);
 
