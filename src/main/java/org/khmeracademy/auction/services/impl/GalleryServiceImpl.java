@@ -3,6 +3,7 @@ package org.khmeracademy.auction.services.impl;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Gallery;
+import org.khmeracademy.auction.entities.GalleryInputUpdate;
 import org.khmeracademy.auction.repositories.GalleryRepository;
 import org.khmeracademy.auction.services.GalleryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,13 @@ public class GalleryServiceImpl implements GalleryService {
 	}
 
 	@Override
-	public boolean addImage(Gallery g) {
+	public boolean addImage(GalleryInputUpdate g) {
 		// TODO Auto-generated method stub
 		return gr.addImage(g);
 	}
 
 	@Override
-	public boolean updateImagePath(Gallery g) {
+	public boolean updateImagePath(GalleryInputUpdate g) {
 		// TODO Auto-generated method stub
 		return gr.updateImagePath(g);
 	}

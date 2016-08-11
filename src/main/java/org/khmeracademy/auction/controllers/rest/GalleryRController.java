@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.khmeracademy.auction.entities.Gallery;
+import org.khmeracademy.auction.entities.GalleryInputUpdate;
 import org.khmeracademy.auction.services.GalleryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -67,13 +68,13 @@ public class GalleryRController {
 	}
 	
 	@RequestMapping(value="/add-image", method= RequestMethod.POST)
-	public ResponseEntity<Map<String, Object>> addImage(@RequestBody Gallery g){
+	public ResponseEntity<Map<String, Object>> addImage(@RequestBody GalleryInputUpdate g){
 		Map<String, Object> map= getMapObjectAfterTransaction(gs.addImage(g));
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/update-image-path", method=RequestMethod.PUT)
-	public ResponseEntity<Map<String, Object>> updateImagePath(@RequestBody Gallery g){
+	public ResponseEntity<Map<String, Object>> updateImagePath(@RequestBody GalleryInputUpdate g){
 		Map<String, Object> map= getMapObjectAfterTransaction(gs.updateImagePath(g));
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}

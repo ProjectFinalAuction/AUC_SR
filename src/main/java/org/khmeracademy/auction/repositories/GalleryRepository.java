@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.Gallery;
+import org.khmeracademy.auction.entities.GalleryInputUpdate;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -47,7 +48,7 @@ public interface GalleryRepository {
 			+ "		#{product_id}, "
 			+ "		#{image_path}) ";
 	@Insert(C_GALLERY)
-	public boolean addImage(Gallery g);
+	public boolean addImage(GalleryInputUpdate g);
 	
 	String U_GALLERY=" UPDATE auc_gallery "
 			+ "SET "
@@ -56,7 +57,7 @@ public interface GalleryRepository {
 			+ "WHERE "
 			+ "		image_id= #{image_id}";
 	@Update(U_GALLERY)
-	public boolean updateImagePath(Gallery g);
+	public boolean updateImagePath(GalleryInputUpdate g);
 	
 	String D_GALLERY=" DELETE FROM auc_gallery WHERE image_id = #{image_id} ";
 	@Delete(D_GALLERY)
