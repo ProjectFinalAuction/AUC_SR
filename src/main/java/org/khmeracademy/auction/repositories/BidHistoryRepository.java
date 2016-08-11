@@ -20,8 +20,7 @@ public interface BidHistoryRepository {
 			// user
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
-			@Result(property="user.last_name", column="last_name"),
-			@Result(property="user.first_name", column="first_name"),
+			@Result(property="user.last_name", column="last_name"),			
 			@Result(property="user.gender", column="gender"),
 			@Result(property="user.dob", column="dob"),
 			@Result(property="user.email", column="email"),
