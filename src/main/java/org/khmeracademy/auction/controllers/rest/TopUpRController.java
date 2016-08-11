@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.khmeracademy.auction.entities.TopUp;
+import org.khmeracademy.auction.entities.TopUpInputUpdate;
 import org.khmeracademy.auction.services.TopUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -93,13 +94,13 @@ public class TopUpRController {
 	}
 	
 	@RequestMapping(value="/add-top-up",method=RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> addTopUp(@RequestBody TopUp t){
+	public ResponseEntity<Map<String,Object>> addTopUp(@RequestBody TopUpInputUpdate t){
 		Map<String,Object> map = getMapObjectAfterTransaction(topUpService.addTopUp(t));
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/update-top-up",method=RequestMethod.PUT)
-	public ResponseEntity<Map<String,Object>> updateTopUp(@RequestBody TopUp t){
+	public ResponseEntity<Map<String,Object>> updateTopUp(@RequestBody TopUpInputUpdate t){
 		Map<String,Object> map = getMapObjectAfterTransaction(topUpService.updateTopUp(t));
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}

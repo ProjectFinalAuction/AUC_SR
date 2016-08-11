@@ -1,8 +1,8 @@
 package org.khmeracademy.auction.entities;
 
 public class InvoiceDetail {
-	private Invoice invoice;
-	private Auction auction;
+	private Invoice invoice;  // invoice object
+	private Auction auction;  // auction object
 	private double buy_price;
 	private int qty;
 	public Invoice getInvoice() {

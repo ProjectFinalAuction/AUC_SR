@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Invoice {
 	private int invoice_id;
-	private User user;
+	private User user;      // User object
 	private Date invoice_date;
 	public int getInvoice_id() {
 		return invoice_id;

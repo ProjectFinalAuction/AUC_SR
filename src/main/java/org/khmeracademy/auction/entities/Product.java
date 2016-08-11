@@ -4,10 +4,10 @@ public class Product {
 	private int product_id;
 	private String product_name;
 	private String product_description;
-	private Supplier supplier;
-	private Category category;
+	private Supplier supplier;  // supplier object
+	private Category category;  // category object
 	private int qty;
-	private Brand brand;
+	private Brand brand;		// brand object
 	private boolean status;
 	public int getProduct_id() {
 		return product_id;

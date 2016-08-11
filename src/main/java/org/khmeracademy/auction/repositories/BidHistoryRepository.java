@@ -40,22 +40,106 @@ public interface BidHistoryRepository {
 			@Result(property="auction.end_date", column="end_date"),
 			
 			// product
-			@Result(property="product.product_name", column="product_name"),
-			@Result(property="product.product_description", column="product_description")
+			@Result(property="auction.product.product_name", column="product_name"),
+			@Result(property="auction.product.product_description", column="product_description")
 						
 	})
 	public ArrayList<BidHistory> findAllBidHistory();
 
 	final String FIND_BID_HISTORY_BY_AUCTION_ID="SELECT * FROM v_find_all_bid_history WHERE auction_id = #{auction_id}";
 	@Select(FIND_BID_HISTORY_BY_AUCTION_ID)
+	@Results(value={
+			// user
+			@Result(property="user.user_name", column="user_name"),
+			@Result(property="user.first_name", column="first_name"),
+			@Result(property="user.last_name", column="last_name"),
+			@Result(property="user.first_name", column="first_name"),
+			@Result(property="user.gender", column="gender"),
+			@Result(property="user.dob", column="dob"),
+			@Result(property="user.email", column="email"),
+			@Result(property="user.photo", column="photo"),
+			@Result(property="user.type", column="type"),
+			@Result(property="user.status", column="status"),
+			
+			// auction
+			@Result(property="auction.product_id", column="product_id"),
+			@Result(property="auction.product_condition", column="product_condition"),
+			@Result(property="auction.start_price", column="start_price"),
+			@Result(property="auction.buy_price", column="buy_price"),
+			@Result(property="auction.increment_price", column="increment_price"),
+			@Result(property="auction.current_price", column="auction_current_price"),
+			@Result(property="auction.start_date", column="start_date"),
+			@Result(property="auction.end_date", column="end_date"),
+			
+			// product
+			@Result(property="auction.product.product_name", column="product_name"),
+			@Result(property="auction.product.product_description", column="product_description")
+						
+	})
 	public ArrayList<BidHistory> findBidHistoryByAuctionId(int auction_id);
 	
 	final String FIND_BID_HISTORY_BY_USER_NAME="SELECT * FROM v_find_all_bid_history WHERE u.user_name = #{user_name} ";
 	@Select(FIND_BID_HISTORY_BY_USER_NAME)
+	@Results(value={
+			// user
+			@Result(property="user.user_name", column="user_name"),
+			@Result(property="user.first_name", column="first_name"),
+			@Result(property="user.last_name", column="last_name"),
+			@Result(property="user.first_name", column="first_name"),
+			@Result(property="user.gender", column="gender"),
+			@Result(property="user.dob", column="dob"),
+			@Result(property="user.email", column="email"),
+			@Result(property="user.photo", column="photo"),
+			@Result(property="user.type", column="type"),
+			@Result(property="user.status", column="status"),
+			
+			// auction
+			@Result(property="auction.product_id", column="product_id"),
+			@Result(property="auction.product_condition", column="product_condition"),
+			@Result(property="auction.start_price", column="start_price"),
+			@Result(property="auction.buy_price", column="buy_price"),
+			@Result(property="auction.increment_price", column="increment_price"),
+			@Result(property="auction.current_price", column="auction_current_price"),
+			@Result(property="auction.start_date", column="start_date"),
+			@Result(property="auction.end_date", column="end_date"),
+			
+			// product
+			@Result(property="auction.product.product_name", column="product_name"),
+			@Result(property="auction.product.product_description", column="product_description")
+						
+	})
 	public ArrayList<BidHistory> findBidHistoryByUserName(String user_name);
 
 	final String FIND_BID_HISTORY_BY_DATE="SELECT * FROM v_find_all_bid_history WHERE bid_date = #{bid_date}";
 	@Select(FIND_BID_HISTORY_BY_DATE)
+	@Results(value={
+			// user
+			@Result(property="user.user_name", column="user_name"),
+			@Result(property="user.first_name", column="first_name"),
+			@Result(property="user.last_name", column="last_name"),
+			@Result(property="user.first_name", column="first_name"),
+			@Result(property="user.gender", column="gender"),
+			@Result(property="user.dob", column="dob"),
+			@Result(property="user.email", column="email"),
+			@Result(property="user.photo", column="photo"),
+			@Result(property="user.type", column="type"),
+			@Result(property="user.status", column="status"),
+			
+			// auction
+			@Result(property="auction.product_id", column="product_id"),
+			@Result(property="auction.product_condition", column="product_condition"),
+			@Result(property="auction.start_price", column="start_price"),
+			@Result(property="auction.buy_price", column="buy_price"),
+			@Result(property="auction.increment_price", column="increment_price"),
+			@Result(property="auction.current_price", column="auction_current_price"),
+			@Result(property="auction.start_date", column="start_date"),
+			@Result(property="auction.end_date", column="end_date"),
+			
+			// product
+			@Result(property="auction.product.product_name", column="product_name"),
+			@Result(property="auction.product.product_description", column="product_description")
+						
+	})
 	public ArrayList<BidHistory> findBidHistoryByDate(Date bid_date);
 
 	final String ADD_BID_HISTORY="INSERT INTO auc_bid_history(auction_id,user_id,current_price,bid_date) "+

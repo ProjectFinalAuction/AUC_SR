@@ -3,6 +3,7 @@ package org.khmeracademy.auction.services.impl;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.UserCreditHistory;
+import org.khmeracademy.auction.entities.UserCreditHistoryInputUpdate;
 import org.khmeracademy.auction.repositories.UserCreditHistoryRepository;
 import org.khmeracademy.auction.services.UserCreditHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,12 @@ public class UserCreditHistoryServiceImpl implements UserCreditHistoryService {
 	}
 
 	@Override
-	public boolean addUserCreditHistory(UserCreditHistory uch) {
+	public boolean addUserCreditHistory(UserCreditHistoryInputUpdate uch) {
 		return userCreditHistoryRepository.addUserCreditHistory(uch);
 	}
 
 	@Override
-	public boolean updateUserCreditHistory(UserCreditHistory uch) {
+	public boolean updateUserCreditHistory(UserCreditHistoryInputUpdate uch) {
 		return userCreditHistoryRepository.updateUserCreditHistory(uch);
 	}
 

@@ -6,7 +6,7 @@ import org.khmeracademy.auction.entities.Gallery;
 
 public interface GalleryService {
 
-	public ArrayList<Gallery> findImageByProductName(String supplier_name);
+	public ArrayList<Gallery> findImageByProductName(String product_name);
 
 	public boolean addImage(Gallery g);
 

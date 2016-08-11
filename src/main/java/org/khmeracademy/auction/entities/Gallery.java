@@ -2,7 +2,7 @@ package org.khmeracademy.auction.entities;
 
 public class Gallery {
 	private int image_id;
-	private Product product;
+	private Product product;  // product object
 	private String image_path;
 	public int getImage_id() {
 		return image_id;

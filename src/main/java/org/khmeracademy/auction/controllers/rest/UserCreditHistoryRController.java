@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.khmeracademy.auction.entities.UserCreditHistory;
+import org.khmeracademy.auction.entities.UserCreditHistoryInputUpdate;
 import org.khmeracademy.auction.services.UserCreditHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -73,12 +74,12 @@ public class UserCreditHistoryRController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	@RequestMapping(value="/add-user-credit-history", method=RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> addUserCreditHistory(UserCreditHistory uch){
+	public ResponseEntity<Map<String,Object>> addUserCreditHistory(UserCreditHistoryInputUpdate uch){
 		Map<String,Object> map = getMapObjectAfterTransaction(userCreditHistoryService.addUserCreditHistory(uch));
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	@RequestMapping(value="/update-user-credit-history", method=RequestMethod.PUT)
-	public ResponseEntity<Map<String,Object>> updateUserCreditHistory(UserCreditHistory uch){
+	public ResponseEntity<Map<String,Object>> updateUserCreditHistory(UserCreditHistoryInputUpdate uch){
 		Map<String,Object> map = getMapObjectAfterTransaction(userCreditHistoryService.updateUserCreditHistory(uch));
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);	
 	}

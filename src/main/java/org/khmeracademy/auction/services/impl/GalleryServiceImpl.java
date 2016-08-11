@@ -14,9 +14,9 @@ public class GalleryServiceImpl implements GalleryService {
 	@Autowired
 	GalleryRepository gr;
 	@Override
-	public ArrayList<Gallery> findImageByProductName(String supplier_name) {
+	public ArrayList<Gallery> findImageByProductName(String product_name) {
 		// TODO Auto-generated method stub
-		return gr.findImageByProductName(supplier_name);
+		return gr.findImageByProductName(product_name);
 	}
 
 	@Override

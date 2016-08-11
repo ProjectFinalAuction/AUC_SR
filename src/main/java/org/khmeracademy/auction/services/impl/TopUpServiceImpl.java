@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.TopUp;
+import org.khmeracademy.auction.entities.TopUpInputUpdate;
 import org.khmeracademy.auction.repositories.TopUpRepository;
 import org.khmeracademy.auction.services.TopUpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +36,12 @@ public class TopUpServiceImpl implements TopUpService {
 	}
 
 	@Override
-	public boolean addTopUp(TopUp t) {
+	public boolean addTopUp(TopUpInputUpdate t) {
 		return topUpRepository.addTopUp(t);
 	}
 
 	@Override
-	public boolean updateTopUp(TopUp t) {
+	public boolean updateTopUp(TopUpInputUpdate t) {
 		return topUpRepository.updateTopUp(t);
 	}
 

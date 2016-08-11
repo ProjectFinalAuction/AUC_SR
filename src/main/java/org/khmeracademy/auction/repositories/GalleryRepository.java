@@ -15,25 +15,6 @@ import org.springframework.stereotype.Repository;
 public interface GalleryRepository {
 	//READ
 	String R_GALLERY="SELECT * FROM v_find_all_gallery WHERE product_name = #{product_name}";
-	
-	//CREATE
-	String C_GALLERY=" INSERT INTO "
-			+ " auc_gallery( "
-			+ " 	product_id, "
-			+ "		image_path ) "
-			+ " VALUES("
-			+ "		#{product_id}, "
-			+ "		#{image_path}) ";
-	
-	String U_GALLERY=" UPDATE auc_gallery "
-			+ "SET "
-			+ " 	product_id= #{product_id}, "
-			+ " 	image_path= #{image_path} "
-			+ "WHERE "
-			+ "		image_id= #{image_id}";
-	
-	String D_GALLERY=" DELETE FROM auc_gallery WHERE image_id = #{image_id} ";
-	
 	@Select(R_GALLERY)
 	@Results(value={
 			// product
@@ -55,14 +36,29 @@ public interface GalleryRepository {
 			@Result(property="category.category_description", column="category_description")
 			
 	})
-	public ArrayList<Gallery> findImageByProductName(String supplier_name);
+	public ArrayList<Gallery> findImageByProductName(String product_name);
 	
+	//CREATE
+	String C_GALLERY=" INSERT INTO "
+			+ " auc_gallery( "
+			+ " 	product_id, "
+			+ "		image_path ) "
+			+ " VALUES("
+			+ "		#{product_id}, "
+			+ "		#{image_path}) ";
 	@Insert(C_GALLERY)
 	public boolean addImage(Gallery g);
 	
+	String U_GALLERY=" UPDATE auc_gallery "
+			+ "SET "
+			+ " 	product_id= #{product_id}, "
+			+ " 	image_path= #{image_path} "
+			+ "WHERE "
+			+ "		image_id= #{image_id}";
 	@Update(U_GALLERY)
 	public boolean updateImagePath(Gallery g);
 	
+	String D_GALLERY=" DELETE FROM auc_gallery WHERE image_id = #{image_id} ";
 	@Delete(D_GALLERY)
 	public boolean deleteImage(int image_id);
 	

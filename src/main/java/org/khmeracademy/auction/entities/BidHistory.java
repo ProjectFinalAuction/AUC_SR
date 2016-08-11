@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class BidHistory {
 	private int bid_id;
-	private Auction auction;
-	private User user;
+	private Auction auction;  // Auction Object
+	private User user;		  // User Object
 	private double current_price;
 	private Date bid_date;
 	public int getBid_id() {

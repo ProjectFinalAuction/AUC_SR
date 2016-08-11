@@ -18,18 +18,18 @@ public interface InvoiceDetailRepository {
 	@Select(FIND_ALL_INVOICE_DETAILS)
 	@Results(value={
 			// user
-			@Result(property="user.user_name", column="user_name"),
-			@Result(property="user.first_name", column="first_name"),
-			@Result(property="user.last_name", column="last_name"),
-			@Result(property="user.gender", column="gender"),
-			@Result(property="user.dob", column="dob"),
-			@Result(property="user.address", column="address"),
-			@Result(property="user.email", column="email"),
-			@Result(property="user.password", column="password"),
-			@Result(property="user.contact", column="contact"),
-			@Result(property="user.photo", column="photo"),
-			@Result(property="user.type", column="type"),
-			@Result(property="user.status", column="user_status"),
+			@Result(property="invoice.user.user_name", column="user_name"),
+			@Result(property="invoice.user.first_name", column="first_name"),
+			@Result(property="invoice.user.last_name", column="last_name"),
+			@Result(property="invoice.user.gender", column="gender"),
+			@Result(property="invoice.user.dob", column="dob"),
+			@Result(property="invoice.user.address", column="address"),
+			@Result(property="invoice.user.email", column="email"),
+			@Result(property="invoice.user.password", column="password"),
+			@Result(property="invoice.user.contact", column="contact"),
+			@Result(property="invoice.user.photo", column="photo"),
+			@Result(property="invoice.user.type", column="type"),
+			@Result(property="invoice.user.status", column="user_status"),
 			
 			// auction
 			@Result(property="auction.product_condition", column="product_condition"),
@@ -42,8 +42,8 @@ public interface InvoiceDetailRepository {
 			@Result(property="auction.status", column="auction_status"),
 			
 			// product
-			@Result(property="product.product_name", column="product_name"),
-			@Result(property="product.product_description", column="product_description")		
+			@Result(property="auction.product.product_name", column="product_name"),
+			@Result(property="auction.product.product_description", column="product_description")		
 	})
 	public ArrayList<InvoiceDetail> findAllInvoiceDetails();
 	
@@ -51,18 +51,18 @@ public interface InvoiceDetailRepository {
 	@Select(FIND_INVOICE_DETAIL_BY_INVOICE_ID)
 	@Results(value={
 			// user
-			@Result(property="user.user_name", column="user_name"),
-			@Result(property="user.first_name", column="first_name"),
-			@Result(property="user.last_name", column="last_name"),
-			@Result(property="user.gender", column="gender"),
-			@Result(property="user.dob", column="dob"),
-			@Result(property="user.address", column="address"),
-			@Result(property="user.email", column="email"),
-			@Result(property="user.password", column="password"),
-			@Result(property="user.contact", column="contact"),
-			@Result(property="user.photo", column="photo"),
-			@Result(property="user.type", column="type"),
-			@Result(property="user.status", column="user_status"),
+			@Result(property="invoice.user.user_name", column="user_name"),
+			@Result(property="invoice.user.first_name", column="first_name"),
+			@Result(property="invoice.user.last_name", column="last_name"),
+			@Result(property="invoice.user.gender", column="gender"),
+			@Result(property="invoice.user.dob", column="dob"),
+			@Result(property="invoice.user.address", column="address"),
+			@Result(property="invoice.user.email", column="email"),
+			@Result(property="invoice.user.password", column="password"),
+			@Result(property="invoice.user.contact", column="contact"),
+			@Result(property="invoice.user.photo", column="photo"),
+			@Result(property="invoice.user.type", column="type"),
+			@Result(property="invoice.user.status", column="user_status"),
 			
 			// auction
 			@Result(property="auction.product_condition", column="product_condition"),
@@ -75,8 +75,8 @@ public interface InvoiceDetailRepository {
 			@Result(property="auction.status", column="auction_status"),
 			
 			// product
-			@Result(property="product.product_name", column="product_name"),
-			@Result(property="product.product_description", column="product_description")		
+			@Result(property="auction.product.product_name", column="product_name"),
+			@Result(property="auction.product.product_description", column="product_description")		
 	})
 	public ArrayList<InvoiceDetail> findInvoiceDetailByInvoiceId(int invoice_id);
 	
@@ -84,18 +84,18 @@ public interface InvoiceDetailRepository {
 	@Select(FIND_INVOICE_DETAIL_BY_AUCTION_ID)
 	@Results(value={
 			// user
-			@Result(property="user.user_name", column="user_name"),
-			@Result(property="user.first_name", column="first_name"),
-			@Result(property="user.last_name", column="last_name"),
-			@Result(property="user.gender", column="gender"),
-			@Result(property="user.dob", column="dob"),
-			@Result(property="user.address", column="address"),
-			@Result(property="user.email", column="email"),
-			@Result(property="user.password", column="password"),
-			@Result(property="user.contact", column="contact"),
-			@Result(property="user.photo", column="photo"),
-			@Result(property="user.type", column="type"),
-			@Result(property="user.status", column="user_status"),
+			@Result(property="invoice.user.user_name", column="user_name"),
+			@Result(property="invoice.user.first_name", column="first_name"),
+			@Result(property="invoice.user.last_name", column="last_name"),
+			@Result(property="invoice.user.gender", column="gender"),
+			@Result(property="invoice.user.dob", column="dob"),
+			@Result(property="invoice.user.address", column="address"),
+			@Result(property="invoice.user.email", column="email"),
+			@Result(property="invoice.user.password", column="password"),
+			@Result(property="invoice.user.contact", column="contact"),
+			@Result(property="invoice.user.photo", column="photo"),
+			@Result(property="invoice.user.type", column="type"),
+			@Result(property="invoice.user.status", column="user_status"),
 			
 			// auction
 			@Result(property="auction.product_condition", column="product_condition"),
@@ -108,8 +108,8 @@ public interface InvoiceDetailRepository {
 			@Result(property="auction.status", column="auction_status"),
 			
 			// product
-			@Result(property="product.product_name", column="product_name"),
-			@Result(property="product.product_description", column="product_description")		
+			@Result(property="auction.product.product_name", column="product_name"),
+			@Result(property="auction.product.product_description", column="product_description")		
 	})
 	public ArrayList<InvoiceDetail> findInvoiceDetailByAuctionId(int auction_id);
 	

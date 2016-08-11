@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Auction {
 	
 	private int auction_id; 
-	private Product product;
+	private Product product;  // Object
 	private String product_condition;
 	private double start_price;
 	private double buy_price;
