@@ -5,7 +5,7 @@ import java.sql.Date;
 public class UserCreditHistory {
 	private int credit_id;
 	private Date credit_date;
-	private User user;
+	private User user; // user object
 	private double beginning_amount;
 	private String transaction_type;
 	private double amount;
