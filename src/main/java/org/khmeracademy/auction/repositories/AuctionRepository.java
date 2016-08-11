@@ -2,10 +2,12 @@ package org.khmeracademy.auction.repositories;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
 import org.springframework.stereotype.Repository;
@@ -150,10 +152,11 @@ public interface AuctionRepository {
 			"	status = #{status},	"+
 			"	comment = #{comment}	"+
 			"	WHERE auction_id = #{auction_id}	";
-					
+	@Update(UPDATE_AUCTION)				
 	public boolean updateAuction(AuctionInputUpdate a);
 
 	final String DELETE_AUCTION= "UPDATE auc_auction SET status = false WHERE auction_id = #{auction_id}";
+	@Delete(DELETE_AUCTION)
 	public boolean deleteAuction(int auction_id);	
 
 }
