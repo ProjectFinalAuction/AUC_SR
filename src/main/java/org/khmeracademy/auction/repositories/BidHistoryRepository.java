@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.BidHistory;
+import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -29,7 +30,7 @@ public interface BidHistoryRepository {
 			@Result(property="user.status", column="status"),
 			
 			// auction
-			@Result(property="auction.product_id", column="product_id"),
+			@Result(property="auction.product.product_id", column="product_id"),
 			@Result(property="auction.product_condition", column="product_condition"),
 			@Result(property="auction.start_price", column="start_price"),
 			@Result(property="auction.buy_price", column="buy_price"),
@@ -51,8 +52,7 @@ public interface BidHistoryRepository {
 			// user
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
-			@Result(property="user.last_name", column="last_name"),
-			@Result(property="user.first_name", column="first_name"),
+			@Result(property="user.last_name", column="last_name"),			
 			@Result(property="user.gender", column="gender"),
 			@Result(property="user.dob", column="dob"),
 			@Result(property="user.email", column="email"),
@@ -61,7 +61,7 @@ public interface BidHistoryRepository {
 			@Result(property="user.status", column="status"),
 			
 			// auction
-			@Result(property="auction.product_id", column="product_id"),
+			@Result(property="auction.product.product_id", column="product_id"),
 			@Result(property="auction.product_condition", column="product_condition"),
 			@Result(property="auction.start_price", column="start_price"),
 			@Result(property="auction.buy_price", column="buy_price"),
@@ -83,8 +83,7 @@ public interface BidHistoryRepository {
 			// user
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
-			@Result(property="user.last_name", column="last_name"),
-			@Result(property="user.first_name", column="first_name"),
+			@Result(property="user.last_name", column="last_name"),			
 			@Result(property="user.gender", column="gender"),
 			@Result(property="user.dob", column="dob"),
 			@Result(property="user.email", column="email"),
@@ -93,7 +92,7 @@ public interface BidHistoryRepository {
 			@Result(property="user.status", column="status"),
 			
 			// auction
-			@Result(property="auction.product_id", column="product_id"),
+			@Result(property="auction.product.product_id", column="product_id"),
 			@Result(property="auction.product_condition", column="product_condition"),
 			@Result(property="auction.start_price", column="start_price"),
 			@Result(property="auction.buy_price", column="buy_price"),
@@ -115,8 +114,7 @@ public interface BidHistoryRepository {
 			// user
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
-			@Result(property="user.last_name", column="last_name"),
-			@Result(property="user.first_name", column="first_name"),
+			@Result(property="user.last_name", column="last_name"),			
 			@Result(property="user.gender", column="gender"),
 			@Result(property="user.dob", column="dob"),
 			@Result(property="user.email", column="email"),
@@ -125,7 +123,7 @@ public interface BidHistoryRepository {
 			@Result(property="user.status", column="status"),
 			
 			// auction
-			@Result(property="auction.product_id", column="product_id"),
+			@Result(property="auction.product.product_id", column="product_id"),
 			@Result(property="auction.product_condition", column="product_condition"),
 			@Result(property="auction.start_price", column="start_price"),
 			@Result(property="auction.buy_price", column="buy_price"),
@@ -139,12 +137,12 @@ public interface BidHistoryRepository {
 			@Result(property="auction.product.product_description", column="product_description")
 						
 	})
-	public ArrayList<BidHistory> findBidHistoryByDate(Date bid_date);
+	public ArrayList<BidHistory> findBidHistoryByDate(String bid_date);
 
 	final String ADD_BID_HISTORY="INSERT INTO auc_bid_history(auction_id,user_id,current_price,bid_date) "+
 								"VALUES(#{auction_id},#{user_id},#{current_price},#{bid_date})";
 	@Insert(ADD_BID_HISTORY)
-	public boolean addBidHistory(BidHistory b);
+	public boolean addBidHistory(BidHistoryInputUpdate b);
 	
 	final String UPDATE_BID_HISTORY=
 					"	UPDATE auc_bid_history	 "+
@@ -154,7 +152,7 @@ public interface BidHistoryRepository {
 					"	bid_date=#{bid_date}	 "+
 					"	WHERE bid_id = #{bid_id}	 ";
 	@Update(UPDATE_BID_HISTORY)
-	public boolean updateBidHistory(BidHistory b);
+	public boolean updateBidHistory(BidHistoryInputUpdate b);
 
 
 	final String DELETE_BID_HISTORY="DELETE FROM auc_bid_history WHERE bid_id = #{bid_id}";

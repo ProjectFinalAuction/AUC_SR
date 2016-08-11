@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.BidHistory;
+import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
 import org.khmeracademy.auction.repositories.BidHistoryRepository;
 import org.khmeracademy.auction.services.BidHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,17 +31,17 @@ public class BidHistoryServiceImpl implements BidHistoryService{
 	}
 
 	@Override
-	public ArrayList<BidHistory> findBidHistoryByDate(Date bid_date) {
+	public ArrayList<BidHistory> findBidHistoryByDate(String bid_date) {
 		return bidHistoryRepository.findBidHistoryByDate(bid_date);
 	}
 
 	@Override
-	public boolean addBidHistory(BidHistory b) {
+	public boolean addBidHistory(BidHistoryInputUpdate b) {
 		return bidHistoryRepository.addBidHistory(b);
 	}
 
 	@Override
-	public boolean updateBidHistory(BidHistory b) {
+	public boolean updateBidHistory(BidHistoryInputUpdate b) {
 		return bidHistoryRepository.updateBidHistory(b);
 	}
 

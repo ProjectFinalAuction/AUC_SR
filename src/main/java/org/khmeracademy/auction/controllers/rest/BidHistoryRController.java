@@ -1,11 +1,11 @@
 package org.khmeracademy.auction.controllers.rest;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.khmeracademy.auction.entities.BidHistory;
+import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
 import org.khmeracademy.auction.services.BidHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -89,7 +89,7 @@ public class BidHistoryRController {
 	}
 	
 	@RequestMapping(value="/find-bid-history-by-user-date/{bid_date}",method=RequestMethod.GET)
-	public ResponseEntity<Map<String,Object>> findBidHistoryByDate(Date bid_date){
+	public ResponseEntity<Map<String,Object>> findBidHistoryByDate(String bid_date){
 		
 		ArrayList<BidHistory> arr = bidHistoryService.findBidHistoryByDate(bid_date);
 		Map<String,Object> map = getMapObject(arr);
@@ -98,13 +98,13 @@ public class BidHistoryRController {
 	
 	
 	@RequestMapping(value="/add-bid-history",method=RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> addBidHistory(@RequestBody BidHistory b){
+	public ResponseEntity<Map<String,Object>> addBidHistory(@RequestBody BidHistoryInputUpdate b){
 		Map<String,Object> map = getMapObjectAfterTransaction(bidHistoryService.addBidHistory(b));
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/update-bid-history",method=RequestMethod.PUT)
-	public ResponseEntity<Map<String,Object>> updateBidHistory(@RequestBody BidHistory b){
+	public ResponseEntity<Map<String,Object>> updateBidHistory(@RequestBody BidHistoryInputUpdate b){
 		Map<String,Object> map = getMapObjectAfterTransaction(bidHistoryService.updateBidHistory(b));
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
