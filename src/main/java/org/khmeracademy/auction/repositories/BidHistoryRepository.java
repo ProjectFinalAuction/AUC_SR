@@ -18,6 +18,7 @@ public interface BidHistoryRepository {
 	@Select(FIND_ALL_BID_HISTORY)
 	@Results(value={
 			// user
+			@Result(property="user.user_id", column="user_id"),
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
 			@Result(property="user.last_name", column="last_name"),			
@@ -29,6 +30,7 @@ public interface BidHistoryRepository {
 			@Result(property="user.status", column="status"),
 			
 			// auction
+			@Result(property="auction.auction_id", column="auction_id"),
 			@Result(property="auction.product.product_id", column="product_id"),
 			@Result(property="auction.product_condition", column="product_condition"),
 			@Result(property="auction.start_price", column="start_price"),
@@ -49,6 +51,7 @@ public interface BidHistoryRepository {
 	@Select(FIND_BID_HISTORY_BY_AUCTION_ID)
 	@Results(value={
 			// user
+			@Result(property="user.user_id", column="user_id"),
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
 			@Result(property="user.last_name", column="last_name"),			
@@ -60,6 +63,7 @@ public interface BidHistoryRepository {
 			@Result(property="user.status", column="status"),
 			
 			// auction
+			@Result(property="auction.auction_id", column="auction_id"),
 			@Result(property="auction.product.product_id", column="product_id"),
 			@Result(property="auction.product_condition", column="product_condition"),
 			@Result(property="auction.start_price", column="start_price"),
@@ -80,6 +84,7 @@ public interface BidHistoryRepository {
 	@Select(FIND_BID_HISTORY_BY_USER_NAME)
 	@Results(value={
 			// user
+			@Result(property="user.user_id", column="user_id"),
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
 			@Result(property="user.last_name", column="last_name"),			
@@ -91,6 +96,7 @@ public interface BidHistoryRepository {
 			@Result(property="user.status", column="status"),
 			
 			// auction
+			@Result(property="auction.auction_id", column="auction_id"),
 			@Result(property="auction.product.product_id", column="product_id"),
 			@Result(property="auction.product_condition", column="product_condition"),
 			@Result(property="auction.start_price", column="start_price"),
@@ -111,6 +117,7 @@ public interface BidHistoryRepository {
 	@Select(FIND_BID_HISTORY_BY_DATE)
 	@Results(value={
 			// user
+			@Result(property="user.user_id", column="user_id"),
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
 			@Result(property="user.last_name", column="last_name"),			
@@ -122,6 +129,7 @@ public interface BidHistoryRepository {
 			@Result(property="user.status", column="status"),
 			
 			// auction
+			@Result(property="auction.auction_id", column="auction_id"),
 			@Result(property="auction.product.product_id", column="product_id"),
 			@Result(property="auction.product_condition", column="product_condition"),
 			@Result(property="auction.start_price", column="start_price"),
