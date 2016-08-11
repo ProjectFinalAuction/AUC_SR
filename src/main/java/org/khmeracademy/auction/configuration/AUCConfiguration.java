@@ -13,6 +13,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -28,12 +29,12 @@ public class AUCConfiguration  extends WebMvcConfigurerAdapter{
 		public DataSource getDataSource(){
 			DriverManagerDataSource dataSource = new DriverManagerDataSource();
 			dataSource.setDriverClassName("org.postgresql.Driver");
-			dataSource.setUrl("jdbc:postgresql://120.136.24.174:5432/AUCTION_SR_DB");
-			dataSource.setUsername("AUCTION_SR");
-			dataSource.setPassword("AUCTION_SR");
-//			dataSource.setUrl("jdbc:postgresql://localhost:5432/AUCTION_SR_DB");
-//			dataSource.setUsername("postgres");
-//			dataSource.setPassword("123");
+//			dataSource.setUrl("jdbc:postgresql://120.136.24.174:5432/AUCTION_SR_DB");
+//			dataSource.setUsername("AUCTION_SR");
+//			dataSource.setPassword("AUCTION_SR");
+			dataSource.setUrl("jdbc:postgresql://localhost:5432/AUCTION_SR_DB");
+			dataSource.setUsername("postgres");
+			dataSource.setPassword("123");
 			return dataSource;
 		}
 		
@@ -84,6 +85,12 @@ public class AUCConfiguration  extends WebMvcConfigurerAdapter{
 			registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
 		}
 		
+		@Override
+	    public void addCorsMappings(CorsRegistry registry) {
+	    	registry.addMapping("/**")
+	    			.allowedMethods("POST", "GET", "PUT", "DELETE")
+	    			.allowedOrigins("/**");
+	    }
 		
 
 }
