@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.khmeracademy.auction.entities.InvoiceDetail;
+import org.khmeracademy.auction.entities.InvoiceDetailInputUpdate;
 import org.khmeracademy.auction.services.InvoiceDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -83,13 +84,13 @@ public class InvoiceDetailRController {
 	}
 	
 	@RequestMapping(value="/add-invoice-detail", method=RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> addInvoiceDetail(@RequestBody InvoiceDetail invd){
+	public ResponseEntity<Map<String,Object>> addInvoiceDetail(@RequestBody InvoiceDetailInputUpdate invd){
 		Map<String,Object> map = getMapObjectAfterTransaction(invoiceDetailService.addInvoiceDetail(invd));
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/update-invoice-detail", method=RequestMethod.PUT)
-	public ResponseEntity<Map<String,Object>> updateInvoiceDetail(@RequestBody InvoiceDetail invd){
+	public ResponseEntity<Map<String,Object>> updateInvoiceDetail(@RequestBody InvoiceDetailInputUpdate invd){
 		Map<String,Object> map = getMapObjectAfterTransaction(invoiceDetailService.updateInvoiceDetail(invd));
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}

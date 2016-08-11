@@ -12,24 +12,16 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface InvoiceRepository {
-	final String FIND_ALL_INVOICES ="SELECT * FROM auc_invoice";
+	final String FIND_ALL_INVOICES ="SELECT * FROM v_find_all_invoices";
 	@Select(FIND_ALL_INVOICES)
 	public ArrayList<InvoiceInputUpdate> findAllInvoices();
 	
 	final String FIND_INVOICE_BY_USER_NAME=
-					"	SELECT	"+
-					"	i.invoice_id,	"+
-					"	i.user_id,	"+
-					"	i.invoice_date	"+
-					"	FROM	"+
-					"	auc_invoice i	"+
-					"	INNER JOIN auc_user u ON u.user_id = i.user_id	"+
-					"	WHERE	"+
-					"	u.user_name = 'd'	";
+					" SELECT * FROM v_find_all_invoices WHERE user_name = #{user_name} ";
 	@Select(FIND_INVOICE_BY_USER_NAME)
 	public ArrayList<InvoiceInputUpdate> findInvoiceByUserName(String user_name);
 	
-	final String FIND_INVOICE_BY_DATE="SELECT * FROM auc_invoice WHERE invoice_date = #{invoice_date} ";
+	final String FIND_INVOICE_BY_DATE="SELECT * FROM v_find_all_invoices WHERE invoice_date = #{invoice_date} ";
 	@Select(FIND_INVOICE_BY_DATE)
 	public ArrayList<InvoiceInputUpdate> findInvoiceByDate(Date invoice_date);
 	

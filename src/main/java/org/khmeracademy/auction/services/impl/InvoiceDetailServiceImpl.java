@@ -3,6 +3,7 @@ package org.khmeracademy.auction.services.impl;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.InvoiceDetail;
+import org.khmeracademy.auction.entities.InvoiceDetailInputUpdate;
 import org.khmeracademy.auction.repositories.InvoiceDetailRepository;
 import org.khmeracademy.auction.services.InvoiceDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,12 @@ public class InvoiceDetailServiceImpl implements InvoiceDetailService {
 	}
 
 	@Override
-	public boolean addInvoiceDetail(InvoiceDetail invd) {
+	public boolean addInvoiceDetail(InvoiceDetailInputUpdate invd) {
 		return invoiceDetailRepository.addInvoiceDetail(invd);
 	}
 
 	@Override
-	public boolean updateInvoiceDetail(InvoiceDetail invd) {
+	public boolean updateInvoiceDetail(InvoiceDetailInputUpdate invd) {
 		return invoiceDetailRepository.updateInvoiceDetail(invd);
 	}
 
