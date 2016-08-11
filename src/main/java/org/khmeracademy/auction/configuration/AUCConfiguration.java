@@ -88,7 +88,7 @@ public class AUCConfiguration  extends WebMvcConfigurerAdapter{
 		@Override
 	    public void addCorsMappings(CorsRegistry registry) {
 	    	registry.addMapping("/**")
-	    			.allowedMethods("POST", "GET", "PUT", "DELETE")
+	    			.allowedMethods("POST", "GET", "PUT", "DELETE", "OPTIONS")
 	    			.allowedOrigins("/**");
 	    }
 		
