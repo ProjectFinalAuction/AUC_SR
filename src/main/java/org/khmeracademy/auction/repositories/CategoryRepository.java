@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.Category;
+import org.khmeracademy.auction.entities.CategoryInputUpdate;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -82,10 +83,10 @@ public interface CategoryRepository {
 	public ArrayList<Category> findCategoryByAnyField(String str_search);
 	
 	@Insert(C_CATEGORY)
-	public boolean addCategory(Category c);
+	public boolean addCategory(CategoryInputUpdate c);
 	
 	@Update(U_CATEGORY)
-	public boolean updateCategory(Category c); 
+	public boolean updateCategory(CategoryInputUpdate c); 
 	
 	@Delete(D_CATEGORY)
 	public boolean deleteCategory(int category_id);

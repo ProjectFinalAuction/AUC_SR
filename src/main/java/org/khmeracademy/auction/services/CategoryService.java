@@ -3,6 +3,7 @@ package org.khmeracademy.auction.services;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Category;
+import org.khmeracademy.auction.entities.CategoryInputUpdate;
 
 
 
@@ -15,9 +16,9 @@ public interface CategoryService {
  
 	public ArrayList<Category> findCategoryByAnyField(String str_search);
 	
-	public boolean addCategory(Category c);
+	public boolean addCategory(CategoryInputUpdate c);
 	
-	public boolean updateCategory(Category c); 
+	public boolean updateCategory(CategoryInputUpdate c); 
 	
 	public boolean deleteCategory(int category_id);
 }

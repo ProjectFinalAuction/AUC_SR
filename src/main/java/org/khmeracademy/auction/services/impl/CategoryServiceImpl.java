@@ -3,6 +3,7 @@ package org.khmeracademy.auction.services.impl;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Category;
+import org.khmeracademy.auction.entities.CategoryInputUpdate;
 import org.khmeracademy.auction.repositories.CategoryRepository;
 import org.khmeracademy.auction.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,13 +39,13 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public boolean addCategory(Category c) {
+	public boolean addCategory(CategoryInputUpdate c) {
 		// TODO Auto-generated method stub
 		return cat.addCategory(c);
 	}
 
 	@Override
-	public boolean updateCategory(Category c) {
+	public boolean updateCategory(CategoryInputUpdate c) {
 		// TODO Auto-generated method stub
 		return cat.updateCategory(c);
 	}

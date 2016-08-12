@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.khmeracademy.auction.entities.Category;
+import org.khmeracademy.auction.entities.CategoryInputUpdate;
 import org.khmeracademy.auction.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -89,13 +90,13 @@ public class CategoryRController {
 	}
 	
 	@RequestMapping(value="/add-category", method= RequestMethod.POST)
-	public ResponseEntity<Map<String, Object>> addSupplier(@RequestBody Category c){
+	public ResponseEntity<Map<String, Object>> addSupplier(@RequestBody CategoryInputUpdate c){
 		Map<String, Object> map= getMapObjectAfterTransaction(cs.addCategory(c));
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/update-category", method=RequestMethod.PUT)
-	public ResponseEntity<Map<String, Object>> updateSupplier(@RequestBody Category c){
+	public ResponseEntity<Map<String, Object>> updateSupplier(@RequestBody CategoryInputUpdate c){
 		Map<String, Object> map= getMapObjectAfterTransaction(cs.updateCategory(c));
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
