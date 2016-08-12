@@ -19,22 +19,23 @@ public interface GalleryRepository {
 	@Select(R_GALLERY)
 	@Results(value={
 			// product
+			@Result(property="product.product_id", column="product_id"),
 			@Result(property="product.product_name", column="product_name"),
 			@Result(property="product.product_description", column="product_description"),
 			@Result(property="product.qty", column="qty"),
 			@Result(property="product.status", column="status"),
-			@Result(property="product.supplier_id", column="supplier_id"),
+			@Result(property="product.supplier.supplier_id", column="supplier_id"),
 			
 			// supplier
-			@Result(property="supplier.contact_name", column="contact_name"),
-			@Result(property="supplier.address", column="address"),
-			@Result(property="supplier.phone", column="phone"),
-			@Result(property="supplier.email", column="email"),
+			@Result(property="product.supplier.contact_name", column="contact_name"),
+			@Result(property="product.supplier.address", column="address"),
+			@Result(property="product.supplier.phone", column="phone"),
+			@Result(property="product.supplier.email", column="email"),
 			
 			// category
-			@Result(property="category.category_id", column="category_id"),
-			@Result(property="category.category_name", column="category_name"),
-			@Result(property="category.category_description", column="category_description")
+			@Result(property="product.category.category_id", column="category_id"),
+			@Result(property="product.category.category_name", column="category_name"),
+			@Result(property="product.category.category_description", column="category_description")
 			
 	})
 	public ArrayList<Gallery> findImageByProductName(String product_name);
