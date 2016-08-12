@@ -18,6 +18,7 @@ public interface InvoiceDetailRepository {
 	@Select(FIND_ALL_INVOICE_DETAILS)
 	@Results(value={
 			// user
+			@Result(property="invoice.user.user_id", column="user_id"),
 			@Result(property="invoice.user.user_name", column="user_name"),
 			@Result(property="invoice.user.first_name", column="first_name"),
 			@Result(property="invoice.user.last_name", column="last_name"),
@@ -32,6 +33,7 @@ public interface InvoiceDetailRepository {
 			@Result(property="invoice.user.status", column="user_status"),
 			
 			// auction
+			@Result(property="auction.auction_id", column="auction_id"),
 			@Result(property="auction.product_condition", column="product_condition"),
 			@Result(property="auction.start_price", column="start_price"),
 			@Result(property="auction.buy_price", column="auction_buy_price"),
@@ -42,6 +44,7 @@ public interface InvoiceDetailRepository {
 			@Result(property="auction.status", column="auction_status"),
 			
 			// product
+			@Result(property="auction.product.product_id", column="product_id"),
 			@Result(property="auction.product.product_name", column="product_name"),
 			@Result(property="auction.product.product_description", column="product_description")		
 	})
@@ -51,6 +54,7 @@ public interface InvoiceDetailRepository {
 	@Select(FIND_INVOICE_DETAIL_BY_INVOICE_ID)
 	@Results(value={
 			// user
+			@Result(property="invoice.user.user_id", column="user_id"),
 			@Result(property="invoice.user.user_name", column="user_name"),
 			@Result(property="invoice.user.first_name", column="first_name"),
 			@Result(property="invoice.user.last_name", column="last_name"),
@@ -65,6 +69,7 @@ public interface InvoiceDetailRepository {
 			@Result(property="invoice.user.status", column="user_status"),
 			
 			// auction
+			@Result(property="auction.auction_id", column="auction_id"),
 			@Result(property="auction.product_condition", column="product_condition"),
 			@Result(property="auction.start_price", column="start_price"),
 			@Result(property="auction.buy_price", column="auction_buy_price"),
@@ -75,6 +80,7 @@ public interface InvoiceDetailRepository {
 			@Result(property="auction.status", column="auction_status"),
 			
 			// product
+			@Result(property="auction.product.product_id", column="product_id"),
 			@Result(property="auction.product.product_name", column="product_name"),
 			@Result(property="auction.product.product_description", column="product_description")		
 	})
@@ -84,6 +90,7 @@ public interface InvoiceDetailRepository {
 	@Select(FIND_INVOICE_DETAIL_BY_AUCTION_ID)
 	@Results(value={
 			// user
+			@Result(property="invoice.user.user_id", column="user_id"),
 			@Result(property="invoice.user.user_name", column="user_name"),
 			@Result(property="invoice.user.first_name", column="first_name"),
 			@Result(property="invoice.user.last_name", column="last_name"),
@@ -98,6 +105,7 @@ public interface InvoiceDetailRepository {
 			@Result(property="invoice.user.status", column="user_status"),
 			
 			// auction
+			@Result(property="auction.auction_id", column="auction_id"),
 			@Result(property="auction.product_condition", column="product_condition"),
 			@Result(property="auction.start_price", column="start_price"),
 			@Result(property="auction.buy_price", column="auction_buy_price"),
@@ -108,6 +116,7 @@ public interface InvoiceDetailRepository {
 			@Result(property="auction.status", column="auction_status"),
 			
 			// product
+			@Result(property="auction.product.product_id", column="product_id"),
 			@Result(property="auction.product.product_name", column="product_name"),
 			@Result(property="auction.product.product_description", column="product_description")		
 	})

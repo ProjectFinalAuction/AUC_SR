@@ -19,6 +19,7 @@ public interface TopUpRepository {
 	@Select(FIND_ALL_TOP_UP)
 	@Results(value={
 			// user
+			@Result(property="user.user_id", column="user_id"),
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
 			@Result(property="user.last_name", column="last_name"),
@@ -32,6 +33,7 @@ public interface TopUpRepository {
 			@Result(property="user.status", column="status"),
 			
 			// payment method
+			@Result(property="paymentMethod.payment_method_id", column="payment_method_id"),
 			@Result(property="paymentMethod.payment_method_name", column="payment_method_name")
 	})	
 	public ArrayList<TopUp> findAllTopUp();
@@ -40,6 +42,7 @@ public interface TopUpRepository {
 	@Select(FIND_TOP_UP_BY_CURRENCY)
 	@Results(value={
 			// user
+			@Result(property="user.user_id", column="user_id"),
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
 			@Result(property="user.last_name", column="last_name"),
@@ -53,8 +56,9 @@ public interface TopUpRepository {
 			@Result(property="user.status", column="status"),
 			
 			// payment method
+			@Result(property="paymentMethod.payment_method_id", column="payment_method_id"),
 			@Result(property="paymentMethod.payment_method_name", column="payment_method_name")
-	})
+	})	
 	public ArrayList<TopUp> findTopUpByCurrency(String currency);
 
 	final String FIND_TOP_UP_BY_USER_NAME=
@@ -62,6 +66,7 @@ public interface TopUpRepository {
 	@Select(FIND_TOP_UP_BY_USER_NAME)
 	@Results(value={
 			// user
+			@Result(property="user.user_id", column="user_id"),
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
 			@Result(property="user.last_name", column="last_name"),
@@ -75,14 +80,16 @@ public interface TopUpRepository {
 			@Result(property="user.status", column="status"),
 			
 			// payment method
+			@Result(property="paymentMethod.payment_method_id", column="payment_method_id"),
 			@Result(property="paymentMethod.payment_method_name", column="payment_method_name")
-	})
+	})	
 	public ArrayList<TopUp> findTopUpByUserName(String user_name);
 
 	final String FIND_TOP_UP_BY_DATE="SELECT * FROM v_find_all_top_up WHERE top_up_date = #{top_up_date}";
 	@Select(FIND_TOP_UP_BY_DATE)
 	@Results(value={
 			// user
+			@Result(property="user.user_id", column="user_id"),
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
 			@Result(property="user.last_name", column="last_name"),
@@ -96,8 +103,9 @@ public interface TopUpRepository {
 			@Result(property="user.status", column="status"),
 			
 			// payment method
+			@Result(property="paymentMethod.payment_method_id", column="payment_method_id"),
 			@Result(property="paymentMethod.payment_method_name", column="payment_method_name")
-	})
+	})	
 	public ArrayList<TopUp> findTopUpByDate(Date top_up_date);
 	
 	final String ADD_TOP_UP=

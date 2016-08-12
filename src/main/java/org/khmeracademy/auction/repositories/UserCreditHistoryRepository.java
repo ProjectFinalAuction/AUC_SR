@@ -17,6 +17,7 @@ public interface UserCreditHistoryRepository {
 	final String FIND_ALL_USER_CREDIT_HISTORY="SELECT * FROM v_find_all_user_credit_history";
 	@Select(FIND_ALL_USER_CREDIT_HISTORY)
 	@Results(value={
+			@Result(property="user.user_id", column="user_id"),
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
 			@Result(property="user.last_name", column="last_name"),
@@ -35,6 +36,7 @@ public interface UserCreditHistoryRepository {
 					" SELECT * FROM v_find_all_user_credit_history WHERE u.user_name = #{user_name}	";
 	@Select(FIND_USER_CREDIT_HISTORY_BY_USER_NAME)
 	@Results(value={
+			@Result(property="user.user_id", column="user_id"),
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
 			@Result(property="user.last_name", column="last_name"),

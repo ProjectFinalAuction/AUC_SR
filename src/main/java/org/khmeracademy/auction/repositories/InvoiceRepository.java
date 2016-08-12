@@ -17,6 +17,7 @@ public interface InvoiceRepository {
 	final String FIND_ALL_INVOICES ="SELECT * FROM v_find_all_invoices";
 	@Select(FIND_ALL_INVOICES)
 	@Results(value={
+			@Result(property="user.user_id", column="user_id"),
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
 			@Result(property="user.last_name", column="last_name"),
@@ -35,6 +36,7 @@ public interface InvoiceRepository {
 					" SELECT * FROM v_find_all_invoices WHERE user_name = #{user_name} ";
 	@Select(FIND_INVOICE_BY_USER_NAME)
 	@Results(value={
+			@Result(property="user.user_id", column="user_id"),
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
 			@Result(property="user.last_name", column="last_name"),
@@ -52,6 +54,7 @@ public interface InvoiceRepository {
 	final String FIND_INVOICE_BY_DATE="SELECT * FROM v_find_all_invoices WHERE invoice_date = #{invoice_date} ";
 	@Select(FIND_INVOICE_BY_DATE)
 	@Results(value={
+			@Result(property="user.user_id", column="user_id"),
 			@Result(property="user.user_name", column="user_name"),
 			@Result(property="user.first_name", column="first_name"),
 			@Result(property="user.last_name", column="last_name"),
