@@ -64,6 +64,7 @@ public interface CategoryRepository {
 	
 	@Select(R_CATEGORIES)
 	@Results(value={
+			@Result(property="category_id", column="category_id"),
 			@Result(property="parentCategory.category_id", column="parent_id"),
 			@Result(property="subCategories", javaType=List.class, column="category_id",
 					many=@Many(select="findAllSubCategories"))
