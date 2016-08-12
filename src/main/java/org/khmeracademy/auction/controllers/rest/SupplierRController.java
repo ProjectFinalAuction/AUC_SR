@@ -80,7 +80,7 @@ public class SupplierRController {
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/find-product-by-any-field/{str_search:.+}", method=RequestMethod.GET)
+	@RequestMapping(value="/find-supplier-by-any-field/{str_search:.+}", method=RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> findSupplierByAnyField(@PathVariable String str_search){
 		ArrayList<Supplier> s=ss.findSupplierByAnyField(str_search);
 		Map<String, Object> map=getMapObject(s);

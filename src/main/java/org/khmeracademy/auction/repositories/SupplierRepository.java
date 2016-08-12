@@ -16,7 +16,7 @@ public interface SupplierRepository {
 	String R_SUPPLIER_ByNAME = "SELECT * FROM auc_supplier WHERE contact_name = #{contact_name}";
 	String R_SUPPLIER_ByEMAIL = "SELECT * FROM auc_supplier WHERE email = #{email}";
 	String R_SUPPLIER_ByAnyFIELD = "SELECT * FROM auc_supplier WHERE "
-			+ " #{contact_name} in (contact_name, address, phone, email)";
+			+ " #{contact_name} in (supplier_id::TEXT, contact_name, address, phone, email)";
 	//CREATE | INSERT 
 	String C_SUPPLIER = "INSERT INTO "
 			+ "auc_supplier( "
