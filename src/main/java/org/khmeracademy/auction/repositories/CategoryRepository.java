@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 public interface CategoryRepository {
 	//READ
 	String R_CATEGORIES="SELECT * FROM auc_category WHERE status != false AND parent_id IS NULL";
+	String R_ALL_CATEGORIES="SELECT * FROM auc_category ";
 	
 	String R_SUB_CATEGORIES = "SELECT * FROM auc_category WHERE parent_id = #{category_id}";
 	
@@ -62,6 +63,9 @@ public interface CategoryRepository {
 			+ "		category_id = #{category_id}";
 	String D_CATEGORY="DELETE FROM auc_category WHERE category_id = #{category_id}";
 	
+	@Select(R_ALL_CATEGORIES)	
+	public ArrayList<CategoryInputUpdate> findAllCategories();
+	
 	@Select(R_CATEGORIES)
 	@Results(value={
 			@Result(property="category_id", column="category_id"),
@@ -69,7 +73,7 @@ public interface CategoryRepository {
 			@Result(property="subCategories", javaType=List.class, column="category_id",
 					many=@Many(select="findAllSubCategories"))
 	})
-	public ArrayList<Category> findAllCategories();
+	public ArrayList<Category> findMainCategories();
 	
 	@Select(R_SUB_CATEGORIES)
 	public ArrayList<Category> findAllSubCategories(int category_id);

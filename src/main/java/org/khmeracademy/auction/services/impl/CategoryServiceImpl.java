@@ -15,10 +15,17 @@ public class CategoryServiceImpl implements CategoryService {
 	private CategoryRepository cat;
 	
 	@Override
-	public ArrayList<Category> findAllCategories() {
+	public ArrayList<CategoryInputUpdate> findAllCategories() {
 		// TODO Auto-generated method stub
 		return cat.findAllCategories();
 	}
+	
+	@Override
+	public ArrayList<Category> findMainCategories() {
+		// TODO Auto-generated method stub
+		return cat.findMainCategories();
+	}
+	
 
 	@Override
 	public ArrayList<Category> findCategoryByName(String category_name) {
@@ -55,5 +62,9 @@ public class CategoryServiceImpl implements CategoryService {
 		// TODO Auto-generated method stub
 		return cat.deleteCategory(category_id);
 	}
+
+
+
+	
 	
 }

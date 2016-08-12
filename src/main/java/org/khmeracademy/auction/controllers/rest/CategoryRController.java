@@ -63,9 +63,31 @@ public class CategoryRController {
 
 	@RequestMapping(value="/find-all-categories",method=RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> findAllCategories() {
-		ArrayList<Category> arr = cs.findAllCategories();
-		Map<String, Object> map = getMapObject(arr);
+		ArrayList<CategoryInputUpdate> arr = cs.findAllCategories();
+		Map<String, Object> map = new HashMap<String,Object>();
+		
+		try{
+			if(!arr.isEmpty()){
+				map.put("DATA", arr);
+				map.put("MESSAGE", "SUCCESS");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "UNSUCCESS");
+				map.put("STATUS", true);
+			}				
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
+				
 		return new ResponseEntity<Map<String, Object>>(map,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/find-main-category", method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> findMainCategories(){
+		ArrayList<Category> arr=cs.findMainCategories();
+		Map<String, Object> map=getMapObject(arr);
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/find-category-by-name/{category_name}", method=RequestMethod.GET)

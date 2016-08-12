@@ -8,7 +8,9 @@ import org.khmeracademy.auction.entities.CategoryInputUpdate;
 
 
 public interface CategoryService {
-	public ArrayList<Category> findAllCategories();
+	public ArrayList<CategoryInputUpdate> findAllCategories();
+	
+	public ArrayList<Category> findMainCategories();
 	
 	public ArrayList<Category> findCategoryByName(String category_name); 
 	
