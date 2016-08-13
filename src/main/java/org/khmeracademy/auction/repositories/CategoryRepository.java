@@ -35,29 +35,24 @@ public interface CategoryRepository {
 					"	where p.category_name = #{parent_name}";
 
 
-	String R_CATEGORY_ByAnyFIELD="SELECT * FROM auc_category WHERE "
-//			+ " category_id = #{category_id} or "
-			+ " category_name = #{category_name} or "
-			+ " category_description = #{category_description} ";
-//			+ " parent_id = #{parent_id} or "
-//			+ " status = #{status}";
+	String R_CATEGORY_ByAnyFIELD="SELECT * FROM auc_category WHERE #{str_search} IN (category_id::TEXT, category_name, category_description, parent_id::TEXT, status::TEXT)";
 	
 	String C_CATEGORY= " INSERT INTO "
 			+ " auc_category( "
 			+ "		category_name,"
 			+ "		category_description,"
-//			+ "		parent_id, "
+			+ "		parent_id, "
 			+ "		status) "
 			+ " VALUES( "
 			+ " 	#{category_name}, "
 			+ "		#{category_description}, "
-//			+ "		#{parent_id} "
-			+ "		#{status}"; 
+			+ "		#{parent_id}, "
+			+ "		#{status})"; 
 	String U_CATEGORY= "UPDATE auc_category "
 			+ " SET "
 			+ " 	category_name = #{category_name}, "
 			+ " 	category_description = #{category_description}, "
-//			+ " 	parent_id = #{parent_id} "
+			+ " 	parent_id = #{parent_id}, "
 			+ " 	status = #{status} "
 			+ " WHERE "
 			+ "		category_id = #{category_id}";
