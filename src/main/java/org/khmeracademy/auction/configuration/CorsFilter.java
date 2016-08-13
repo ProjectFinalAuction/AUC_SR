@@ -1,4 +1,4 @@
-package org.khmeracademy.auction.configuration;
+/*package org.khmeracademy.auction.configuration;
 
 import java.io.IOException;
 
@@ -42,3 +42,4 @@ public class CorsFilter implements Filter {
 		
 	}
 }
+*/
