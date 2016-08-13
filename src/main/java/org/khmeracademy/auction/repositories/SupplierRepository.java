@@ -17,6 +17,7 @@ public interface SupplierRepository {
 	String R_SUPPLIER_ByEMAIL = "SELECT * FROM auc_supplier WHERE email = #{email}";
 	String R_SUPPLIER_ByAnyFIELD = "SELECT * FROM auc_supplier WHERE "
 			+ " #{contact_name} in (supplier_id::TEXT, contact_name, address, phone, email)";
+	String R_SUPPLIER_ById = "SELECT * FROM auc_supplier WHERE supplier_id = #{supplier_id}";
 	//CREATE | INSERT 
 	String C_SUPPLIER = "INSERT INTO "
 			+ "auc_supplier( "
@@ -59,5 +60,8 @@ public interface SupplierRepository {
 	
 	@Delete(D_USER)
 	public boolean deleteSupplier(int supplier_id);
+	
+	@Select(R_SUPPLIER_ById)
+	public ArrayList<Supplier> findSupplierById(int id);
 	
 }

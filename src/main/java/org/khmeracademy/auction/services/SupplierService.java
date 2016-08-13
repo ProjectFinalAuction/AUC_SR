@@ -19,5 +19,7 @@ public interface SupplierService {
 	public boolean updateSupplier(Supplier s); 
 	
 	public boolean deleteSupplier(int supplier_id);
+	
+	public ArrayList<Supplier> findSupplierById(int supplier_id);
 
 }

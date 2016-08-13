@@ -55,4 +55,8 @@ public class SupplierServiceImpl implements SupplierService {
 		return suplrepo.deleteSupplier(supplier_id);
 	}
 	
+	@Override
+	public ArrayList<Supplier> findSupplierById(int supplier_id){
+		return suplrepo.findSupplierById(supplier_id);
+	}
 }

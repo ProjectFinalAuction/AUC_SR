@@ -136,27 +136,38 @@ public interface ProductRepository {
 //----------------------------------------------
 //	String R_PRODUCT_ByAnyFIELD=""; ==> SKIPPED
 //----------------------------------------------
-	String C_PRODUCT= " SELECT pr_add_product("
-					+ " 	#{product_name}, "
-					+ "		#{product_description}, "
-					+ "		#{supplier_id}, "
-					+ "    	#{category_id}, "
-					+ "		#{qty}, "
-					+ "		#{brand_id}, "
-					+ "		#{status} ) ";
+	String C_PRODUCT= "	INSERT INTO auc_product (	"+
+			"	product_name,	"+
+			"	product_description,	"+
+			"	supplier_id,	"+
+			"	category_id,	"+
+			"	qty,	"+
+			"	brand_id,	"+
+			"	status )	"+
+			"	VALUES (	"+
+			"	#{product_name},	"+
+			"	#{product_description},	"+
+			"	#{supplier_id},	"+
+			"	#{category_id},	"+
+			"	#{qty},	"+
+			"	#{brand_id},	"+
+			"	#{status}	"+
+			"	) 	";
+
 	@Insert(C_PRODUCT)
 	public boolean addProduct(ProductInputUpdate p);
 	
 	
-	String U_PRODUCT= " SELECT pr_update_product("
-			+ " 	#{product_id}, "
-			+ " 	#{product_name}, "
-			+ "		#{product_description}, "
-			+ "		#{supplier_id}, "
-			+ "    	#{category_id}, "
-			+ "		#{qty}, "
-			+ "		#{brand_id}, "
-			+ "		#{status} ) ";		
+	String U_PRODUCT= " UPDATE auc_product " +
+			" SET " +
+			" product_name = #{product_name}, "+
+			" product_description = #{product_description}, "+
+			" supplier_id = #{supplier_id}, "+
+			" category_id = #{category_id}, "+
+			" qty = #{qty}, "+
+			" brand_id = #{brand_id}, "+
+			" status = #{status} "+
+			" WHERE product_id = #{product_id} ";	
 	@Update(U_PRODUCT)
 	public boolean updateProduct(ProductInputUpdate p);
 			
