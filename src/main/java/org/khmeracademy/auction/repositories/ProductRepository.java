@@ -1,21 +1,33 @@
 package org.khmeracademy.auction.repositories;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.khmeracademy.auction.entities.Category;
+import org.khmeracademy.auction.entities.Gallery;
 import org.khmeracademy.auction.entities.Product;
 import org.khmeracademy.auction.entities.ProductInputUpdate;
 import org.springframework.stereotype.Repository;
+
+import scala.sys.process.processInternal;
 
 @Repository
 public interface ProductRepository {
 	//READ
 	String R_PRODUCTS="SELECT * FROM v_find_all_products";
+	
+	String R_GALLERY_BY_ID ="SELECT * FROM auc_gallery WHERE product_id = #{product_id}";
+	
+	
+	
+	
 	@Select(R_PRODUCTS)
 	@Results(value={
 			// supplier
@@ -33,9 +45,26 @@ public interface ProductRepository {
 			// brand
 			@Result(property="brand.brand_id",column="brand_id"),
 			@Result(property="brand.brand_name",column="brand_name"),
-			@Result(property="brand.brand_description",column="brand_description")			
+			@Result(property="brand.brand_description",column="brand_description"),		
+			
+			
+			//gallery
+			@Result(property="product_id",column="product_id"),
+			@Result(property="gallery", javaType=List.class, column="product_id",
+					many=@Many(select="findAllGalleryByProductID"))
+		
+			
 	})
 	public ArrayList<Product> findAllProducts();
+	
+	
+	@Select(R_GALLERY_BY_ID)
+	@Results(value={
+			@Result(property="product.product_id", column="product_id")
+	})
+	public ArrayList<Gallery> findAllGalleryByProductID(int product_id);
+	
+	
 	
 	String R_PRODUCT_ByNAME="SELECT * FROM v_find_all_products WHERE product_name = #{product_name}";
 	@Select(R_PRODUCT_ByNAME)

@@ -1,5 +1,7 @@
 package org.khmeracademy.auction.entities;
 
+import java.util.List;
+
 public class Product {
 	private int product_id;
 	private String product_name;
@@ -9,6 +11,15 @@ public class Product {
 	private int qty;
 	private Brand brand;		// brand object
 	private boolean status;
+	
+	private List<Gallery> gallery;
+	
+	public List<Gallery> getGallery() {
+		return gallery;
+	}
+	public void setGallery(List<Gallery> gallery) {
+		this.gallery = gallery;
+	}
 	public int getProduct_id() {
 		return product_id;
 	}
