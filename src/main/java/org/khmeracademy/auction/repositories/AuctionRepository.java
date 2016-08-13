@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AuctionRepository {
-	final String FIND_ALL_AUCTIONS = "SELECT * FROM v_find_all_auctions ";
+	final String FIND_ALL_AUCTIONS = "SELECT * FROM v_find_all_auctions ORDER BY auction_id DESC";
 	@Select(FIND_ALL_AUCTIONS)
 	@Results(value={
 			// Product
