@@ -72,6 +72,14 @@ public class AuctionRController {
 		Map<String,Object> map = getMapObject(arr);
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/find-auction-by-id/{id}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findAuctionByID(@PathVariable int id) {
+		
+		ArrayList<Auction> arr = auctionService.getAuctionByID(id);
+		Map<String,Object> map = getMapObject(arr);
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
 
 	@RequestMapping(value="/find-auction-by-product-name/{product_name}", method=RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAuctionByProductName(@PathVariable String product_name) {

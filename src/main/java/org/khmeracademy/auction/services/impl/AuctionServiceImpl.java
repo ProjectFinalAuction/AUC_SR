@@ -19,6 +19,11 @@ public class AuctionServiceImpl implements AuctionService{
 	public ArrayList<Auction> findAllAuctions() {
 		return auctionRepository.findAllAuctions();
 	}
+	
+	@Override
+	public ArrayList<Auction> getAuctionByID(int id) {
+		return auctionRepository.getAuctionByID(id);
+	}
 
 	@Override
 	public ArrayList<Auction> findAuctionByProductName(String product_name) {
@@ -44,5 +49,6 @@ public class AuctionServiceImpl implements AuctionService{
 	public boolean deleteAuction(int auction_id) {
 		return auctionRepository.deleteAuction(auction_id);
 	}
+
 
 }
