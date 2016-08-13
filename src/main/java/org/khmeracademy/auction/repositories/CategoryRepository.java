@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CategoryRepository {
 	//READ
-	String R_CATEGORIES="SELECT * FROM auc_category WHERE status != false AND parent_id IS NULL";
+	String R_CATEGORIES="SELECT * FROM auc_category WHERE status != false AND parent_id IN (NULL,0)";
 	String R_ALL_CATEGORIES="SELECT * FROM auc_category ";
 	
 	String R_SUB_CATEGORIES = "SELECT * FROM auc_category WHERE parent_id = #{category_id}";
