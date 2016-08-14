@@ -132,7 +132,7 @@ public class CategoryRController {
 	@RequestMapping(value="/find-category-by-id/{category_id}", method=RequestMethod.GET)	
 	public ResponseEntity<Map<String, Object>> findCategoryById(@PathVariable int category_id){
 		Map<String,Object> map = new HashMap<String,Object>();
-		Category c = cs.findCategoryById(category_id);
+		CategoryInputUpdate c = cs.findCategoryById(category_id);
 		try{
 			if(c!=null){
 				map.put("DATA", c);
