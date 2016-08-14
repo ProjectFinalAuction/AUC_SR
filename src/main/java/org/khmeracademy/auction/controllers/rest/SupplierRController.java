@@ -108,7 +108,12 @@ public class SupplierRController {
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
-	
+	@RequestMapping(value="/find-suppliers-in-products",method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> findSupplersInProducts() {
+		ArrayList<Supplier> arr = ss.findSupplierInProducts();
+		Map<String, Object> map = getMapObject(arr);
+		return new ResponseEntity<Map<String, Object>>(map,HttpStatus.OK);
+	}
 	
 	@RequestMapping(value="/add-supplier", method= RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> addSupplier(@RequestBody Supplier s){

@@ -21,5 +21,6 @@ public interface SupplierService {
 	public boolean deleteSupplier(int supplier_id);
 	
 	public Supplier findSupplierById(int supplier_id);
-
+	
+	public ArrayList<Supplier> findSupplierInProducts();
 }

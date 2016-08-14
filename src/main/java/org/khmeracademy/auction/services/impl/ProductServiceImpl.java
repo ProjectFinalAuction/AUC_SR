@@ -38,6 +38,12 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return pr.findProductByCategory(category_name);
 	}
+	
+	@Override
+	public ArrayList<Product> findProductsHasSupplier(int supId) {
+		// TODO Auto-generated method stub
+		return pr.findProductsHasSupplier(supId);
+	}
 
 	@Override
 	public boolean addProduct(ProductInputUpdate p) {
@@ -56,5 +62,6 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return pr.deleteProduct(product_id);
 	}
+
 
 }

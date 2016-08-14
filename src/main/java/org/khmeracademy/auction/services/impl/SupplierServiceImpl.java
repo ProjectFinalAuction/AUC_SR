@@ -59,4 +59,10 @@ public class SupplierServiceImpl implements SupplierService {
 	public Supplier findSupplierById(int supplier_id){
 		return suplrepo.findSupplierById(supplier_id);
 	}
+
+	@Override
+	public ArrayList<Supplier> findSupplierInProducts() {
+		// TODO Auto-generated method stub
+		return suplrepo.findSupplierInProducts();
+	}
 }

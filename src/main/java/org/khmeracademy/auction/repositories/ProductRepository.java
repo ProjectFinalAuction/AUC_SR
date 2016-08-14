@@ -25,8 +25,7 @@ public interface ProductRepository {
 	
 	String R_GALLERY_BY_ID ="SELECT * FROM auc_gallery WHERE product_id = #{product_id}";
 	
-	
-	
+	String R_PRODUCTS_HasSUPPLIER = "SELECT * FROM auc_product P WHERE P.supplier_id = #{supplier_id}";
 	
 	@Select(R_PRODUCTS)
 	@Results(value={
@@ -57,6 +56,11 @@ public interface ProductRepository {
 	})
 	public ArrayList<Product> findAllProducts();
 	
+	@Select(R_PRODUCTS_HasSUPPLIER)
+	@Results(value={
+			@Result(property="supplier.supplier_id", column="supplier_id")
+	})
+	public ArrayList<Product> findProductsHasSupplier(int supId);
 	
 	@Select(R_GALLERY_BY_ID)
 	@Results(value={
