@@ -64,7 +64,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public Category findCategoryById(int category_id){
+	public CategoryInputUpdate findCategoryById(int category_id){
 		return cat.findCategoryById(category_id);
 	}
 
