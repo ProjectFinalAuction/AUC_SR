@@ -19,6 +19,7 @@ public interface CategoryRepository {
 	//READ
 	String R_CATEGORIES="SELECT * FROM auc_category WHERE status != false AND parent_id IN (NULL,0)";
 	String R_ALL_CATEGORIES="SELECT * FROM auc_category ";
+	String R_CATEGORY_ByID="SELECT * FROM auc_category WHERE category_id = #{category_id}";
 	
 	String R_SUB_CATEGORIES = "SELECT * FROM auc_category WHERE parent_id = #{category_id}";
 	
@@ -90,4 +91,7 @@ public interface CategoryRepository {
 	
 	@Delete(D_CATEGORY)
 	public boolean deleteCategory(int category_id);
+	
+	@Select(R_CATEGORY_ByID)
+	public Category findCategoryById(int category_id);
 }
