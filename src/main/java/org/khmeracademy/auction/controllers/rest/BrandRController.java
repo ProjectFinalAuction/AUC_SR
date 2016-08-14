@@ -68,7 +68,7 @@ public class BrandRController {
 	}
 	
 	@RequestMapping(value="/find-brand-by-name/{brand_name}", method=RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> findSupplierByName(@PathVariable String brand_name){
+	public ResponseEntity<Map<String, Object>> findBrandByName(@PathVariable String brand_name){
 		ArrayList<Brand> arr = bs.findBrandByName(brand_name);
 		Map<String, Object> map = getMapObject(arr);
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
@@ -100,7 +100,7 @@ public class BrandRController {
 	}
 	
 	@RequestMapping(value="/find-brand-by-id/{brand_id}", method=RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> findSupplierByName(@PathVariable int brand_id){
+	public ResponseEntity<Map<String, Object>> findBrandById(@PathVariable int brand_id){
 		Brand b = bs.findBrandById(brand_id);
 		Map<String, Object> map = new HashMap<String, Object>();
 		try{
