@@ -63,7 +63,10 @@ public class CategoryServiceImpl implements CategoryService {
 		return cat.deleteCategory(category_id);
 	}
 
-
+	@Override
+	public Category findCategoryById(int category_id){
+		return cat.findCategoryById(category_id);
+	}
 
 	
 	

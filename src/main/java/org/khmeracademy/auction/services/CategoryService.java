@@ -23,4 +23,6 @@ public interface CategoryService {
 	public boolean updateCategory(CategoryInputUpdate c); 
 	
 	public boolean deleteCategory(int category_id);
+	
+	public Category findCategoryById(int category_id);
 }

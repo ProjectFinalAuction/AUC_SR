@@ -129,4 +129,23 @@ public class CategoryRController {
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 
+	@RequestMapping(value="/find-category-by-id/{category_id}", method=RequestMethod.GET)	
+	public ResponseEntity<Map<String, Object>> findCategoryById(@PathVariable int category_id){
+		Map<String,Object> map = new HashMap<String,Object>();
+		Category c = cs.findCategoryById(category_id);
+		try{
+			if(c!=null){
+				map.put("DATA", c);
+				map.put("MESSAGE", "SUCCESS");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "UNSUCCESS");
+				map.put("STATUS", true);
+			}				
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	}
 }
