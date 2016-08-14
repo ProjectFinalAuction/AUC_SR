@@ -8,7 +8,7 @@ import org.khmeracademy.auction.entities.AuctionInputUpdate;
 public interface AuctionService {
 	
 	public ArrayList<Auction> findAllAuctions();
-	public ArrayList<Auction> getAuctionByID(int id);
+	public Auction getAuctionByID(int id);
 	public ArrayList<Auction> findAuctionByProductName(String product_name);
 	public ArrayList<Auction> findAuctionByDate(String trans_date);
 	public boolean addAuction(AuctionInputUpdate a);	

@@ -14,6 +14,7 @@ public interface BrandRepository {
 	//READ 
 	String R_BRANDS="SELECT * FROM auc_brand";
 	String R_BRAND_ByNAME=" SELECT * FROM auc_brand WHERE brand_name = #{brand_name}";
+	String R_BRAND_ById=" SELECT * FROM auc_brand WHERE brand_id = #{brand_id}";
 	String R_BRAND_ByAnyFIELD="SELECT * FROM auc_brand "
 			+ " WHERE "
 			+ "		brand_name= #{brand_name} or "
@@ -56,4 +57,8 @@ public interface BrandRepository {
 	
 	@Delete(D_BRAND)
 	public boolean deleteBrand(int brand_id);
+	
+	@Select(R_BRAND_ById)
+	public Brand findBrandById(int brand_id);
+	
 }

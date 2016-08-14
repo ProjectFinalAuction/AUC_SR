@@ -72,7 +72,7 @@ public interface AuctionRepository {
 			@Result(property = "product.supplier.address", column = "address"),
 			@Result(property = "product.supplier.phone", column = "phone"),
 			@Result(property = "product.supplier.email", column = "email") })
-	public ArrayList<Auction> getAuctionByID(int id);
+	public Auction getAuctionByID(int id);
 
 	final String FIND_AUCTION_BY_PRODUCT_NAME = " SELECT * FROM v_find_all_auctions WHERE product_name = #{product_name}";
 

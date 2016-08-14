@@ -89,8 +89,22 @@ public class SupplierRController {
 	
 	@RequestMapping(value="/find-supplier-by-id/{supplier_id}", method=RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> findSupplierById(@PathVariable int supplier_id){
-		ArrayList<Supplier> s=ss.findSupplierById(supplier_id);
-		Map<String, Object> map=getMapObject(s);
+		Supplier s=ss.findSupplierById(supplier_id);
+		Map<String, Object> map=new HashMap<String, Object>();
+		try{
+			if(s!=null){
+				map.put("DATA", s);
+				map.put("MESSAGE", "SUCCESS");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "UNSUCCESS");
+				map.put("STATUS", true);
+			}				
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
+			
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	

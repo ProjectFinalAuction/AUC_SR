@@ -17,4 +17,6 @@ public interface BrandService {
 	public boolean updateBrand(Brand b);
 	
 	public boolean deleteBrand(int brand_id);
+	
+	public Brand findBrandById(int brand_id);
 }

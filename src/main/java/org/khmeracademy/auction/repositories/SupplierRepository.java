@@ -62,6 +62,6 @@ public interface SupplierRepository {
 	public boolean deleteSupplier(int supplier_id);
 	
 	@Select(R_SUPPLIER_ById)
-	public ArrayList<Supplier> findSupplierById(int id);
+	public Supplier findSupplierById(int id);
 	
 }

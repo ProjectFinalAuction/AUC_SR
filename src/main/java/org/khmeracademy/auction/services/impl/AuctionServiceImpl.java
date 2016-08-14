@@ -21,7 +21,7 @@ public class AuctionServiceImpl implements AuctionService{
 	}
 	
 	@Override
-	public ArrayList<Auction> getAuctionByID(int id) {
+	public Auction getAuctionByID(int id) {
 		return auctionRepository.getAuctionByID(id);
 	}
 

@@ -50,4 +50,7 @@ public class BrandServiceImpl implements BrandService {
 		return br.deleteBrand(brand_id);
 	}
 	
+	public Brand findBrandById(int brand_id){
+		return br.findBrandById(brand_id);
+	}
 }

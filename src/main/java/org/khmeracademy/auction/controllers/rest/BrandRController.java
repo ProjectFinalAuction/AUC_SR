@@ -99,4 +99,24 @@ public class BrandRController {
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/find-brand-by-id/{brand_id}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> findSupplierByName(@PathVariable int brand_id){
+		Brand b = bs.findBrandById(brand_id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		try{
+			if(b!=null){
+				map.put("DATA", b);
+				map.put("MESSAGE", "SUCCESS");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "UNSUCCESS");
+				map.put("STATUS", true);
+			}				
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	}
+	
 }

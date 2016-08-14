@@ -76,8 +76,21 @@ public class AuctionRController {
 	@RequestMapping(value="/find-auction-by-id/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAuctionByID(@PathVariable int id) {
 		
-		ArrayList<Auction> arr = auctionService.getAuctionByID(id);
-		Map<String,Object> map = getMapObject(arr);
+		Auction a = auctionService.getAuctionByID(id);
+		Map<String,Object> map = new HashMap<String, Object>();
+		try{
+			if(a != null){
+				map.put("DATA", a);
+				map.put("MESSAGE", "SUCCESS");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "UNSUCCESS");
+				map.put("STATUS", true);
+			}				
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 
