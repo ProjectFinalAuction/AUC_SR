@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
+import org.khmeracademy.auction.filtering.AuctionFilter;
 import org.khmeracademy.auction.repositories.AuctionRepository;
 import org.khmeracademy.auction.services.AuctionService;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +18,10 @@ public class AuctionServiceImpl implements AuctionService{
 	private AuctionRepository auctionRepository;
 	
 	@Override
-	public ArrayList<Auction> findAllAuctions() {
-		return auctionRepository.findAllAuctions();
+	public ArrayList<Auction> findAllAuctions(AuctionFilter filter, Pagination pagination) {
+		System.out.println(pagination);
+		pagination.setTotalCount(auctionRepository.count(filter));
+		return auctionRepository.findAllAuctions(filter, pagination);
 	}
 	
 	@Override
