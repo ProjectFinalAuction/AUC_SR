@@ -6,7 +6,9 @@ import java.util.Map;
 
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
+import org.khmeracademy.auction.filtering.AuctionFilter;
 import org.khmeracademy.auction.services.AuctionService;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/api")
@@ -66,10 +72,17 @@ public class AuctionRController {
 	
 	
 	@RequestMapping(value="/find-all-auctions",method=RequestMethod.GET)
-	public ResponseEntity<Map<String,Object>> findAllAuctions() {
+	@ApiImplicitParams({
+			@ApiImplicitParam(name="page", paramType="query", defaultValue="1", dataType="int" ) ,
+			@ApiImplicitParam(name="limit", paramType="query", defaultValue="15", dataType="int"),
+			@ApiImplicitParam(name="productName", paramType="query", defaultValue="")
+	})
+	
+	public ResponseEntity<Map<String,Object>> findAllAuctions(@ApiIgnore AuctionFilter filter, @ApiIgnore Pagination pagination) {
 		
-		ArrayList<Auction> arr = auctionService.findAllAuctions();
+		ArrayList<Auction> arr = auctionService.findAllAuctions(filter, pagination);
 		Map<String,Object> map = getMapObject(arr);
+		map.put("PAGINATION", pagination);
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	

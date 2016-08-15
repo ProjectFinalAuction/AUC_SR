@@ -4,17 +4,25 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
+import org.khmeracademy.auction.filtering.AuctionFilter;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AuctionRepository {
-	final String FIND_ALL_AUCTIONS = "SELECT * FROM v_find_all_auctions ORDER BY auction_id DESC";
+	final String FIND_ALL_AUCTIONS = "SELECT * "
+								   + "FROM v_find_all_auctions "
+								   + "WHERE LOWER(product_name) LIKE LOWER('%' || #{filter.productName} || '%')"
+								   + "ORDER BY auction_id DESC "
+								   + "LIMIT #{pagination.limit} "
+								   + "OFFSET #{pagination.offset} ";
 
 	@Select(FIND_ALL_AUCTIONS)
 	@Results(value = {
@@ -43,7 +51,7 @@ public interface AuctionRepository {
 			@Result(property = "product.supplier.email", column = "email")
 
 	})
-	public ArrayList<Auction> findAllAuctions();
+	public ArrayList<Auction> findAllAuctions(@Param("filter") AuctionFilter filter, @Param("pagination") Pagination pagination);
 
 	final String FIND_AUCTION_BY_ID = " SELECT * FROM v_find_all_auctions WHERE auction_id = #{auction_id}";
 
@@ -161,5 +169,8 @@ public interface AuctionRepository {
 
 	@Delete(DELETE_AUCTION)
 	public boolean deleteAuction(int auction_id);
+	
+	@Select("SELECT COUNT(auction_id) FROM v_find_all_auctions WHERE LOWER(product_name) LIKE LOWER('%' || #{filter.productName} || '%')")
+	public Long count(@Param("filter") AuctionFilter filter);
 
 }

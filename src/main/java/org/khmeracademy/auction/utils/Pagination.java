@@ -2,23 +2,31 @@ package org.khmeracademy.auction.utils;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Pagination implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	//TODO: CURRENT PAGE
 	@JsonProperty("PAGE")
 	private int page;
 
+	//TODO: LIMIT 15
 	@JsonProperty("LIMIT")
 	private int limit;
 
+	//TODO: TOTAL COUNT OF RECORDS
 	@JsonProperty("TOTAL_COUNT")
 	private Long totalCount;
 
+	//TODO: TOTAL PAGE OF PAGINATION
 	@JsonProperty("TOTAL_PAGES")
 	private int totalPages;
+	
+	@JsonIgnore
+	private int offset;
 
 	public Pagination() {
 		this(1, 15, 0L, 0);
@@ -47,28 +55,13 @@ public class Pagination implements Serializable {
 
 	}
 
-	public int nextPage() {
-		return this.page + 1;
-	}
-
-	public int previousPage() {
-		return this.page - 1;
-	}
-
-	public boolean hasNextPage() {
-		return this.nextPage() <= this.totalPages() ? true : false;
-	}
-
-	public boolean hasPreviousPage() {
-		return this.previousPage() >= 1 ? true : false;
-	}
-
 	public int offset() {
-		return (this.page - 1) * limit;
+		return offset = (this.page - 1) * limit;
 	}
 
 	public void setPage(int currentPage) {
 		this.page = currentPage;
+		offset();
 	}
 
 	public int getLimit() {
@@ -96,4 +89,10 @@ public class Pagination implements Serializable {
 		this.totalPages = totalPages;
 	}
 
+	@Override
+	public String toString() {
+		return "Pagination [page=" + page + ", limit=" + limit + ", totalCount=" + totalCount + ", totalPages="
+				+ totalPages + ", offset=" + offset + "]";
+	}
+	
 }
