@@ -11,7 +11,7 @@
 </head>
 <body> 
  		<input type="file" name="image" id="image" />
- 		<h1>ORIGINAL</h1>
+ 		<h1>ORIG6INAL</h1>
  		<img src="" id="result"/>
  		<h1>THUMBNAIL</h1>
  		<img src="" id="resultThumbnail"/>
