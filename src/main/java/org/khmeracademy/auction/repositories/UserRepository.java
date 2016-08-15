@@ -129,5 +129,11 @@ public interface UserRepository {
 	//Delete User
 	String D_USER="UPDATE auc_user SET status = false WHERE user_id = #{user_id}";
 	@Delete(D_USER)
-	public boolean deleteUsers(int userId); 	
+	public boolean deleteUsers(int userId); 
+	
+	// get user by user_name and password login
+		String LOGIN = "SELECT count(user_name) FROM auc_user WHERE "
+				+ " user_name = #{user_name} AND password = #{password}";
+		@Select(LOGIN)
+		public int userLogin(User user);
 }

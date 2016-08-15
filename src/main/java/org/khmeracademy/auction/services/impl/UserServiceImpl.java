@@ -66,6 +66,15 @@ public class UserServiceImpl implements UserService {
 		return userRepository.deleteUsers(userId);
 	}
 
+	@Override
+	public boolean userLogin(User user) {
+		
+		if( userRepository.userLogin(user) > 0){
+			return true;
+		}
+		return false;
+	}
+
 
 
 	
