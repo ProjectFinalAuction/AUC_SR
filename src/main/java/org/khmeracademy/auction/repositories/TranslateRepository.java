@@ -17,7 +17,7 @@ public interface TranslateRepository {
 	
 	final String FIND_TRANSLATE_BY_BASE_WORD="SELECT * FROM auc_translate WHERE base_word = #{base_word} ";
 	@Select(FIND_TRANSLATE_BY_BASE_WORD)
-	public ArrayList<Translate> findTranslateByBaseWord(String base_word);
+	public Translate findTranslateByBaseWord(String base_word);
 	
 	final String ADD_TRANSLATE=
 			" INSERT INTO auc_translate(language,base_word,translate) "+ 

@@ -67,10 +67,23 @@ public class TranslateRController {
 		Map<String,Object> map = getMapObject(arr);
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
-	@RequestMapping(value="/find-translate-by-base-word/{base-word}", method=RequestMethod.GET)
+	@RequestMapping(value="/find-translate-by-base-word/{base_word}", method=RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> findTranslateByBaseWord(@PathVariable String base_word){
-		ArrayList<Translate> arr = translateService.findTranslateByBaseWord(base_word); 
-		Map<String,Object> map = getMapObject(arr);
+		Translate t = translateService.findTranslateByBaseWord(base_word); 
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			if(t!=null){
+				map.put("DATA", t);
+				map.put("MESSAGE", "SUCCESS");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "UNSUCCESS");
+				map.put("STATUS", true);
+			}				
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	@RequestMapping(value="/add-translate", method=RequestMethod.POST)

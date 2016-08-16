@@ -19,7 +19,7 @@ public class TranslateServiceImpl implements TranslateService{
 	}
 
 	@Override
-	public ArrayList<Translate> findTranslateByBaseWord(String base_word) {
+	public Translate findTranslateByBaseWord(String base_word) {
 		return translateRepository.findTranslateByBaseWord(base_word);
 	}
 
