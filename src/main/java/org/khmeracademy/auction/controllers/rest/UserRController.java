@@ -67,9 +67,6 @@ public class UserRController {
 	}
 	
 	
-	
-	
-	
 	//Request User by Name
 	@RequestMapping(value="/get-user-by-name/{user_name}", method= RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> getUserByName(@PathVariable String user_name){
@@ -91,6 +88,31 @@ public class UserRController {
 		}
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
+	
+	
+	//================= Login User By user_name and password
+	@RequestMapping(value="/login", method= RequestMethod.POST)
+	public ResponseEntity<Map<String, Object>> userLogin(@RequestBody User user){
+		Map<String, Object> map= new HashMap<String, Object>();
+		Boolean userLogin = userService.userLogin(user);
+		try {
+			if(userLogin == true){
+				map.put("DATA", 1);
+				map.put("MESSAGE", "LOGIN SUCCESSFULLY");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "LOGIN FAIL!");
+				map.put("STATE", true);
+			}
+		} catch (Exception e) {
+				map.put("MESSAGE", "Error!");
+				map.put("STATUS", false);
+				e.printStackTrace();
+		}
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	} 
+	
+	
 	//Request User by Email
 	@RequestMapping(value="/get-user-by-email/{email:.+}", method= RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> getUserByEmail(@PathVariable String email){

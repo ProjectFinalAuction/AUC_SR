@@ -51,6 +51,7 @@ public interface UserRepository {
 //			+ "		created_date= #{user_name} or "
 //			+ "		comment= #{user_name}";
 	//Insert User
+	/*
 	String C_USER="INSERT INTO "
 			+ "auc_user("
 			+ "		user_name, "
@@ -84,8 +85,26 @@ public interface UserRepository {
 			+ "		#{created_by},"
 			+ "		#{created_date},"
 			+ "		#{comment})";
+	*/
+	String C_USER="select * from pr_add_user("
+			+ "		#{user_name}, "
+			+ "		#{first_name}, "
+			+ "		#{last_name}, "
+			+ " 	#{gender},"
+			+ "		#{dob}, "
+			+ " 	#{address}, "
+			+ " 	#{email}, "
+			+ " 	#{password}, "
+			+ " 	#{contact}, "
+			+ " 	#{photo}, "
+			+ " 	#{type},"
+			+ "		#{status},"
+			
+			+ "		#{created_date},"
+			+ "		#{created_by},"
+			+ "		#{comment})";
 	@Insert(C_USER)
-	public boolean addUser( User user); 
+	public int addUser( User user);  // return int because it doesn't work with true value from database
 	
 	//Update User
 	String U_USER="UPDATE auc_user SET "
@@ -110,5 +129,11 @@ public interface UserRepository {
 	//Delete User
 	String D_USER="UPDATE auc_user SET status = false WHERE user_id = #{user_id}";
 	@Delete(D_USER)
-	public boolean deleteUsers(int userId); 	
+	public boolean deleteUsers(int userId); 
+	
+	// get user by user_name and password login
+		String LOGIN = "SELECT count(user_name) FROM auc_user WHERE "
+				+ " user_name = #{user_name} AND password = #{password}";
+		@Select(LOGIN)
+		public int userLogin(User user);
 }

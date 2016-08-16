@@ -47,7 +47,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean addUser(User user) {
 		// TODO Auto-generated method stub
-		return userRepository.addUser(user);
+		int i = userRepository.addUser(user);
+//		System.out.println(i+" result");
+		if(i==-1)
+			return true;
+		return false;
 	}
 
 	@Override
@@ -60,6 +64,15 @@ public class UserServiceImpl implements UserService {
 	public boolean deleteUsers(int userId) {
 		// TODO Auto-generated method stub
 		return userRepository.deleteUsers(userId);
+	}
+
+	@Override
+	public boolean userLogin(User user) {
+		
+		if( userRepository.userLogin(user) > 0){
+			return true;
+		}
+		return false;
 	}
 
 

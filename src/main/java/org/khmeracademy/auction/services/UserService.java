@@ -12,6 +12,8 @@ public interface UserService {
 	
 	public User getUserByName(String user_name);
 	
+	public boolean userLogin(User user);
+	
 	public User getUserByEmail(String email);
 	
 	public ArrayList<User> getUserByAnyField(String user_name);
