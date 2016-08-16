@@ -14,6 +14,7 @@ public class GalleryServiceImpl implements GalleryService {
 
 	@Autowired
 	GalleryRepository gr;
+	
 	@Override
 	public ArrayList<Gallery> findImageByProductName(String product_name) {
 		// TODO Auto-generated method stub
@@ -23,13 +24,13 @@ public class GalleryServiceImpl implements GalleryService {
 	@Override
 	public boolean addImage(GalleryInputUpdate g) {
 		// TODO Auto-generated method stub
-		return gr.addImage(g);
+		return true;//gr.addImage(g);
 	}
 
 	@Override
 	public boolean updateImagePath(GalleryInputUpdate g) {
 		// TODO Auto-generated method stub
-		return gr.updateImagePath(g);
+		return true;//gr.updateImagePath(g);
 	}
 
 	@Override

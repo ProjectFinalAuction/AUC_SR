@@ -1,9 +1,19 @@
 package org.khmeracademy.auction.entities;
 
+import java.util.List;
+
 public class GalleryInputUpdate {
 	private int image_id;
 	private int product_id;
-	private String image_path;
+	private List<String> image_path;
+	
+	
+	
+	public GalleryInputUpdate(int product_id, List<String> image_path) {
+		super();
+		this.product_id = product_id;
+		this.image_path = image_path;
+	}
 	public int getImage_id() {
 		return image_id;
 	}
@@ -16,11 +26,12 @@ public class GalleryInputUpdate {
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
 	}
-	public String getImage_path() {
+	public List<String> getImage_path() {
 		return image_path;
 	}
-	public void setImage_path(String image_path) {
+	public void setImage_path(List<String> image_path) {
 		this.image_path = image_path;
 	}
+
 		
 }

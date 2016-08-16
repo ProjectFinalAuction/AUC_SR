@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.Gallery;
 import org.khmeracademy.auction.entities.GalleryInputUpdate;
 import org.springframework.stereotype.Repository;
@@ -41,24 +40,33 @@ public interface GalleryRepository {
 	public ArrayList<Gallery> findImageByProductName(String product_name);
 	
 	//CREATE
-	String C_GALLERY=" INSERT INTO "
-			+ " auc_gallery( "
-			+ " 	product_id, "
-			+ "		image_path ) "
-			+ " VALUES("
-			+ "		#{product_id}, "
-			+ "		#{image_path}) ";
-	@Insert(C_GALLERY)
+//	String C_GALLERY=" INSERT INTO "
+//			+ " auc_gallery( "
+//			+ " 	product_id, "
+//			+ "		image_path ) "
+//			+ " VALUES("
+//			+ "		#{product_id}, "
+//			+ "		#{image_path}) ";
+//	@Insert(C_GALLERY)
+//	public boolean addImage(GalleryInputUpdate g);
+	
+	final String C_BATCH_GALLERY  = ""
+			+ "<script> INSERT INTO auc_gallery(product_id, image_path) VALUES "
+			+ 	"<foreach  collection='image_path' item='path' separator=','>"
+			+ 		"(#{product_id}, #{path})"
+			+ 	"</foreach>"
+			+ "</script>";
+	@Insert(C_BATCH_GALLERY)
 	public boolean addImage(GalleryInputUpdate g);
 	
-	String U_GALLERY=" UPDATE auc_gallery "
+/*	String U_GALLERY=" UPDATE auc_gallery "
 			+ "SET "
 			+ " 	product_id= #{product_id}, "
 			+ " 	image_path= #{image_path} "
 			+ "WHERE "
 			+ "		image_id= #{image_id}";
 	@Update(U_GALLERY)
-	public boolean updateImagePath(GalleryInputUpdate g);
+	public boolean updateImagePath(GalleryInputUpdate g);*/
 	
 	String D_GALLERY=" DELETE FROM auc_gallery WHERE image_id = #{image_id} ";
 	@Delete(D_GALLERY)

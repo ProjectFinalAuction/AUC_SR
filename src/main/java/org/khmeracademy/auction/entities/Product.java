@@ -11,7 +11,6 @@ public class Product {
 	private int qty;
 	private Brand brand;		// brand object
 	private boolean status;
-	
 	private List<Gallery> gallery;
 	
 	public List<Gallery> getGallery() {

@@ -9,14 +9,12 @@ import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
-import org.khmeracademy.auction.entities.Category;
 import org.khmeracademy.auction.entities.Gallery;
 import org.khmeracademy.auction.entities.Product;
 import org.khmeracademy.auction.entities.ProductInputUpdate;
 import org.springframework.stereotype.Repository;
-
-import scala.sys.process.processInternal;
 
 @Repository
 public interface ProductRepository {
@@ -25,7 +23,8 @@ public interface ProductRepository {
 	
 	String R_GALLERY_BY_ID ="SELECT * FROM auc_gallery WHERE product_id = #{product_id}";
 	
-	String R_PRODUCTS_HasSUPPLIER = "SELECT * FROM auc_product P WHERE P.supplier_id = #{supplier_id}";
+	
+	
 	
 	@Select(R_PRODUCTS)
 	@Results(value={
@@ -56,11 +55,6 @@ public interface ProductRepository {
 	})
 	public ArrayList<Product> findAllProducts();
 	
-	@Select(R_PRODUCTS_HasSUPPLIER)
-	@Results(value={
-			@Result(property="supplier.supplier_id", column="supplier_id")
-	})
-	public ArrayList<Product> findProductsHasSupplier(int supId);
 	
 	@Select(R_GALLERY_BY_ID)
 	@Results(value={
@@ -159,7 +153,8 @@ public interface ProductRepository {
 			"	) 	";
 
 	@Insert(C_PRODUCT)
-	public boolean addProduct(ProductInputUpdate p);
+	@SelectKey(statement="SELECT last_value FROM auc_product_product_id_seq", keyProperty="product_id", keyColumn="last_value", before=false, resultType=int.class)
+	public int addProduct(ProductInputUpdate p);
 	
 	
 	String U_PRODUCT= " UPDATE auc_product " +

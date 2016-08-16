@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.khmeracademy.auction.entities.Product;
 import org.khmeracademy.auction.entities.ProductInputUpdate;
 import org.khmeracademy.auction.services.ProductService;
+import org.khmeracademy.auction.utils.HrdGeneratorUI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -87,18 +90,31 @@ public class ProductRController {
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/find-products-has-supplier/{supId}",method=RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> findProductsHasSupplier(@PathVariable int supId) {
-		ArrayList<Product> arr = ps.findProductsHasSupplier(supId);
-		Map<String, Object> map = getMapObject(arr);
-		return new ResponseEntity<Map<String, Object>>(map,HttpStatus.OK);
-	}
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value="/add-product", method= RequestMethod.POST)
-	public ResponseEntity<Map<String, Object>> addProduct(@RequestBody ProductInputUpdate p){
-		Map<String, Object> map= getMapObjectAfterTransaction(ps.addProduct(p));
+	public ResponseEntity<Map<String, Object>> addProduct(ProductInputUpdate p, HttpServletRequest request){
+		Map<String,Object> map = new HashMap<String,Object>();
+		try {
+			System.out.println("API => " + HrdGeneratorUI.decodeUnicodeFromObject(p));
+			if(ps.addProduct(p, request) == 1){
+				map.put("MESSAGE", "SUCCESS");
+			}else{
+				map.put("MESSAGE", "FAILED");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
+	
+	
+	
 	
 	@RequestMapping(value="/update-product", method=RequestMethod.PUT)
 	public ResponseEntity<Map<String, Object>> updateProduct(@RequestBody ProductInputUpdate p ){

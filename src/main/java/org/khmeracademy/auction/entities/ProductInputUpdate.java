@@ -1,5 +1,9 @@
 package org.khmeracademy.auction.entities;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductInputUpdate {
 	private int product_id;
 	private String product_name;
@@ -9,6 +13,14 @@ public class ProductInputUpdate {
 	private int qty;
 	private int brand_id;
 	private boolean status;
+	private List<MultipartFile> images;
+	
+	public List<MultipartFile> getImages() {
+		return images;
+	}
+	public void setImages(List<MultipartFile> images) {
+		this.images = images;
+	}
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -57,6 +69,15 @@ public class ProductInputUpdate {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+	@Override
+	public String toString() {
+		return "ProductInputUpdate [product_id=" + product_id + ", product_name=" + product_name
+				+ ", product_description=" + product_description + ", supplier_id=" + supplier_id + ", category_id="
+				+ category_id + ", qty=" + qty + ", brand_id=" + brand_id + ", status=" + status + ", images=" + images
+				+ "]";
+	}
+	
+	
 	
 	
 }
