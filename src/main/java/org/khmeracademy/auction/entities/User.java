@@ -1,6 +1,8 @@
 package org.khmeracademy.auction.entities;
 
 import java.sql.Date;
+import java.util.List;
+
 
 public class User {
 		private int user_id;
@@ -19,7 +21,14 @@ public class User {
 		private String created_by;
 		private Date created_date;
 		private String comment;
+		private List<Role> roles;
 		
+		public List<Role> getRoles() {
+			return roles;
+		}
+		public void setRoles(List<Role> roles) {
+			this.roles = roles;
+		}
 		public int getUser_id() {
 			return user_id;
 		}
