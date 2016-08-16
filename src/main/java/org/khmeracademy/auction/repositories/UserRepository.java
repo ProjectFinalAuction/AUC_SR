@@ -1,11 +1,17 @@
 package org.khmeracademy.auction.repositories;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Many;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.khmeracademy.auction.entities.Role;
 import org.khmeracademy.auction.entities.User;
 import org.springframework.stereotype.Repository;
 
@@ -24,7 +30,17 @@ public interface UserRepository {
 	//get user by name(name | first | last)
 	String R_USER_ByNAME="SELECT * FROM auc_user WHERE user_name = #{user_name} or first_name = #{user_name} or last_name = #{user_name}";
 	@Select(R_USER_ByNAME)
-	public User getUserByName(String user_name);
+	@Results(value={
+			@Result(property="roles" , column="role_id",
+					many=@Many(select="findUserRoleByUserId")
+			)
+	})
+	public User getUserByName(@Param("user_name")String user_name);
+	
+	
+	String R_ROLE_ByROLEID = "SELECT role_id, role_name FROM auc_role WHERE role_id = #{role_id}";
+	@Select(R_ROLE_ByROLEID)
+	public List<Role> findUserRoleByUserId(@Param("role_id") int role_id);
 	
 	//get user by email
 	String R_USER_ByEMAIL="SELECT * FROM auc_user WHERE email = #{email}";
