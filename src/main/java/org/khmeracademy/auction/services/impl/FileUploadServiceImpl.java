@@ -22,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileUploadServiceImpl implements FileUploadService{
 	
 	@Override
-	public UploadedFileInfo upload(List<MultipartFile> files, String folder) {
+	public UploadedFileInfo upload(List<MultipartFile> files, String folder, HttpServletRequest request) {
 		
 		String fileName = "";
 		UploadedFileInfo fileUpload = new UploadedFileInfo();
@@ -34,7 +34,7 @@ public class FileUploadServiceImpl implements FileUploadService{
 			
 			if(folder=="" || folder==null)
 				folder = "default";
-			String UPLOAD_PATH = "/opt/project/" + folder;
+			String UPLOAD_PATH = "/opt/AUCTION/" + folder;
 			
 			java.io.File path = new java.io.File(UPLOAD_PATH);
 			if(!path.exists())
@@ -46,7 +46,7 @@ public class FileUploadServiceImpl implements FileUploadService{
 				fileName = UUID.randomUUID() + "." + fileName.substring(fileName.lastIndexOf(".") + 1);
 				try {
 					Files.copy(file.getInputStream(), Paths.get(UPLOAD_PATH, fileName));
-					names.add("/resources/" + folder + "/" + fileName);
+					names.add("http://" + request.getRemoteAddr()+ ":" + request.getServerPort() + "/resources/" + folder + "/" + fileName);
 				} catch (Exception e) { 
 					fileUpload.setMessage("Fail to upload!, " + e.getMessage());
 				}
@@ -60,48 +60,10 @@ public class FileUploadServiceImpl implements FileUploadService{
 	}
 
 	@Override
-	public UploadedFileInfo upload(MultipartFile file, String folder) {
+	public UploadedFileInfo uploadSingle(MultipartFile file, String folder, HttpServletRequest request) {
 		List<MultipartFile> files = new ArrayList<>();
 		files.add(file);
-		return this.upload(files, folder);
+		return this.upload(files, folder, request);
 	}
 
-	@Override
-	public UploadedFileInfo upload(List<MultipartFile> files, String folder, HttpServletRequest request) {
-		
-		UploadedFileInfo fileUpload = new UploadedFileInfo();
-		
-		if(files.isEmpty()){
-			fileUpload.setMessage("File is not present! Please choose file to upload!!!");
-		}else{
-			if(folder=="" || folder==null)
-				folder = "DEFAULT";
-			
-			String PROJECT_PATH = "/resources/MOL/UPLOAD/" + folder;
-			String UPLOAD_PATH = request.getServletContext().getRealPath(PROJECT_PATH);
-			
-			java.io.File path = new java.io.File(UPLOAD_PATH);
-			if(!path.exists())
-				path.mkdirs();
-			
-			List<String> names = new ArrayList<>();
-			for(MultipartFile file: files){
-				String fileName = file.getOriginalFilename();
-				fileName = UUID.randomUUID() + "." + fileName.substring(fileName.lastIndexOf(".") + 1);
-				try {
-					Files.copy(file.getInputStream(), Paths.get(UPLOAD_PATH, fileName));
-					names.add("/resources/" + folder + "/" + fileName);
-				} catch (Exception e) { 
-					fileUpload.setMessage("Fail to upload!, " + e.getMessage());
-				}
-			}
-			fileUpload.setProjectPath(PROJECT_PATH);
-			fileUpload.setServerPath(UPLOAD_PATH);
-			fileUpload.setNames(names);
-			fileUpload.setMessage("File has been uploaded successfully!!!");
-		}
-		return fileUpload;
-	}
-
-	
 }

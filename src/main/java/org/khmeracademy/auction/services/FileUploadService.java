@@ -12,9 +12,7 @@ public interface FileUploadService {
 	/***
 	 * Upload to default location
 	 */
-	public UploadedFileInfo upload(List<MultipartFile> files, String folder);
-	
-	public UploadedFileInfo upload(MultipartFile file, String folder);
+	public UploadedFileInfo uploadSingle(MultipartFile file, String folder, HttpServletRequest request);
 	
 	public UploadedFileInfo upload(List<MultipartFile> files, String folder, HttpServletRequest request);
 	

@@ -59,6 +59,12 @@ public class HrdGeneratorUI {
 			} else if (field.getType() == double.class || field.getType() == Double.class){
 				formData.add(field.getName(), (double) field.get(obj));
 				
+			} else if (field.getType() == float.class || field.getType() == Float.class){
+				formData.add(field.getName(), (float) field.get(obj));
+				
+			} else if (field.getType() == boolean.class || field.getType() == Boolean.class){
+				formData.add(field.getName(), (boolean) field.get(obj));
+				
 			} else if(field.getType() == MultipartFile.class || field.getType() == CommonsMultipartFile.class) { // Single File
 				MultipartFile file = ((MultipartFile) (field.get(obj)));
 				formData.add(field.getName(), new FileMessageResource(file.getBytes(), file.getOriginalFilename()));
@@ -84,6 +90,8 @@ public class HrdGeneratorUI {
 						formData.add(field.getName(), str);
 					}
 				}
+			} else {
+				formData.add(field.getName(), field.get(obj));
 			}
 		}
 		return formData;

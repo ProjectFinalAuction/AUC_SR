@@ -100,6 +100,7 @@ public class ProductRController {
 	public ResponseEntity<Map<String, Object>> addProduct(ProductInputUpdate p, HttpServletRequest request){
 		Map<String,Object> map = new HashMap<String,Object>();
 		try {
+			System.out.println("API ZIN" + p);
 			System.out.println("API => " + HrdGeneratorUI.decodeUnicodeFromObject(p));
 			if(ps.addProduct(p, request) == 1){
 				map.put("MESSAGE", "SUCCESS");
