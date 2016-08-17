@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
+import org.khmeracademy.auction.entities.Category;
 import org.khmeracademy.auction.filtering.AuctionFilter;
 import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.stereotype.Repository;
@@ -143,7 +144,43 @@ public interface AuctionRepository {
 
 	})
 	public ArrayList<Auction> findAuctionByDate(String trans_date);
+	
+	final String FIND_AUCTION_PRODUCT_BY_CATEGORY="	SELECT	"+
+			"	auc_product.product_name,	"+
+			"	auc_product.product_description,	"+
+			"	auc_category.category_name,	"+
+			"	auc_category.status,	"+
+		
+			"	auc_category.category_description,	"+
+			"	auc_product.qty,	"+
+			"	auc_brand.brand_name,	"+
+			"	auc_supplier.contact_name	"+
+			"	FROM	"+
+			"	((auc_auction AS au	"+
+			"	JOIN auc_product ON ((auc_product.product_id = au.product_id)))	"+
+			"	JOIN auc_category ON ((auc_category.category_id = auc_product.category_id)))	"+
+			"	INNER JOIN auc_brand ON auc_brand.brand_id = auc_product.brand_id	"+
+			"	INNER JOIN auc_supplier ON auc_supplier.supplier_id = auc_product.supplier_id	"+
+			"	WHERE	"+
+			"	(auc_category.category_id = #{category_id})	";
 
+	@Select(FIND_AUCTION_PRODUCT_BY_CATEGORY)
+	@Results(value={
+			
+			@Result(property = "product.product_name", column = "product_name"),
+			@Result(property = "product.product_description", column = "product_description"),
+			
+			@Result(property = "product.category.category_name", column = "category_name"),
+			@Result(property = "product.category.status", column = "status"),
+		
+			@Result(property = "product.category.category_description", column = "category_description"),
+			
+			@Result(property = "product.qty", column = "qty"),
+			@Result(property = "product.brand.brand_name", column = "brand_name"),
+			@Result(property = "product.supplier.contact_name", column = "contact_name")
+	})
+	public ArrayList<Auction> findAuctionProductByCategory(int category_id);
+	
 	final String ADD_AUCTION = "	INSERT INTO auc_auction(	" + "	product_id,	" + "	product_condition,	"
 			+ "	start_price,	" + "	buy_price,	" + "	increment_price,	" + "	current_price,	"
 			+ "	start_date,	" + "	end_date,	" + "	status,	" + "	created_by,	" + "	created_date,	"

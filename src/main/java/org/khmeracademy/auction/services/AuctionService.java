@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
+import org.khmeracademy.auction.entities.Category;
 import org.khmeracademy.auction.filtering.AuctionFilter;
 import org.khmeracademy.auction.utils.Pagination;
 
@@ -13,6 +14,7 @@ public interface AuctionService {
 	public Auction getAuctionByID(int id);
 	public ArrayList<Auction> findAuctionByProductName(String product_name);
 	public ArrayList<Auction> findAuctionByDate(String trans_date);
+	public ArrayList<Auction> findAuctionProductByCategory(int category_id);
 	public boolean addAuction(AuctionInputUpdate a);	
 	public boolean updateAuction(AuctionInputUpdate a);
 	public boolean deleteAuction(int auction_id);	

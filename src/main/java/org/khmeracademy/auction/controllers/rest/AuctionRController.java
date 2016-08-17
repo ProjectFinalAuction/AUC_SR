@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
+import org.khmeracademy.auction.entities.Category;
 import org.khmeracademy.auction.filtering.AuctionFilter;
 import org.khmeracademy.auction.services.AuctionService;
 import org.khmeracademy.auction.utils.Pagination;
@@ -120,6 +121,27 @@ public class AuctionRController {
 		
 		ArrayList<Auction> arr = auctionService.findAuctionByDate(trans_date);
 		Map<String,Object> map = getMapObject(arr);
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/find-auction-product-by-category-id/{category_id}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findAuctionProductByCategory(@PathVariable int category_id) {
+		
+		ArrayList<Auction> au = auctionService.findAuctionProductByCategory(category_id);
+		Map<String,Object> map = new HashMap<String, Object>();
+		try{
+			if(au != null){
+				map.put("DATA", au);
+				map.put("MESSAGE", "SUCCESS");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "UNSUCCESS");
+				map.put("STATUS", true);
+			}				
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 

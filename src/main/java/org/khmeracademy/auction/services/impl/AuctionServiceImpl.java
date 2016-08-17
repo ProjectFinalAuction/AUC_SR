@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
+import org.khmeracademy.auction.entities.Category;
 import org.khmeracademy.auction.filtering.AuctionFilter;
 import org.khmeracademy.auction.repositories.AuctionRepository;
 import org.khmeracademy.auction.services.AuctionService;
@@ -52,6 +53,12 @@ public class AuctionServiceImpl implements AuctionService{
 	@Override
 	public boolean deleteAuction(int auction_id) {
 		return auctionRepository.deleteAuction(auction_id);
+	}
+
+	@Override
+	public ArrayList<Auction> findAuctionProductByCategory(int category_id) {
+		// TODO Auto-generated method stub
+		return auctionRepository.findAuctionProductByCategory(category_id);
 	}
 
 
