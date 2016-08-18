@@ -235,7 +235,7 @@ public interface AuctionRepository {
 		final String FIND_BIDDING_AUCTION_BY_AUCTION_ID = "SELECT * FROM v_auction_and_bid where auction_id=#{auction_id}";
 				
 
-		@Select(FIND_ALL_AUCTIONS)
+		@Select(FIND_BIDDING_AUCTION_BY_AUCTION_ID)
 		@Results(value = {
 				// Product
 				@Result(property = "product.product_id", column = "product_id"),
