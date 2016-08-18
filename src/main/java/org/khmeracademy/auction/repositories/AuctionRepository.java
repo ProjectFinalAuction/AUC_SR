@@ -145,16 +145,16 @@ public interface AuctionRepository {
 	})
 	public ArrayList<Auction> findAuctionByDate(String trans_date);
 	
-	final String FIND_AUCTION_PRODUCT_BY_CATEGORY="	SELECT	"+
-			"	auc_product.product_name,	"+
-			"	auc_product.product_description,	"+
-			"	auc_category.category_name,	"+
-			"	auc_category.status,	"+
-		
-			"	auc_category.category_description,	"+
-			"	auc_product.qty,	"+
-			"	auc_brand.brand_name,	"+
-			"	auc_supplier.contact_name	"+
+	final String FIND_AUCTION_PRODUCT_BY_CATEGORY="	SELECT * "+
+//			"	auc_product.product_name,	"+
+//			"	auc_product.product_description,	"+
+//			"	auc_category.category_name,	"+
+//			"	auc_category.status,	"+
+//		
+//			"	auc_category.category_description,	"+
+//			"	auc_product.qty,	"+
+//			"	auc_brand.brand_name,	"+
+//			"	auc_supplier.contact_name	"+
 			"	FROM	"+
 			"	((auc_auction AS au	"+
 			"	JOIN auc_product ON ((auc_product.product_id = au.product_id)))	"+
