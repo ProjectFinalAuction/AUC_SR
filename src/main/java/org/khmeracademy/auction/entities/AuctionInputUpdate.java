@@ -13,7 +13,7 @@ public class AuctionInputUpdate {
 	private double current_price;
 	private Date start_date;
 	private Date end_date;
-	private boolean status;
+	private String status;
 	private String created_by;
 	private Date created_date;
 	private String comment;
@@ -71,10 +71,10 @@ public class AuctionInputUpdate {
 	public void setEnd_date(Date end_date) {
 		this.end_date = end_date;
 	}
-	public boolean isStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	public String getCreated_by() {
@@ -94,7 +94,7 @@ public class AuctionInputUpdate {
 	}
 	public void setComment(String comment) {
 		this.comment = comment;
-	}	
+	}
 	
 	
 }
