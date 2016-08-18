@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
-import org.khmeracademy.auction.entities.Category;
+import org.khmeracademy.auction.entities.BiddingAuction;
 import org.khmeracademy.auction.filtering.AuctionFilter;
 import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.stereotype.Repository;
@@ -210,6 +210,41 @@ public interface AuctionRepository {
 	@Select("SELECT COUNT(auction_id) FROM v_find_all_auctions WHERE LOWER(product_name) LIKE LOWER('%' || #{filter.productName} || '%')")
 	public Long count(@Param("filter") AuctionFilter filter);
 	
-	
+	// ==== Additional function
+
+		final String FIND_BIDDING_AUCTION_BY_AUCTION_ID = "SELECT * FROM v_auction_and_bid where auction_id=#{auction_id}";
+				
+
+		@Select(FIND_ALL_AUCTIONS)
+		@Results(value = {
+				// Product
+				@Result(property = "product.product_id", column = "product_id"),
+				@Result(property = "product.product_name", column = "product_name"),
+				@Result(property = "product.product_description", column = "product_description"),
+				@Result(property = "product.status", column = "product_status"),
+
+				// Brand
+				@Result(property = "product.brand.brand_id", column = "brand_id"),
+				@Result(property = "product.brand.brand_name", column = "brand_name"),
+				@Result(property = "product.brand.brand_description", column = "brand_description"),
+				@Result(property = "product.brand.status", column = "brand_status"),
+
+				// Category
+				@Result(property = "product.category.category_id", column = "category_id"),
+				@Result(property = "product.category.category_name", column = "category_name"),
+				@Result(property = "product.category.category_description", column = "category_description"),
+
+				// Supplier
+				@Result(property = "product.supplier.supplier_id", column = "supplier_id"),
+				@Result(property = "product.supplier.contact_name", column = "contact_name"),
+				@Result(property = "product.supplier.address", column = "address"),
+				@Result(property = "product.supplier.phone", column = "phone"),
+				@Result(property = "product.supplier.email", column = "email")
+				
+				// num_bid and bid_current_parent are matched automatically
+
+		})
+		public BiddingAuction findBiddingAuctionByAuctionId(int auction_id);
+
 
 }

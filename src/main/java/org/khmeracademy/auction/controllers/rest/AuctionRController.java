@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
-import org.khmeracademy.auction.entities.Category;
+import org.khmeracademy.auction.entities.BiddingAuction;
 import org.khmeracademy.auction.filtering.AuctionFilter;
 import org.khmeracademy.auction.services.AuctionService;
 import org.khmeracademy.auction.utils.Pagination;
@@ -161,6 +161,27 @@ public class AuctionRController {
 	@RequestMapping(value="/delete-auction/{auction_id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Map<String,Object>> deleteAuction(@PathVariable int auction_id) {
 		Map<String,Object> map = getMapObjectAfterTransaction(auctionService.deleteAuction(auction_id));		
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/find-bidding-auction-by-auction-id/{auction_id}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findBiddingAuctionByAuctionId(@PathVariable int auction_id) {
+		
+		BiddingAuction ba = auctionService.findBiddingAuctionByAuctionId(auction_id);
+		Map<String,Object> map = new HashMap<String, Object>();
+		try{
+			if(ba != null){
+				map.put("DATA", ba);
+				map.put("MESSAGE", "SUCCESS");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "UNSUCCESS");
+				map.put("STATUS", true);
+			}				
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 }

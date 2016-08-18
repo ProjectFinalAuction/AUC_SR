@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
-import org.khmeracademy.auction.entities.Category;
+import org.khmeracademy.auction.entities.BiddingAuction;
 import org.khmeracademy.auction.filtering.AuctionFilter;
 import org.khmeracademy.auction.repositories.AuctionRepository;
 import org.khmeracademy.auction.services.AuctionService;
@@ -61,7 +61,11 @@ public class AuctionServiceImpl implements AuctionService{
 		return auctionRepository.findAuctionProductByCategory(category_id);
 	}
 
-	
+	@Override
+	public BiddingAuction findBiddingAuctionByAuctionId(int auction_id) {
+		
+		return auctionRepository.findBiddingAuctionByAuctionId(auction_id);
+	}
 
 
 }

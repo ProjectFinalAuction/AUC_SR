@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
+import org.khmeracademy.auction.entities.BiddingAuction;
 import org.khmeracademy.auction.entities.Category;
 import org.khmeracademy.auction.filtering.AuctionFilter;
 import org.khmeracademy.auction.utils.Pagination;
@@ -18,5 +19,7 @@ public interface AuctionService {
 	public boolean addAuction(AuctionInputUpdate a);	
 	public boolean updateAuction(AuctionInputUpdate a);
 	public boolean deleteAuction(int auction_id);	
+	
+	public BiddingAuction findBiddingAuctionByAuctionId(int auction_id);
 	
 }
