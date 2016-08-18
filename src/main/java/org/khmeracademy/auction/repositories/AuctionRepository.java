@@ -191,6 +191,16 @@ public interface AuctionRepository {
 			@Result(property = "product.gallery", javaType = List.class, column = "product_id", many = @Many(select = "findAllGalleryByProductID") ) })
 	public ArrayList<Auction> findAuctionProductByCategory(int category_id);
 
+	final String SLELECT_AUCTION_BRAND_BY_CATEGORY = "SELECT brand_name FROM v_find_all_auctions WHERE category_id= #{category_id}";
+	@Select(SLELECT_AUCTION_BRAND_BY_CATEGORY)
+	@Results(value = {
+			// Brand
+			@Result(property = "product.brand.brand_id", column = "brand_id"),
+			@Result(property = "product.brand.brand_name", column = "brand_name"),
+			@Result(property = "product.brand.brand_description", column = "brand_description"),
+			@Result(property = "product.brand.status", column = "brand_status") })
+	public ArrayList<Auction> findAuctionBrandByCategory(int category_id);
+
 	final String ADD_AUCTION = "	INSERT INTO auc_auction(	" + "	product_id,	" + "	product_condition,	"
 			+ "	start_price,	" + "	buy_price,	" + "	increment_price,	" + "	current_price,	"
 			+ "	start_date,	" + "	end_date,	" + "	status,	" + "	created_by,	" + "	created_date,	"
@@ -212,7 +222,8 @@ public interface AuctionRepository {
 	@Update(UPDATE_AUCTION)
 	public boolean updateAuction(AuctionInputUpdate a);
 
-	final String DELETE_AUCTION = "UPDATE auc_auction SET status = 2 WHERE auction_id = #{auction_id}"; // 2. deleted
+	final String DELETE_AUCTION = "UPDATE auc_auction SET status = 2 WHERE auction_id = #{auction_id}"; // 2.
+																										// deleted
 
 	@Delete(DELETE_AUCTION)
 	public boolean deleteAuction(int auction_id);

@@ -21,5 +21,6 @@ public interface AuctionService {
 	public boolean deleteAuction(int auction_id);	
 	
 	public BiddingAuction findBiddingAuctionByAuctionId(int auction_id);
+	public ArrayList<Auction> findAuctionBrandByCategory(int category_id);
 	
 }

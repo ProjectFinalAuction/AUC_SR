@@ -144,6 +144,27 @@ public class AuctionRController {
 		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
+	//TODO: Find Auction Brand By Category ID
+	@RequestMapping(value="/find-auction-brand-by-category-id/{category_id}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findAuctionBrandByCategory(@PathVariable int category_id) {
+		
+		ArrayList<Auction> au = auctionService.findAuctionBrandByCategory(category_id);
+		Map<String,Object> map = new HashMap<String, Object>();
+		try{
+			if(au != null){
+				map.put("DATA", au);
+				map.put("MESSAGE", "SUCCESS");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "UNSUCCESS");
+				map.put("STATUS", true);
+			}				
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
 
 	@RequestMapping(value="/add-auction", method=RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> addAuction(@RequestBody AuctionInputUpdate a) {
