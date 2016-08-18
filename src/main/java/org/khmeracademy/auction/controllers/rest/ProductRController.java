@@ -90,11 +90,12 @@ public class ProductRController {
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
-	
-	
-	
-	
-	
+	@RequestMapping(value="/find-products-has-supplier/{supplier_id}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> findProductsHasSupplier(@PathVariable int supplier_id){
+		ArrayList<Product> arr = ps.findProductsHasSupplier(supplier_id);
+		Map<String, Object> map=getMapObject(arr);
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	}
 	
 	@RequestMapping(value="/add-product", method= RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> addProduct(ProductInputUpdate p, HttpServletRequest request){

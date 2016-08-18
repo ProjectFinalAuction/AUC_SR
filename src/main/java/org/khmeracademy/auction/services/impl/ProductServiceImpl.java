@@ -79,4 +79,10 @@ public class ProductServiceImpl implements ProductService {
 		return pr.deleteProduct(product_id);
 	}
 
+	@Override
+	public ArrayList<Product> findProductsHasSupplier(int supplier_id) {
+		// TODO Auto-generated method stub
+		return pr.findProductsHasSupplier(supplier_id);
+	}
+
 }
