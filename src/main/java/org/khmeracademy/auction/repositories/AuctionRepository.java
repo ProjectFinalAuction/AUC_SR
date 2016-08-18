@@ -1,9 +1,11 @@
 package org.khmeracademy.auction.repositories;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -12,6 +14,7 @@ import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
 import org.khmeracademy.auction.entities.BiddingAuction;
+import org.khmeracademy.auction.entities.Gallery;
 import org.khmeracademy.auction.filtering.AuctionFilter;
 import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.stereotype.Repository;
@@ -49,8 +52,12 @@ public interface AuctionRepository {
 			@Result(property = "product.supplier.contact_name", column = "contact_name"),
 			@Result(property = "product.supplier.address", column = "address"),
 			@Result(property = "product.supplier.phone", column = "phone"),
-			@Result(property = "product.supplier.email", column = "email")
-
+			@Result(property = "product.supplier.email", column = "email"),
+			
+			//gallery
+			@Result(property="product.product_id",column="product_id"),
+			@Result(property="product.gallery", javaType=List.class, column="product_id",
+					many=@Many(select="findAllGalleryByProductID"))
 	})
 	public ArrayList<Auction> findAllAuctions(@Param("filter") AuctionFilter filter, @Param("pagination") Pagination pagination);
 
@@ -80,8 +87,21 @@ public interface AuctionRepository {
 			@Result(property = "product.supplier.contact_name", column = "contact_name"),
 			@Result(property = "product.supplier.address", column = "address"),
 			@Result(property = "product.supplier.phone", column = "phone"),
-			@Result(property = "product.supplier.email", column = "email") })
+			@Result(property = "product.supplier.email", column = "email"),
+			
+			//gallery
+			@Result(property="product.product_id",column="product_id"),
+			@Result(property="product.gallery", javaType=List.class, column="product_id",
+					many=@Many(select="findAllGalleryByProductID"))
+		})
 	public Auction getAuctionByID(int id);
+	
+	String R_GALLERY_BY_ID ="SELECT * FROM auc_gallery WHERE product_id = #{product_id}";
+	@Select(R_GALLERY_BY_ID)
+	@Results(value={
+			@Result(property="product.product_id", column="product_id")
+	})
+	public ArrayList<Gallery> findAllGalleryByProductID(int product_id);
 
 	final String FIND_AUCTION_BY_PRODUCT_NAME = " SELECT * FROM v_find_all_auctions WHERE product_name = #{product_name}";
 
