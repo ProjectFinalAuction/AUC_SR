@@ -138,8 +138,9 @@ public interface UserRepository {
 			+ "		status=#{status},"
 			+ "		created_by=#{created_by},"
 			+ "		created_date=#{created_date},"
-			+ "		comment=#{comment} "
-			+ "WHERE user_id=#{user_id}";
+			+ "		comment=#{comment}, "
+			+ "		role_id=CASE WHEN #{type} = 'admin' THEN 1 ELSE 2 END"
+			+ "		WHERE user_id=#{user_id}";
 	@Update(U_USER)
 	public boolean updateUser(User user);
 	//Delete User
