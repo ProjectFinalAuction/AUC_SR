@@ -51,8 +51,8 @@ public class BidHistoryServiceImpl implements BidHistoryService{
 	}
 
 	@Override
-	public BidHistory findBidWinner(int auction_id) {
-		return bidHistoryRepository.findBidWinner(auction_id);
+	public ArrayList<BidHistory> findAllBidWinner() {
+		return bidHistoryRepository.findAllBidWinner();
 	}
 	
 }

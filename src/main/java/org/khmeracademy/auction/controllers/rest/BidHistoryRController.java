@@ -116,24 +116,11 @@ public class BidHistoryRController {
 	}
 	
 	//----- additional functions
-	@RequestMapping(value="/find-bid-winner/{auction_id}",method=RequestMethod.GET)
-	public ResponseEntity<Map<String,Object>> findBidWinner(@PathVariable int auction_id){
+	@RequestMapping(value="/find-all-bid-winner",method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findAllBidWinner(){
 		
-		BidHistory b = bidHistoryService.findBidWinner(auction_id);
-		Map<String,Object> map = new HashMap<String, Object>(); 
-		try{
-			if(b!=null){
-				map.put("DATA", b);
-				map.put("MESSAGE", "SUCCESS");
-				map.put("STATUS", true);
-			}else{
-				map.put("MESSAGE", "UNSUCCESS");
-				map.put("STATUS", true);
-			}				
-		}catch(Exception e){
-			map.put("MESSAGE", "ERROR");
-			map.put("STATUS", false);
-		}
+		ArrayList<BidHistory> arr = bidHistoryService.findAllBidWinner();
+		Map<String,Object> map = getMapObject(arr);
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	

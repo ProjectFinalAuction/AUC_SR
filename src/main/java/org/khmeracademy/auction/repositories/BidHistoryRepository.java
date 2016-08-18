@@ -171,7 +171,7 @@ public interface BidHistoryRepository {
 	
 
 	//==== Additional functions
-	final String FIND_BID_WINNER = "select * from pr_find_bid_winner(#{auction_id})";
+	final String FIND_BID_WINNER = "select * from pr_find_bid_winner()";
 	@Select(FIND_BID_WINNER)
 	@Results(value={
 			// auction
@@ -224,5 +224,5 @@ public interface BidHistoryRepository {
 			@Result(property="auction.product.brand.status", column="brand_status")
 	})
 		
-	public BidHistory findBidWinner(int auction_id);
+	public ArrayList<BidHistory> findAllBidWinner();
 }

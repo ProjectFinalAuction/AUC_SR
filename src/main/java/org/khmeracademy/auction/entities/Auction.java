@@ -13,10 +13,11 @@ public class Auction {
 	private double current_price;
 	private Date start_date;
 	private Date end_date;
-	private boolean status;
+	private String status; // 0: Inactive, 1: active, 2: deleted, 3: completed
 	private String created_by;
 	private Date created_date;
 	private String comment;
+	private int winner_id;
 	public int getAuction_id() {
 		return auction_id;
 	}
@@ -71,10 +72,10 @@ public class Auction {
 	public void setEnd_date(Date end_date) {
 		this.end_date = end_date;
 	}
-	public boolean isStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	public String getCreated_by() {
@@ -95,6 +96,14 @@ public class Auction {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+	public int getWinner_id() {
+		return winner_id;
+	}
+	public void setWinner_id(int winner_id) {
+		this.winner_id = winner_id;
+	}
+	
+	
 	
 	
 }

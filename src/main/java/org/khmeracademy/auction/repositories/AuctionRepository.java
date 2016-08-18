@@ -212,7 +212,7 @@ public interface AuctionRepository {
 	@Update(UPDATE_AUCTION)
 	public boolean updateAuction(AuctionInputUpdate a);
 
-	final String DELETE_AUCTION = "UPDATE auc_auction SET status = false WHERE auction_id = #{auction_id}";
+	final String DELETE_AUCTION = "UPDATE auc_auction SET status = 2 WHERE auction_id = #{auction_id}"; // 2. deleted
 
 	@Delete(DELETE_AUCTION)
 	public boolean deleteAuction(int auction_id);
