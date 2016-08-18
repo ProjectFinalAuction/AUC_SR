@@ -49,5 +49,10 @@ public class BidHistoryServiceImpl implements BidHistoryService{
 	public boolean deleteBidHistory(int bid_id) {
 		return bidHistoryRepository.deleteBidHistory(bid_id);
 	}
+
+	@Override
+	public BidHistory findBidWinner(int auction_id) {
+		return bidHistoryRepository.findBidWinner(auction_id);
+	}
 	
 }

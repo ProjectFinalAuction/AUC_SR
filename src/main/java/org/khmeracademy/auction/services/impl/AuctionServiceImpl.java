@@ -61,5 +61,7 @@ public class AuctionServiceImpl implements AuctionService{
 		return auctionRepository.findAuctionProductByCategory(category_id);
 	}
 
+	
+
 
 }

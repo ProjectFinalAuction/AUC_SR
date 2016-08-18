@@ -114,4 +114,27 @@ public class BidHistoryRController {
 		Map<String,Object> map = getMapObjectAfterTransaction(bidHistoryService.deleteBidHistory(bid_id));
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
+	
+	//----- additional functions
+	@RequestMapping(value="/find-bid-winner/{auction_id}",method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findBidWinner(@PathVariable int auction_id){
+		
+		BidHistory b = bidHistoryService.findBidWinner(auction_id);
+		Map<String,Object> map = new HashMap<String, Object>(); 
+		try{
+			if(b!=null){
+				map.put("DATA", b);
+				map.put("MESSAGE", "SUCCESS");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "UNSUCCESS");
+				map.put("STATUS", true);
+			}				
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
+	
 }

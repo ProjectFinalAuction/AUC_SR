@@ -209,5 +209,7 @@ public interface AuctionRepository {
 	
 	@Select("SELECT COUNT(auction_id) FROM v_find_all_auctions WHERE LOWER(product_name) LIKE LOWER('%' || #{filter.productName} || '%')")
 	public Long count(@Param("filter") AuctionFilter filter);
+	
+	
 
 }

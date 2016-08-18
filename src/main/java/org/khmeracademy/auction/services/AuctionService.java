@@ -18,4 +18,5 @@ public interface AuctionService {
 	public boolean addAuction(AuctionInputUpdate a);	
 	public boolean updateAuction(AuctionInputUpdate a);
 	public boolean deleteAuction(int auction_id);	
+	
 }
