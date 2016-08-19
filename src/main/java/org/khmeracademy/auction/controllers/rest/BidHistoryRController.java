@@ -124,4 +124,13 @@ public class BidHistoryRController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
+	
+	@RequestMapping(value="/find-total-bid-price",method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findTotalBidCurrentPrice(){
+		
+		ArrayList<BidHistory> arr = bidHistoryService.findTotalBidCurrentPrice();
+		Map<String,Object> map = getMapObject(arr);
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
+	
 }

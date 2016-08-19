@@ -15,4 +15,5 @@ public interface BidHistoryService {
 	public boolean updateBidHistory(BidHistoryInputUpdate b);
 	public boolean deleteBidHistory(int bid_id);
 	public ArrayList<BidHistory> findAllBidWinner();
+	public ArrayList<BidHistory> findTotalBidCurrentPrice();
 }

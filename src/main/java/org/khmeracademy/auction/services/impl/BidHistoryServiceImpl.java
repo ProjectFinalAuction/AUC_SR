@@ -54,5 +54,11 @@ public class BidHistoryServiceImpl implements BidHistoryService{
 	public ArrayList<BidHistory> findAllBidWinner() {
 		return bidHistoryRepository.findAllBidWinner();
 	}
+
+	@Override
+	public ArrayList<BidHistory> findTotalBidCurrentPrice() {
+		// TODO Auto-generated method stub
+		return bidHistoryRepository.findTotalBidCurrentPrice();
+	}
 	
 }

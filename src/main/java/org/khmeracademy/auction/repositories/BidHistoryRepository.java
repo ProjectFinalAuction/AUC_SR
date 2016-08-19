@@ -225,4 +225,9 @@ public interface BidHistoryRepository {
 	})
 		
 	public ArrayList<BidHistory> findAllBidWinner();
+	
+	final String FIND_TOTAL_BID_PRICE = "select * from v_find_number_bid_by_auction_id";
+	@Select(FIND_TOTAL_BID_PRICE)
+	
+	public ArrayList<BidHistory> findTotalBidCurrentPrice();
 }
