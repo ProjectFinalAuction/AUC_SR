@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository {
 	//get all user
-	String R_USERS="SELECT * FROM auc_user";
+	String R_USERS="SELECT * FROM auc_user WHERE status <>'2'";
 	@Select(R_USERS)
 	public ArrayList<User> getAllUsers();
 	
@@ -144,7 +144,7 @@ public interface UserRepository {
 	@Update(U_USER)
 	public boolean updateUser(User user);
 	//Delete User
-	String D_USER="UPDATE auc_user SET status = false WHERE user_id = #{user_id}";
+	String D_USER="UPDATE auc_user SET status = 2 WHERE user_id = #{user_id}";
 	@Delete(D_USER)
 	public boolean deleteUsers(int userId); 
 	
