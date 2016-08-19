@@ -65,7 +65,6 @@ public class CategoryRController {
 	public ResponseEntity<Map<String, Object>> findAllCategories() {
 		ArrayList<CategoryInputUpdate> arr = cs.findAllCategories();
 		Map<String, Object> map = new HashMap<String,Object>();
-		
 		try{
 			if(!arr.isEmpty()){
 				map.put("DATA", arr);
