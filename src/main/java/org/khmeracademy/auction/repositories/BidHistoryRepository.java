@@ -147,8 +147,8 @@ public interface BidHistoryRepository {
 	})
 	public ArrayList<BidHistory> findBidHistoryByDate(String bid_date);
 
-	final String ADD_BID_HISTORY="INSERT INTO auc_bid_history(auction_id,user_id,current_price,bid_date) "+
-								"VALUES(#{auction_id},#{user_id},#{current_price},#{bid_date})";
+	final String ADD_BID_HISTORY="INSERT INTO auc_bid_history(auction_id,user_id,current_price,bid_date) " +
+								"VALUES(#{auction_id},#{user_id},#{current_price}, NOW())";
 	@Insert(ADD_BID_HISTORY)
 	public boolean addBidHistory(BidHistoryInputUpdate b);
 	
