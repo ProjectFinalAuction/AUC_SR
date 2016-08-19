@@ -165,6 +165,7 @@ public interface BidHistoryRepository {
 
 	final String DELETE_BID_HISTORY="DELETE FROM auc_bid_history WHERE bid_id = #{bid_id}";
 	@Delete(DELETE_BID_HISTORY)
+	
 	public boolean deleteBidHistory(int bid_id);	
 
 	
