@@ -38,7 +38,7 @@ public interface SupplierRepository {
 			+ " 	contact_name = #{contact_name}, "
 			+ "		address = #{address}, "
 			+ "		phone = #{phone}, "
-			+ "		email = #{email} "
+			+ "		email = #{email}, "
 			+ "		status = #{status} "
 			+ "WHERE supplier_id = #{supplier_id}";
 	//DELETE
