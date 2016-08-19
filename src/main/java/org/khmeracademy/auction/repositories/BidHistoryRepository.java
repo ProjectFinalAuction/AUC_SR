@@ -8,9 +8,9 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.BidHistory;
 import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
+import org.khmeracademy.auction.entities.BiddingAuction;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -187,6 +187,7 @@ public interface BidHistoryRepository {
 			
 			// product
 			@Result(property="auction.product.product_id", column="product_id"),
+			@Result(property="auction.product.product_name", column="product_name"),
 			@Result(property="auction.product.product_description", column="product_description"),
 			@Result(property="auction.product.qty", column="qty"),
 			@Result(property="auction.product.status", column="product_status"),
@@ -226,8 +227,15 @@ public interface BidHistoryRepository {
 		
 	public ArrayList<BidHistory> findAllBidWinner();
 	
-	final String FIND_TOTAL_BID_PRICE = "select * from v_find_number_bid_by_auction_id";
+	final String FIND_TOTAL_BID_PRICE = "select * from v_find_number_bid_in_auction_product_by_auction_id";
 	@Select(FIND_TOTAL_BID_PRICE)
-	
-	public ArrayList<BidHistory> findTotalBidCurrentPrice();
+	@Results(value={
+			// product
+			@Result(property="product.product_id", column="product_id"),
+			@Result(property="product.product_name", column="product_name"),
+			@Result(property="product.product_description", column="product_description"),
+			@Result(property="product.qty", column="qty"),
+			@Result(property="product.status", column="product_status")			
+	})	
+	public ArrayList<BiddingAuction> findTotalBidCurrentPrice();
 }

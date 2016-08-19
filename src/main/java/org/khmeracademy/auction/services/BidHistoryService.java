@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.BidHistory;
 import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
+import org.khmeracademy.auction.entities.BiddingAuction;
 
 public interface BidHistoryService {
 	public ArrayList<BidHistory> findAllBidHistory();
@@ -15,5 +16,5 @@ public interface BidHistoryService {
 	public boolean updateBidHistory(BidHistoryInputUpdate b);
 	public boolean deleteBidHistory(int bid_id);
 	public ArrayList<BidHistory> findAllBidWinner();
-	public ArrayList<BidHistory> findTotalBidCurrentPrice();
+	public ArrayList<BiddingAuction> findTotalBidCurrentPrice();
 }

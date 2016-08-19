@@ -13,24 +13,12 @@ public class BiddingAuction {
 	private double current_price;
 	private Date start_date;
 	private Date end_date;
-	private boolean status;
+	private String status;
 	private String created_by;
 	private Date created_date;
 	private String comment;
 	private int num_bid;
 	private double bid_current_price;
-	public int getNum_bid() {
-		return num_bid;
-	}
-	public void setNum_bid(int num_bid) {
-		this.num_bid = num_bid;
-	}
-	public double getBid_current_price() {
-		return bid_current_price;
-	}
-	public void setBid_current_price(double bid_current_price) {
-		this.bid_current_price = bid_current_price;
-	}
 	public int getAuction_id() {
 		return auction_id;
 	}
@@ -85,10 +73,10 @@ public class BiddingAuction {
 	public void setEnd_date(Date end_date) {
 		this.end_date = end_date;
 	}
-	public boolean isStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	public String getCreated_by() {
@@ -108,6 +96,18 @@ public class BiddingAuction {
 	}
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+	public int getNum_bid() {
+		return num_bid;
+	}
+	public void setNum_bid(int num_bid) {
+		this.num_bid = num_bid;
+	}
+	public double getBid_current_price() {
+		return bid_current_price;
+	}
+	public void setBid_current_price(double bid_current_price) {
+		this.bid_current_price = bid_current_price;
 	}
 	
 	

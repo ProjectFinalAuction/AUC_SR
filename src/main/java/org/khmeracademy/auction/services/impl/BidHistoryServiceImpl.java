@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.BidHistory;
 import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
+import org.khmeracademy.auction.entities.BiddingAuction;
 import org.khmeracademy.auction.repositories.BidHistoryRepository;
 import org.khmeracademy.auction.services.BidHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,7 @@ public class BidHistoryServiceImpl implements BidHistoryService{
 	}
 
 	@Override
-	public ArrayList<BidHistory> findTotalBidCurrentPrice() {
+	public ArrayList<BiddingAuction> findTotalBidCurrentPrice() {
 		// TODO Auto-generated method stub
 		return bidHistoryRepository.findTotalBidCurrentPrice();
 	}
