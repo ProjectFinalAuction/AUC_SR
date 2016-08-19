@@ -17,11 +17,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CategoryRepository {
 	//READ
-	String R_CATEGORIES="SELECT * FROM auc_category WHERE status != false AND parent_id IN (NULL,0)";
-	String R_ALL_CATEGORIES="SELECT * FROM auc_category ";
+	String R_CATEGORIES="SELECT * FROM auc_category WHERE status != '2' AND parent_id IN (NULL,0)";
+	String R_ALL_CATEGORIES="SELECT * FROM auc_category WHERE status != '2'";
 	String R_CATEGORY_ByID="SELECT c.* , p.category_name parent_name FROM auc_category c LEFT JOIN auc_category p ON c.parent_id = p.category_id WHERE c.category_id = #{category_id}";
 	
-	String R_SUB_CATEGORIES = "SELECT * FROM auc_category WHERE parent_id = #{category_id}";
+	String R_SUB_CATEGORIES = "SELECT * FROM auc_category WHERE status !='2' AND parent_id = #{category_id}";
 	
 	String R_CATEGORY_ByNAME="SELECT * FROM auc_category WHERE category_name = #{category_name}";
 	String R_CATEGORY_ByPARENT_CATEGORY=
@@ -57,7 +57,7 @@ public interface CategoryRepository {
 			+ " 	status = #{status} "
 			+ " WHERE "
 			+ "		category_id = #{category_id}";
-	String D_CATEGORY="DELETE FROM auc_category WHERE category_id = #{category_id}";
+	String D_CATEGORY="UPDATE auc_category SET status = '2' WHERE category_id = #{category_id}";
 	
 	@Select(R_ALL_CATEGORIES)	
 	public ArrayList<CategoryInputUpdate> findAllCategories();

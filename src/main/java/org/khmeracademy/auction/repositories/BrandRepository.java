@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BrandRepository {
 	//READ 
-	String R_BRANDS="SELECT * FROM auc_brand";
+	String R_BRANDS="SELECT * FROM auc_brand WHERE status !='2'";
 	String R_BRAND_ByNAME=" SELECT * FROM auc_brand WHERE brand_name = #{brand_name}";
 	String R_BRAND_ById=" SELECT * FROM auc_brand WHERE brand_id = #{brand_id}";
 	String R_BRAND_ByAnyFIELD="SELECT * FROM auc_brand "
@@ -38,7 +38,7 @@ public interface BrandRepository {
 			+ " WHERE "
 			+ " 	brand_id = #{brand_id}";
 	//DELETE
-	String D_BRAND=" UPDATE auc_brand SET status = false WHERE brand_id = #{brand_id} ";
+	String D_BRAND=" UPDATE auc_brand SET status = '2' WHERE brand_id = #{brand_id} ";
 	
 	@Select(R_BRANDS)
 	public ArrayList<Brand> findAllBrands();

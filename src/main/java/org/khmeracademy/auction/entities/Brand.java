@@ -4,7 +4,7 @@ public class Brand {
 	private int brand_id;
 	private String brand_name;
 	private String brand_description;
-	private boolean status;
+	private String status;
 	public int getBrand_id() {
 		return brand_id;
 	}
@@ -23,10 +23,10 @@ public class Brand {
 	public void setBrand_description(String brand_description) {
 		this.brand_description = brand_description;
 	}
-	public boolean isStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	
