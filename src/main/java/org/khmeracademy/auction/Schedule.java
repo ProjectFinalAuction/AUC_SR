@@ -1,5 +1,6 @@
 package org.khmeracademy.auction;
 
+
 //import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -11,4 +12,6 @@ public class Schedule {
 	public static void test() {
 		System.out.println("HELLLO");
 	}*/
+	
+	
 }

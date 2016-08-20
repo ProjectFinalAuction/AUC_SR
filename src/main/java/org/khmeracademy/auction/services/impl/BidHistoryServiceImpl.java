@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.BidHistory;
 import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
+import org.khmeracademy.auction.entities.BidHistoryWithFirstProductImage;
 import org.khmeracademy.auction.entities.BiddingAuction;
 import org.khmeracademy.auction.repositories.BidHistoryRepository;
 import org.khmeracademy.auction.services.BidHistoryService;
@@ -64,5 +65,13 @@ public class BidHistoryServiceImpl implements BidHistoryService{
 		// TODO Auto-generated method stub
 		return bidHistoryRepository.findAllBidWinnerRealTime();
 	}
+
+	@Override
+	public ArrayList<BidHistoryWithFirstProductImage> findBidHistoryAndImageByUserName(String user_name) {
+		// TODO Auto-generated method stub
+		return bidHistoryRepository.findBidHistoryAndImageByUserName(user_name);
+	}
+	
+	
 	
 }

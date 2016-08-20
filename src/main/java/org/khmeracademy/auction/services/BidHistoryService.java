@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.BidHistory;
 import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
+import org.khmeracademy.auction.entities.BidHistoryWithFirstProductImage;
 import org.khmeracademy.auction.entities.BiddingAuction;
 
 public interface BidHistoryService {
@@ -20,4 +21,5 @@ public interface BidHistoryService {
 	
 	
 	public ArrayList<BidHistory> findAllBidWinnerRealTime();
+	public ArrayList<BidHistoryWithFirstProductImage> findBidHistoryAndImageByUserName(String user_name);
 }

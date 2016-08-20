@@ -1,13 +1,12 @@
 package org.khmeracademy.auction.controllers.rest;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.khmeracademy.auction.entities.BidHistory;
 import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
-import org.khmeracademy.auction.entities.BiddingAuction;
+import org.khmeracademy.auction.entities.BidHistoryWithFirstProductImage;
 import org.khmeracademy.auction.services.BidHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -90,7 +89,7 @@ public class BidHistoryRController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/find-bid-history-by-user-date/{bid_date}",method=RequestMethod.GET)
+	@RequestMapping(value="/find-bid-history-by-bid-date/{bid_date}",method=RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findBidHistoryByDate(String bid_date){
 		
 		ArrayList<BidHistory> arr = bidHistoryService.findBidHistoryByDate(bid_date);
@@ -134,6 +133,27 @@ public class BidHistoryRController {
 		
 		ArrayList<BidHistory> arr = bidHistoryService.findAllBidWinnerRealTime();
 		Map<String,Object> map = getMapObject(arr);
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);		
+	}
+	
+	@RequestMapping(value="/find-bid-history-and-image-by-user-name/{user_name}",method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findBidHistoryAndImageByUserName(@PathVariable String user_name){
+		
+		ArrayList<BidHistoryWithFirstProductImage> arr = bidHistoryService.findBidHistoryAndImageByUserName(user_name);
+		Map<String,Object> map = new HashMap<String,Object>();
+		try{
+			if(!arr.isEmpty()){
+				map.put("DATA", arr);
+				map.put("MESSAGE", "SUCCESS");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "UNSUCCESS");
+				map.put("STATUS", true);
+			}				
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);		
 	}
 	

@@ -1,7 +1,6 @@
 package org.khmeracademy.auction.repositories;
 
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Delete;
@@ -12,7 +11,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.BidHistory;
 import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
-import org.khmeracademy.auction.entities.BiddingAuction;
+import org.khmeracademy.auction.entities.BidHistoryWithFirstProductImage;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -44,6 +43,7 @@ public interface BidHistoryRepository {
 			@Result(property="auction.end_date", column="end_date"),
 			
 			// product
+			@Result(property="auction.product.product_id", column="product_id"),
 			@Result(property="auction.product.product_name", column="product_name"),
 			@Result(property="auction.product.product_description", column="product_description")
 						
@@ -77,6 +77,7 @@ public interface BidHistoryRepository {
 			@Result(property="auction.end_date", column="end_date"),
 			
 			// product
+			@Result(property="auction.product.product_id", column="product_id"),
 			@Result(property="auction.product.product_name", column="product_name"),
 			@Result(property="auction.product.product_description", column="product_description")
 						
@@ -110,6 +111,7 @@ public interface BidHistoryRepository {
 			@Result(property="auction.end_date", column="end_date"),
 			
 			// product
+			@Result(property="auction.product.product_id", column="product_id"),
 			@Result(property="auction.product.product_name", column="product_name"),
 			@Result(property="auction.product.product_description", column="product_description")
 						
@@ -143,6 +145,7 @@ public interface BidHistoryRepository {
 			@Result(property="auction.end_date", column="end_date"),
 			
 			// product
+			@Result(property="auction.product.product_id", column="product_id"),
 			@Result(property="auction.product.product_name", column="product_name"),
 			@Result(property="auction.product.product_description", column="product_description")
 						
@@ -235,7 +238,7 @@ public interface BidHistoryRepository {
 	
 	
 	//==== Core function - used to find winner by the schedule
-	final String FIND_BID_WINNER_REAL_TIME = "select * from pr_find_bid_winner() where end_date::TEXT = TO_CHAR(now(),'YYYY-MM-DD HH:MM:SS')";
+	final String FIND_BID_WINNER_REAL_TIME = "select * from v_find_bid_winner_every_second";
 	@Select(FIND_BID_WINNER_REAL_TIME)
 	@Results(value={
 			// auction
@@ -290,5 +293,44 @@ public interface BidHistoryRepository {
 	})
 	public ArrayList<BidHistory> findAllBidWinnerRealTime();
 	
+	
+	//===== Find all bid history and product image by username
+	final String FIND_BID_HISTORY_AND_PRODUCT_IMAGE_BY_USER_NAME="SELECT * FROM v_find_all_bid_history_and_product_image WHERE user_name = #{user_name} ";
+	@Select(FIND_BID_HISTORY_AND_PRODUCT_IMAGE_BY_USER_NAME)
+	@Results(value={
+			// user
+			@Result(property="user.user_id", column="user_id"),
+			@Result(property="user.user_name", column="user_name"),
+			@Result(property="user.first_name", column="first_name"),
+			@Result(property="user.last_name", column="last_name"),			
+			@Result(property="user.gender", column="gender"),
+			@Result(property="user.dob", column="dob"),
+			@Result(property="user.email", column="email"),
+			@Result(property="user.photo", column="photo"),
+			@Result(property="user.type", column="type"),
+			@Result(property="user.status", column="status"),
+			
+			// auction
+			@Result(property="auction.auction_id", column="auction_id"),
+			@Result(property="auction.product.product_id", column="product_id"),
+			@Result(property="auction.product_condition", column="product_condition"),
+			@Result(property="auction.start_price", column="start_price"),
+			@Result(property="auction.buy_price", column="buy_price"),
+			@Result(property="auction.increment_price", column="increment_price"),
+			@Result(property="auction.current_price", column="auction_current_price"),
+			@Result(property="auction.start_date", column="start_date"),
+			@Result(property="auction.end_date", column="end_date"),
+			
+			// product
+			@Result(property="auction.product.product_id", column="product_id"),
+			@Result(property="auction.product.product_name", column="product_name"),
+			@Result(property="auction.product.product_description", column="product_description"),
+			
+			//Gallery (first image)
+			@Result(property="image_id", column="image_id"),
+			@Result(property="image_path", column="image_path")
+						
+	})
+	public ArrayList<BidHistoryWithFirstProductImage> findBidHistoryAndImageByUserName(String user_name);
 	
 }
