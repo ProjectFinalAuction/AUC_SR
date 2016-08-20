@@ -1,14 +1,13 @@
 package org.khmeracademy.auction.services.impl;
 
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.BidHistory;
 import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
 import org.khmeracademy.auction.entities.BidHistoryWithFirstProductImage;
-import org.khmeracademy.auction.entities.BiddingAuction;
 import org.khmeracademy.auction.repositories.BidHistoryRepository;
+import org.khmeracademy.auction.repositories.UserCreditHistoryRepository;
 import org.khmeracademy.auction.services.BidHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,10 @@ import org.springframework.stereotype.Service;
 public class BidHistoryServiceImpl implements BidHistoryService{
 	@Autowired
 	private BidHistoryRepository bidHistoryRepository;
-
+	
+	@Autowired
+	private UserCreditHistoryRepository userCreditHistoryRepository;
+	
 	@Override
 	public ArrayList<BidHistory> findAllBidHistory() {
 		return bidHistoryRepository.findAllBidHistory();

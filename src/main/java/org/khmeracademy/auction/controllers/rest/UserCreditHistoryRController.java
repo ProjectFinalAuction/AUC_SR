@@ -88,4 +88,25 @@ public class UserCreditHistoryRController {
 		Map<String,Object> map = getMapObjectAfterTransaction(userCreditHistoryService.deleteUserCreditHistory(credit_id));
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/{userId}/checking-ending-amount/", method= RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> checkingEndingAmount(@PathVariable int userId){
+		Map<String, Object> map = new HashMap<String, Object>();
+		UserCreditHistory user = userCreditHistoryService.checkEndingAmound(userId);
+		if(user!=null){
+			if(user.getEnding_amount()<500){
+				map.put("MESSAGE", "YOU CANNOT BID MORE PLEASE TOPUP FIRST...");
+				map.put("CODE", "0000");
+				map.put("DATA", user.getEnding_amount());
+			}else{
+				map.put("MESSAGE", "YOU CAN BID MORE...");
+				map.put("CODE", "9999");
+				map.put("DATA", user.getEnding_amount());
+			}
+		}else{
+			map.put("MESSAGE", "USER NOT FOUND...");
+			map.put("CODE", "1111");
+		}
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	}
 }

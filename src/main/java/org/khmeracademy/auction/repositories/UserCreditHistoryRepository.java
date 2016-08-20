@@ -85,5 +85,8 @@ public interface UserCreditHistoryRepository {
 	final String DELETE_USER_CREDIT_HISTORY="DELETE FROM auc_user_credit_history WHERE credit_id = #{credit_id}";
 	@Delete(DELETE_USER_CREDIT_HISTORY)
 	public boolean deleteUserCreditHistory(int credit_id);	
+	
+	@Select("SELECT ending_amount FROM v_find_bid_ending_amount WHERE user_id = #{user_id}")
+	public UserCreditHistory checkingEndingAmount(int user_id);
 
 }

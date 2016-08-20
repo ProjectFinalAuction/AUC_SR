@@ -39,5 +39,10 @@ public class UserCreditHistoryServiceImpl implements UserCreditHistoryService {
 		return userCreditHistoryRepository.deleteUserCreditHistory(credit_id);
 	}
 	
+	@Override
+	public UserCreditHistory checkEndingAmound(int userId) {
+		return userCreditHistoryRepository.checkingEndingAmount(userId);
+	}
+	
 	
 }
