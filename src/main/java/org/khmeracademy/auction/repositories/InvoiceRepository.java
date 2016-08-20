@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface InvoiceRepository {
-	final String FIND_ALL_INVOICES ="SELECT * FROM v_find_all_invoices";
+	final String FIND_ALL_INVOICES ="SELECT * FROM v_find_all_invoices where status<>'2'";  // Status 2 is deleted
 	@Select(FIND_ALL_INVOICES)
 	@Results(value={
 			@Result(property="user.user_id", column="user_id"),
@@ -28,7 +28,7 @@ public interface InvoiceRepository {
 			@Result(property="user.contact", column="contact"),
 			@Result(property="user.photo", column="photo"),
 			@Result(property="user.type", column="type"),
-			@Result(property="user.status", column="status")
+			@Result(property="user.status", column="user_status")
 	})
 	public ArrayList<InvoiceInputUpdate> findAllInvoices();
 	
@@ -47,7 +47,7 @@ public interface InvoiceRepository {
 			@Result(property="user.contact", column="contact"),
 			@Result(property="user.photo", column="photo"),
 			@Result(property="user.type", column="type"),
-			@Result(property="user.status", column="status")
+			@Result(property="user.status", column="user_status")
 	})
 	public ArrayList<InvoiceInputUpdate> findInvoiceByUserName(String user_name);
 	
@@ -65,7 +65,7 @@ public interface InvoiceRepository {
 			@Result(property="user.contact", column="contact"),
 			@Result(property="user.photo", column="photo"),
 			@Result(property="user.type", column="type"),
-			@Result(property="user.status", column="status")
+			@Result(property="user.status", column="user_status")
 	})
 	public ArrayList<InvoiceInputUpdate> findInvoiceByDate(Date invoice_date);
 	
@@ -76,12 +76,13 @@ public interface InvoiceRepository {
 	final String UPDATE_INVOICE=
 					"	UPDATE auc_invoice	"+
 					"	SET user_id = #{user_id}, 	"+
-					"	invoice_date = #{invoice_date}	"+
+					"	invoice_date = #{invoice_date},	"+
+					"	status = #{status}	"+
 					"	WHERE invoice_id = #{invoice_id}	";
 	@Update(UPDATE_INVOICE)
 	public boolean updateInvoice(InvoiceInputUpdate inv);
 	
-	final String DELETE_INVOICE="DELETE FROM auc_invoice WHERE invoice_id = #{invoice_id}";
+	final String DELETE_INVOICE="UPDATE auc_invoice SET status='2' WHERE invoice_id = #{invoice_id}";
 	@Delete(DELETE_INVOICE)
 	public boolean deleteInvoice(int invoice_id);
 

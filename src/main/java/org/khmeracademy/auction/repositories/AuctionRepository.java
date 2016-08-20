@@ -22,7 +22,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AuctionRepository {
 	final String FIND_ALL_AUCTIONS = "SELECT * " + "FROM v_find_all_auctions "
-			+ "WHERE LOWER(product_name) LIKE LOWER('%' || #{filter.productName} || '%')" + "ORDER BY auction_id DESC "
+			+ "WHERE status<>'2' "  // excludes status 2 (deleted)
+			+" LOWER(product_name) LIKE LOWER('%' || #{filter.productName} || '%')" + "ORDER BY auction_id DESC "
 			+ "LIMIT #{pagination.limit} " + "OFFSET #{pagination.offset} ";
 
 	@Select(FIND_ALL_AUCTIONS)

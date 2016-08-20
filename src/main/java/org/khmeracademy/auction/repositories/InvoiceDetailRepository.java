@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface InvoiceDetailRepository {
-	final String FIND_ALL_INVOICE_DETAILS="SELECT * FROM v_find_all_invoice_details";
+	final String FIND_ALL_INVOICE_DETAILS="SELECT * FROM v_find_all_invoice_details WHERE status<>'2'"; // status 2 is deleted
 	@Select(FIND_ALL_INVOICE_DETAILS)
 	@Results(value={
 			// Invoice
@@ -137,17 +137,17 @@ public interface InvoiceDetailRepository {
 	})
 	public ArrayList<InvoiceDetail> findInvoiceDetailByAuctionId(int auction_id);
 	
-	final String ADD_INVOICE_DETAIL="INSERT INTO auc_invoice_details(invoice_id,auction_id,buy_price,qty) VALUES(#{invoice_id},#{auction_id},#{buy_price},#{qty})";
+	final String ADD_INVOICE_DETAIL="INSERT INTO auc_invoice_detail(invoice_id,auction_id,buy_price,qty) VALUES(#{invoice_id},#{auction_id},#{buy_price},#{qty})";
 	@Insert(ADD_INVOICE_DETAIL)
 	public boolean addInvoiceDetail(InvoiceDetailInputUpdate invd);
 	
 	final String UPDATE_INVOICE_DETAIL="UPDATE auc_invoice_detail "+
-									" SET buy_price = #{buy_price}, qty = #{qty} "+
+									" SET buy_price = #{buy_price}, qty = #{qty}, status=#{status} "+
 									" WHERE invoice_id = #{invoice_id} AND auction_id = #{auction_id} ";
 	@Update(UPDATE_INVOICE_DETAIL)
 	public boolean updateInvoiceDetail(InvoiceDetailInputUpdate invd);
 	
-	final String DELETE_INVOICE_DETAIL="DELETE FROM auc_invoice_detail "+
+	final String DELETE_INVOICE_DETAIL="UPDATE auc_invoice_detail SET status = '2' "+
 			" WHERE invoice_id = #{invoice_id} AND auction_id = #{auction_id}";
 	@Delete(DELETE_INVOICE_DETAIL)
 	public boolean deleteInvoiceDetail(int invoice_id, int auction_id);

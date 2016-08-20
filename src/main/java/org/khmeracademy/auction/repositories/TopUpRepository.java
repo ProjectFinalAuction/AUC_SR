@@ -38,7 +38,7 @@ public interface TopUpRepository {
 	})	
 	public ArrayList<TopUp> findAllTopUp();
 	
-	final String FIND_TOP_UP_BY_CURRENCY="SELECT * FROM v_find_all_top_up WHERE currency = #{currency} and status<>'2'";
+	final String FIND_TOP_UP_BY_CURRENCY="SELECT * FROM v_find_all_top_up WHERE currency = #{currency}";
 	@Select(FIND_TOP_UP_BY_CURRENCY)
 	@Results(value={
 			// user
@@ -62,7 +62,7 @@ public interface TopUpRepository {
 	public ArrayList<TopUp> findTopUpByCurrency(String currency);
 
 	final String FIND_TOP_UP_BY_USER_NAME=
-						"	SELECT * FROM v_find_all_top_up WHERE user_name = #{user_name} and status<>'2' ";
+						"	SELECT * FROM v_find_all_top_up WHERE user_name = #{user_name} ";
 	@Select(FIND_TOP_UP_BY_USER_NAME)
 	@Results(value={
 			// user
@@ -85,7 +85,7 @@ public interface TopUpRepository {
 	})	
 	public ArrayList<TopUp> findTopUpByUserName(String user_name);
 
-	final String FIND_TOP_UP_BY_DATE="SELECT * FROM v_find_all_top_up WHERE top_up_date = #{top_up_date} AND status <> '2'";
+	final String FIND_TOP_UP_BY_DATE="SELECT * FROM v_find_all_top_up WHERE top_up_date = #{top_up_date} ";
 	@Select(FIND_TOP_UP_BY_DATE)
 	@Results(value={
 			// user

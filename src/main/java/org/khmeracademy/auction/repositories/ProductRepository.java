@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository {
 	//READ
-	String R_PRODUCTS="SELECT * FROM v_find_all_products";
+	String R_PRODUCTS="SELECT * FROM v_find_all_products WHERE status<>'2'";
 	
 	String R_GALLERY_BY_ID ="SELECT * FROM auc_gallery WHERE product_id = #{product_id}";
 	

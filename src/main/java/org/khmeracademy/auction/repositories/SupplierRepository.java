@@ -13,11 +13,11 @@ import org.springframework.stereotype.Repository;
 public interface SupplierRepository {
 	//READ
 	String R_SUPPLIERS = " SELECT * FROM auc_supplier where status <> '2'"; // statis=2 i.e deleted
-	String R_SUPPLIER_ByNAME = "SELECT * FROM auc_supplier WHERE contact_name = #{contact_name} and status <> '2'";
-	String R_SUPPLIER_ByEMAIL = "SELECT * FROM auc_supplier WHERE email = #{email} and status<>'2'";
+	String R_SUPPLIER_ByNAME = "SELECT * FROM auc_supplier WHERE contact_name = #{contact_name} ";
+	String R_SUPPLIER_ByEMAIL = "SELECT * FROM auc_supplier WHERE email = #{email} ";
 	String R_SUPPLIER_ByAnyFIELD = "SELECT * FROM auc_supplier WHERE "
-			+ " #{contact_name} in (supplier_id::TEXT, contact_name, address, phone, email) and status<>'2'";
-	String R_SUPPLIER_ById = "SELECT * FROM auc_supplier WHERE supplier_id = #{supplier_id} and status<>'2'";
+			+ " #{contact_name} in (supplier_id::TEXT, contact_name, address, phone, email) ";
+	String R_SUPPLIER_ById = "SELECT * FROM auc_supplier WHERE supplier_id = #{supplier_id} ";
 	String R_SUPPLIERS_InPRODUCTS = "SELECT * FROM auc_supplier S "
 			+ "WHERE S.supplier_id "
 			+ "IN (SELECT P.supplier_id FROM auc_product P ) and S.status<>'2'";
