@@ -30,7 +30,7 @@ public interface TopUpRepository {
 			@Result(property="user.contact", column="contact"),
 			@Result(property="user.photo", column="photo"),
 			@Result(property="user.type", column="type"),
-			@Result(property="user.status", column="status"),
+			@Result(property="user.status", column="user_status"),
 			
 			// payment method
 			@Result(property="paymentMethod.payment_method_id", column="payment_method_id"),
@@ -53,7 +53,7 @@ public interface TopUpRepository {
 			@Result(property="user.contact", column="contact"),
 			@Result(property="user.photo", column="photo"),
 			@Result(property="user.type", column="type"),
-			@Result(property="user.status", column="status"),
+			@Result(property="user.status", column="user_status"),
 			
 			// payment method
 			@Result(property="paymentMethod.payment_method_id", column="payment_method_id"),
@@ -77,7 +77,7 @@ public interface TopUpRepository {
 			@Result(property="user.contact", column="contact"),
 			@Result(property="user.photo", column="photo"),
 			@Result(property="user.type", column="type"),
-			@Result(property="user.status", column="status"),
+			@Result(property="user.status", column="user_status"),
 			
 			// payment method
 			@Result(property="paymentMethod.payment_method_id", column="payment_method_id"),
@@ -100,7 +100,7 @@ public interface TopUpRepository {
 			@Result(property="user.contact", column="contact"),
 			@Result(property="user.photo", column="photo"),
 			@Result(property="user.type", column="type"),
-			@Result(property="user.status", column="status"),
+			@Result(property="user.status", column="user_status"),
 			
 			// payment method
 			@Result(property="paymentMethod.payment_method_id", column="payment_method_id"),
@@ -116,17 +116,18 @@ public interface TopUpRepository {
 	
 	final String UPDATE_TOP_UP=
 					"	UPDATE auc_top_up	"+
-					"	SET user_id = #{ user_id }, 	"+
-					"	currency = #{ currency }, 	"+
-					"	amount = #{ amount }, 	"+
-					"	top_up_date = #{ top_up_date }, 	"+
-					"	payment_method_id = #{ payment_method_id }	"+
+					"	SET user_id = #{user_id}, 	"+
+					"	currency = #{currency}, 	"+
+					"	amount = #{amount}, 	"+
+					"	top_up_date = #{top_up_date}, 	"+
+					"	payment_method_id = #{payment_method_id},	"+
+					"	status = #{status}	"+
 					"	WHERE	"+
-					"	top_up_id = #{ top_up_id }	";
+					"	top_up_id = #{top_up_id}	";
 	@Update(UPDATE_TOP_UP)
 	public boolean updateTopUp(TopUpInputUpdate t);
 	
-	final String DELETE_TOP_UP="UDATE auc_top_up SET status='2' WHERE top_up_id = #{top_up_id}";
+	final String DELETE_TOP_UP="UPDATE auc_top_up SET status='2' WHERE top_up_id = #{top_up_id}";
 	@Delete(DELETE_TOP_UP)
 	public boolean deleteTopUp(int top_up_id);
 
