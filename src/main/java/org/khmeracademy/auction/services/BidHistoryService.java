@@ -1,6 +1,7 @@
 package org.khmeracademy.auction.services;
 
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.BidHistory;
@@ -16,5 +17,7 @@ public interface BidHistoryService {
 	public boolean updateBidHistory(BidHistoryInputUpdate b);
 	public boolean deleteBidHistory(int bid_id);
 	public ArrayList<BidHistory> findAllBidWinner();
-	public ArrayList<BiddingAuction> findTotalBidCurrentPrice();
+	
+	
+	public ArrayList<BidHistory> findAllBidWinnerRealTime();
 }

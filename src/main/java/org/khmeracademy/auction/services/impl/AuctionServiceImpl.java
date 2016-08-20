@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
+import org.khmeracademy.auction.entities.BidHistory;
 import org.khmeracademy.auction.entities.BiddingAuction;
 import org.khmeracademy.auction.filtering.AuctionFilter;
 import org.khmeracademy.auction.repositories.AuctionRepository;
@@ -73,5 +74,10 @@ public class AuctionServiceImpl implements AuctionService{
 		return auctionRepository.findAuctionBrandByCategory(category_id);
 	}
 
+	@Override
+	public ArrayList<BiddingAuction> findTotalBidCurrentPrice() {
+		// TODO Auto-generated method stub
+		return auctionRepository.findTotalBidCurrentPrice();
+	}
 
 }

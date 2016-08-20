@@ -270,4 +270,16 @@ public interface AuctionRepository {
 	})
 	public BiddingAuction findBiddingAuctionByAuctionId(int auction_id);
 
+	
+	final String FIND_TOTAL_BID_PRICE = "select * from v_find_number_bid_in_auction_product_by_auction_id";
+	@Select(FIND_TOTAL_BID_PRICE)
+	@Results(value={
+			// product
+			@Result(property="product.product_id", column="product_id"),
+			@Result(property="product.product_name", column="product_name"),
+			@Result(property="product.product_description", column="product_description"),
+			@Result(property="product.qty", column="qty"),
+			@Result(property="product.status", column="product_status")			
+	})	
+	public ArrayList<BiddingAuction> findTotalBidCurrentPrice();
 }

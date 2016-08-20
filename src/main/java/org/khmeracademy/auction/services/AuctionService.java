@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
+import org.khmeracademy.auction.entities.BidHistory;
 import org.khmeracademy.auction.entities.BiddingAuction;
 import org.khmeracademy.auction.entities.Category;
 import org.khmeracademy.auction.filtering.AuctionFilter;
@@ -22,5 +23,5 @@ public interface AuctionService {
 	
 	public BiddingAuction findBiddingAuctionByAuctionId(int auction_id);
 	public ArrayList<Auction> findAuctionBrandByCategory(int category_id);
-	
+	public ArrayList<BiddingAuction> findTotalBidCurrentPrice();
 }

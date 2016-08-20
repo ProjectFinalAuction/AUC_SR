@@ -1,5 +1,6 @@
 package org.khmeracademy.auction.controllers.rest;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -126,25 +127,14 @@ public class BidHistoryRController {
 	}
 	
 	
-	@RequestMapping(value="/find-total-bid-price",method=RequestMethod.GET)
-	public ResponseEntity<Map<String,Object>> findTotalBidCurrentPrice(){
+	
+	
+	@RequestMapping(value="/find-all-bid-winner-real-time",method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findAllBidWinnerRealTime(){
 		
-		ArrayList<BiddingAuction> arr = bidHistoryService.findTotalBidCurrentPrice();
-		Map<String,Object> map = new HashMap<String, Object>();
-		try{
-			if(!arr.isEmpty()){
-				map.put("DATA", arr);
-				map.put("MESSAGE", "SUCCESS");
-				map.put("STATUS", true);
-			}else{
-				map.put("MESSAGE", "UNSUCCESS");
-				map.put("STATUS", true);
-			}				
-		}catch(Exception e){
-			map.put("MESSAGE", "ERROR");
-			map.put("STATUS", false);
-		}
-		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+		ArrayList<BidHistory> arr = bidHistoryService.findAllBidWinnerRealTime();
+		Map<String,Object> map = getMapObject(arr);
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);		
 	}
 	
 }

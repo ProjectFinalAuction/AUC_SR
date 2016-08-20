@@ -205,4 +205,25 @@ public class AuctionRController {
 		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/find-total-bid-price",method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findTotalBidCurrentPrice(){
+		
+		ArrayList<BiddingAuction> arr = auctionService.findTotalBidCurrentPrice();
+		Map<String,Object> map = new HashMap<String, Object>();
+		try{
+			if(!arr.isEmpty()){
+				map.put("DATA", arr);
+				map.put("MESSAGE", "SUCCESS");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "UNSUCCESS");
+				map.put("STATUS", true);
+			}				
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
 }

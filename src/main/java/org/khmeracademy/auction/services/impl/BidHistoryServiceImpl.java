@@ -1,6 +1,7 @@
 package org.khmeracademy.auction.services.impl;
 
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.BidHistory;
@@ -55,11 +56,13 @@ public class BidHistoryServiceImpl implements BidHistoryService{
 	public ArrayList<BidHistory> findAllBidWinner() {
 		return bidHistoryRepository.findAllBidWinner();
 	}
+	
+	
 
 	@Override
-	public ArrayList<BiddingAuction> findTotalBidCurrentPrice() {
+	public ArrayList<BidHistory> findAllBidWinnerRealTime() {
 		// TODO Auto-generated method stub
-		return bidHistoryRepository.findTotalBidCurrentPrice();
+		return bidHistoryRepository.findAllBidWinnerRealTime();
 	}
 	
 }
