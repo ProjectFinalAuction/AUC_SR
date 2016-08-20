@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AuctionRepository {
-	final String FIND_ALL_AUCTIONS = "SELECT * " + "FROM v_find_all_auctions "
+	final String FIND_ALL_AUCTIONS = "SELECT * " + "FROM v_find_number_bid_in_auction_product_by_auction_id "
 			+ "WHERE status<>'2' AND "  // excludes status 2 (deleted)
 			+" LOWER(product_name) LIKE LOWER('%' || #{filter.productName} || '%')" + "ORDER BY auction_id DESC "
 			+ "LIMIT #{pagination.limit} " + "OFFSET #{pagination.offset} ";
@@ -55,6 +55,9 @@ public interface AuctionRepository {
 			// gallery
 			@Result(property = "product.product_id", column = "product_id"),
 			@Result(property = "product.gallery", javaType = List.class, column = "product_id", many = @Many(select = "findAllGalleryByProductID") ) })
+	
+			// BiddingAuction
+			@Result(property = "bidAuction.auction_id", column = "auction_id")
 	public ArrayList<Auction> findAllAuctions(@Param("filter") AuctionFilter filter,
 			@Param("pagination") Pagination pagination);
 

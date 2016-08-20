@@ -18,6 +18,7 @@ public class Auction {
 	private Date created_date;
 	private String comment;
 	private int winner_id;
+	private BiddingAuction bidAuction;
 	public int getAuction_id() {
 		return auction_id;
 	}
@@ -102,8 +103,10 @@ public class Auction {
 	public void setWinner_id(int winner_id) {
 		this.winner_id = winner_id;
 	}
-	
-	
-	
-	
+	public BiddingAuction getBidAuction() {
+		return bidAuction;
+	}
+	public void setBidAuction(BiddingAuction bidAuction) {
+		this.bidAuction = bidAuction;
+	}
 }
