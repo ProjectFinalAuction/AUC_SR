@@ -83,7 +83,7 @@ public interface BidHistoryRepository {
 	})
 	public ArrayList<BidHistory> findBidHistoryByAuctionId(int auction_id);
 	
-	final String FIND_BID_HISTORY_BY_USER_NAME="SELECT * FROM v_find_all_bid_history WHERE u.user_name = #{user_name} ";
+	final String FIND_BID_HISTORY_BY_USER_NAME="SELECT * FROM v_find_all_bid_history WHERE user_name = #{user_name} ";
 	@Select(FIND_BID_HISTORY_BY_USER_NAME)
 	@Results(value={
 			// user
@@ -236,7 +236,7 @@ public interface BidHistoryRepository {
 	
 	//==== Core function - used to find winner by the schedule
 	final String FIND_BID_WINNER_REAL_TIME = "select * from pr_find_bid_winner() where end_date::TEXT = TO_CHAR(now(),'YYYY-MM-DD HH:MM:SS')";
-	@Select(FIND_BID_WINNER)
+	@Select(FIND_BID_WINNER_REAL_TIME)
 	@Results(value={
 			// auction
 			@Result(property="auction.auction_id", column="auction_id"),
