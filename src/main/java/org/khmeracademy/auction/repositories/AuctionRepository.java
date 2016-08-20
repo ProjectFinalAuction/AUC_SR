@@ -54,14 +54,12 @@ public interface AuctionRepository {
 
 			// gallery
 			@Result(property = "product.product_id", column = "product_id"),
-			@Result(property = "product.gallery", javaType = List.class, column = "product_id", many = @Many(select = "findAllGalleryByProductID") ) })
-	
-			// BiddingAuction
-			@Result(property = "bidAuction.auction_id", column = "auction_id")
+			@Result(property = "product.gallery", javaType = List.class, column = "product_id", many = @Many(select = "findAllGalleryByProductID")) 
+	})	
 	public ArrayList<Auction> findAllAuctions(@Param("filter") AuctionFilter filter,
 			@Param("pagination") Pagination pagination);
 
-	final String FIND_AUCTION_BY_ID = " SELECT * FROM v_find_all_auctions WHERE auction_id = #{auction_id}";
+	final String FIND_AUCTION_BY_ID = " SELECT * FROM v_find_number_bid_in_auction_product_by_auction_id WHERE auction_id = #{auction_id}";
 
 	@Select(FIND_AUCTION_BY_ID)
 	@Results(value = {
@@ -269,17 +267,4 @@ public interface AuctionRepository {
 
 	})
 	public BiddingAuction findBiddingAuctionByAuctionId(int auction_id);
-
-	
-	final String FIND_TOTAL_BID_PRICE = "select * from v_find_number_bid_in_auction_product_by_auction_id";
-	@Select(FIND_TOTAL_BID_PRICE)
-	@Results(value={
-			// product
-			@Result(property="product.product_id", column="product_id"),
-			@Result(property="product.product_name", column="product_name"),
-			@Result(property="product.product_description", column="product_description"),
-			@Result(property="product.qty", column="qty"),
-			@Result(property="product.status", column="product_status")			
-	})	
-	public ArrayList<BiddingAuction> findTotalBidCurrentPrice();
 }

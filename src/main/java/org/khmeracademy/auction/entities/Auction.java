@@ -18,7 +18,8 @@ public class Auction {
 	private Date created_date;
 	private String comment;
 	private int winner_id;
-	private BiddingAuction bidAuction;
+	private int num_bid;
+	private double bid_current_price;
 	public int getAuction_id() {
 		return auction_id;
 	}
@@ -103,10 +104,16 @@ public class Auction {
 	public void setWinner_id(int winner_id) {
 		this.winner_id = winner_id;
 	}
-	public BiddingAuction getBidAuction() {
-		return bidAuction;
+	public int getNum_bid() {
+		return num_bid;
 	}
-	public void setBidAuction(BiddingAuction bidAuction) {
-		this.bidAuction = bidAuction;
+	public void setNum_bid(int num_bid) {
+		this.num_bid = num_bid;
+	}
+	public double getBid_current_price() {
+		return bid_current_price;
+	}
+	public void setBid_current_price(double bid_current_price) {
+		this.bid_current_price = bid_current_price;
 	}
 }

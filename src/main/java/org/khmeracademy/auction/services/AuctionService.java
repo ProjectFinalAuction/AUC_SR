@@ -23,5 +23,4 @@ public interface AuctionService {
 	
 	public BiddingAuction findBiddingAuctionByAuctionId(int auction_id);
 	public ArrayList<Auction> findAuctionBrandByCategory(int category_id);
-	public ArrayList<BiddingAuction> findTotalBidCurrentPrice();
 }

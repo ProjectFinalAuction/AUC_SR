@@ -74,10 +74,4 @@ public class AuctionServiceImpl implements AuctionService{
 		return auctionRepository.findAuctionBrandByCategory(category_id);
 	}
 
-	@Override
-	public ArrayList<BiddingAuction> findTotalBidCurrentPrice() {
-		// TODO Auto-generated method stub
-		return auctionRepository.findTotalBidCurrentPrice();
-	}
-
 }
