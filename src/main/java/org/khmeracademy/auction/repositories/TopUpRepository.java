@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TopUpRepository {
-	final String FIND_ALL_TOP_UP="SELECT * FROM v_find_all_top_up";
+	final String FIND_ALL_TOP_UP="SELECT * FROM v_find_all_top_up where status <> '2'";
 	@Select(FIND_ALL_TOP_UP)
 	@Results(value={
 			// user
@@ -38,7 +38,7 @@ public interface TopUpRepository {
 	})	
 	public ArrayList<TopUp> findAllTopUp();
 	
-	final String FIND_TOP_UP_BY_CURRENCY="SELECT * FROM v_find_all_top_up WHERE currency = #{currency}";
+	final String FIND_TOP_UP_BY_CURRENCY="SELECT * FROM v_find_all_top_up WHERE currency = #{currency} and status<>'2'";
 	@Select(FIND_TOP_UP_BY_CURRENCY)
 	@Results(value={
 			// user
@@ -62,7 +62,7 @@ public interface TopUpRepository {
 	public ArrayList<TopUp> findTopUpByCurrency(String currency);
 
 	final String FIND_TOP_UP_BY_USER_NAME=
-						"	SELECT * FROM v_find_all_top_up WHERE user_name = #{user_name}	";
+						"	SELECT * FROM v_find_all_top_up WHERE user_name = #{user_name} and status<>'2' ";
 	@Select(FIND_TOP_UP_BY_USER_NAME)
 	@Results(value={
 			// user
@@ -85,7 +85,7 @@ public interface TopUpRepository {
 	})	
 	public ArrayList<TopUp> findTopUpByUserName(String user_name);
 
-	final String FIND_TOP_UP_BY_DATE="SELECT * FROM v_find_all_top_up WHERE top_up_date = #{top_up_date}";
+	final String FIND_TOP_UP_BY_DATE="SELECT * FROM v_find_all_top_up WHERE top_up_date = #{top_up_date} AND status <> '2'";
 	@Select(FIND_TOP_UP_BY_DATE)
 	@Results(value={
 			// user
@@ -126,7 +126,7 @@ public interface TopUpRepository {
 	@Update(UPDATE_TOP_UP)
 	public boolean updateTopUp(TopUpInputUpdate t);
 	
-	final String DELETE_TOP_UP="DELETE FROM auc_top_up WHERE top_up_id = #{top_up_id}";
+	final String DELETE_TOP_UP="UDATE auc_top_up SET status='2' WHERE top_up_id = #{top_up_id}";
 	@Delete(DELETE_TOP_UP)
 	public boolean deleteTopUp(int top_up_id);
 

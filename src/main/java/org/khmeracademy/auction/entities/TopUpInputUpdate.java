@@ -9,6 +9,7 @@ public class TopUpInputUpdate {
 	private double amount;
 	private Date top_up_date;
 	private int payment_method_id;
+	private String status;
 	public int getTop_up_id() {
 		return top_up_id;
 	}
@@ -45,6 +46,14 @@ public class TopUpInputUpdate {
 	public void setPayment_method_id(int payment_method_id) {
 		this.payment_method_id = payment_method_id;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
 
 		
 }
