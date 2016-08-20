@@ -13,7 +13,7 @@ public class Auction {
 	private double current_price;
 	private Date start_date;
 	private Date end_date;
-	private String status; // 0: Inactive, 1: active, 2: deleted, 3: completed
+	private String status; // 0: Inactive, 1: active, 2: deleted, 3: completed, 4: Checkout
 	private String created_by;
 	private Date created_date;
 	private String comment;
@@ -116,4 +116,14 @@ public class Auction {
 	public void setBid_current_price(double bid_current_price) {
 		this.bid_current_price = bid_current_price;
 	}
+	@Override
+	public String toString() {
+		return "Auction [auction_id=" + auction_id + ", product=" + product + ", product_condition=" + product_condition
+				+ ", start_price=" + start_price + ", buy_price=" + buy_price + ", increment_price=" + increment_price
+				+ ", current_price=" + current_price + ", start_date=" + start_date + ", end_date=" + end_date
+				+ ", status=" + status + ", created_by=" + created_by + ", created_date=" + created_date + ", comment="
+				+ comment + ", winner_id=" + winner_id + ", num_bid=" + num_bid + ", bid_current_price="
+				+ bid_current_price + "]";
+	}
+	
 }

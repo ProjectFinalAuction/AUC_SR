@@ -23,4 +23,6 @@ public interface AuctionService {
 	
 	public BiddingAuction findBiddingAuctionByAuctionId(int auction_id);
 	public ArrayList<Auction> findAuctionBrandByCategory(int category_id);
+	
+	public boolean updateStatusAndWinnerIdInAuction(String status, int winner_id, int auction_id);
 }

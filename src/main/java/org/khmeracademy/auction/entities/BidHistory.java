@@ -38,6 +38,11 @@ public class BidHistory {
 	public void setBid_date(Date bid_date) {
 		this.bid_date = bid_date;
 	}
+	@Override
+	public String toString() {
+		return "BidHistory [bid_id=" + bid_id + ", auction=" + auction + ", user=" + user + ", current_price="
+				+ current_price + ", bid_date=" + bid_date + "]";
+	}
 	
 	
 }

@@ -74,4 +74,10 @@ public class AuctionServiceImpl implements AuctionService{
 		return auctionRepository.findAuctionBrandByCategory(category_id);
 	}
 
+	@Override
+	public boolean updateStatusAndWinnerIdInAuction(String status, int winner_id, int auction_id) {
+		// TODO Auto-generated method stub
+		return auctionRepository.updateStatusAndWinnerIdInAuction(status, winner_id, auction_id);
+	}
+
 }

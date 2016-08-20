@@ -267,4 +267,9 @@ public interface AuctionRepository {
 
 	})
 	public BiddingAuction findBiddingAuctionByAuctionId(int auction_id);
+	
+	// === Update status and winner_id
+	final String UPDATE_STATUS_AND_WINNER_ID_IN_AUCTION = "UPDATE auc_auction SET status=#{status}, winner_id=#{winner_id} WHERE auction_id=#{auction_id} ";
+	@Update(UPDATE_STATUS_AND_WINNER_ID_IN_AUCTION)
+	public boolean updateStatusAndWinnerIdInAuction(@Param("status") String status,@Param("winner_id") int winner_id, @Param("auction_id") int auction_id);
 }

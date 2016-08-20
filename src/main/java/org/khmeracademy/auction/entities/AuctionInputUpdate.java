@@ -3,8 +3,6 @@ package org.khmeracademy.auction.entities;
 import java.sql.Date;
 
 public class AuctionInputUpdate {
-	
-	private int auction_id; 
 	private int product_id;
 	private String product_condition;
 	private double start_price;
@@ -17,6 +15,31 @@ public class AuctionInputUpdate {
 	private String created_by;
 	private Date created_date;
 	private String comment;
+	
+	public AuctionInputUpdate() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	private int auction_id; 
+	public AuctionInputUpdate(int auction_id, int product_id, String product_condition, double start_price,
+			double buy_price, double increment_price, double current_price, Date start_date, Date end_date,
+			String status, String created_by, Date created_date, String comment) {
+		super();
+		this.auction_id = auction_id;
+		this.product_id = product_id;
+		this.product_condition = product_condition;
+		this.start_price = start_price;
+		this.buy_price = buy_price;
+		this.increment_price = increment_price;
+		this.current_price = current_price;
+		this.start_date = start_date;
+		this.end_date = end_date;
+		this.status = status;
+		this.created_by = created_by;
+		this.created_date = created_date;
+		this.comment = comment;
+	}
+	
 	public int getAuction_id() {
 		return auction_id;
 	}

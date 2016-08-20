@@ -205,4 +205,13 @@ public class AuctionRController {
 		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/update-status-and-winner-id-in-auction/{status}/{winner_id}/{auction_id}", method=RequestMethod.PUT)
+	public ResponseEntity<Map<String,Object>> updateStatusAndWinnerIdInAuction(
+			@PathVariable String status, 
+			@PathVariable int winner_id, 
+			@PathVariable int auction_id) {
+		Map<String,Object> map = getMapObjectAfterTransaction(auctionService.updateStatusAndWinnerIdInAuction(status, winner_id, auction_id));		
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
 }
