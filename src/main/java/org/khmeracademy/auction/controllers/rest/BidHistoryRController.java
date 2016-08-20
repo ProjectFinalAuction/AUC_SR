@@ -172,5 +172,27 @@ public class BidHistoryRController {
 		}
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
+	
+	
+	@RequestMapping(value = "/find_number_bid_by_user_id_for_each_auction_in_details/{user_id}", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> findNumberBidByUserIdForEachAuctionInDetails(@PathVariable int user_id) {
+
+		ArrayList<BidHistoryWithFirstProductImage> arr = bidHistoryService.findNumberBidByUserIdForEachAuctionInDetails(user_id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			if (!arr.isEmpty()) {
+				map.put("DATA", arr);
+				map.put("MESSAGE", "SUCCESS");
+				map.put("STATUS", true);
+			} else {
+				map.put("MESSAGE", "UNSUCCESS");
+				map.put("STATUS", true);
+			}
+		} catch (Exception e) {
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	}
 
 }

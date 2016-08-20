@@ -1,13 +1,13 @@
 package org.khmeracademy.auction.services;
 
 
-import java.sql.Date;
+
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.BidHistory;
 import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
 import org.khmeracademy.auction.entities.BidHistoryWithFirstProductImage;
-import org.khmeracademy.auction.entities.BiddingAuction;
+
 
 public interface BidHistoryService {
 	public ArrayList<BidHistory> findAllBidHistory();
@@ -22,4 +22,6 @@ public interface BidHistoryService {
 	
 	public ArrayList<BidHistory> findAllBidWinnerRealTime();
 	public ArrayList<BidHistoryWithFirstProductImage> findBidHistoryAndImageByUserName(String user_name);
+	
+	public ArrayList<BidHistoryWithFirstProductImage> findNumberBidByUserIdForEachAuctionInDetails(int user_id);
 }

@@ -73,6 +73,12 @@ public class BidHistoryServiceImpl implements BidHistoryService{
 		// TODO Auto-generated method stub
 		return bidHistoryRepository.findBidHistoryAndImageByUserName(user_name);
 	}
+
+	@Override
+	public ArrayList<BidHistoryWithFirstProductImage> findNumberBidByUserIdForEachAuctionInDetails(int user_id) {
+		// TODO Auto-generated method stub
+		return bidHistoryRepository.findNumberBidByUserIdForEachAuctionInDetails(user_id);
+	}
 	
 	
 	

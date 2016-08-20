@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
-import org.khmeracademy.auction.entities.BidHistory;
+
 import org.khmeracademy.auction.entities.BiddingAuction;
-import org.khmeracademy.auction.entities.Category;
+
 import org.khmeracademy.auction.filtering.AuctionFilter;
 import org.khmeracademy.auction.utils.Pagination;
 

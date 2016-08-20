@@ -10,6 +10,8 @@ public class BidHistoryWithFirstProductImage {
 	private Date bid_date;
 	private int image_id;
 	private String image_path;
+	private int num_bid;  // number of bid by user_id in each auction
+	private double latest_current_price; // the latest bid_current_price of user on each auction
 	public int getBid_id() {
 		return bid_id;
 	}
@@ -52,6 +54,20 @@ public class BidHistoryWithFirstProductImage {
 	public void setImage_path(String image_path) {
 		this.image_path = image_path;
 	}
+	public int getNum_bid() {
+		return num_bid;
+	}
+	public void setNum_bid(int num_bid) {
+		this.num_bid = num_bid;
+	}
+	public double getLatest_current_price() {
+		return latest_current_price;
+	}
+	public void setLatest_current_price(double latest_current_price) {
+		this.latest_current_price = latest_current_price;
+	}
+	
+	
 	
 	
 	
