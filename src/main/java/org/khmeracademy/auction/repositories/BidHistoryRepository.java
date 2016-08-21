@@ -294,7 +294,7 @@ public interface BidHistoryRepository {
 	public ArrayList<BidHistory> findAllBidWinnerRealTime();
 	
 	
-	//===== Find all bid history and product image by username
+	/*//===== Find all bid history and product image by username
 	final String FIND_BID_HISTORY_AND_PRODUCT_IMAGE_BY_USER_NAME="SELECT * FROM v_find_all_bid_history_and_product_image WHERE user_name = #{user_name} ";
 	@Select(FIND_BID_HISTORY_AND_PRODUCT_IMAGE_BY_USER_NAME)
 	@Results(value={
@@ -332,7 +332,7 @@ public interface BidHistoryRepository {
 						
 	})
 	public ArrayList<BidHistoryWithFirstProductImage> findBidHistoryAndImageByUserName(String user_name);
-	
+	*/
 	
 	
 	//===== Find number of bid of user on each auction with product image
@@ -385,7 +385,7 @@ public interface BidHistoryRepository {
 				
 				// number of bid & latest current price which user bids on each auction
 				@Result(property="num_bid", column="num_bid"),
-				@Result(property="latest_current_price", column="latest_current_price")
+				@Result(property="user_latest_current_price", column="user_latest_current_price")
 							
 		})
 		public ArrayList<BidHistoryWithFirstProductImage> findNumberBidByUserIdForEachAuctionInDetails(int user_id);

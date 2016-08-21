@@ -6,12 +6,12 @@ public class BidHistoryWithFirstProductImage {
 	private int bid_id;
 	private Auction auction;  // Auction Object
 	private User user;		  // User Object
-	private double current_price;
+	
 	private Date bid_date;
 	private int image_id;
 	private String image_path;
 	private int num_bid;  // number of bid by user_id in each auction
-	private double latest_current_price; // the latest bid_current_price of user on each auction
+	private double user_latest_current_price; // the latest bid_current_price of user on each auction
 	public int getBid_id() {
 		return bid_id;
 	}
@@ -29,12 +29,6 @@ public class BidHistoryWithFirstProductImage {
 	}
 	public void setUser(User user) {
 		this.user = user;
-	}
-	public double getCurrent_price() {
-		return current_price;
-	}
-	public void setCurrent_price(double current_price) {
-		this.current_price = current_price;
 	}
 	public Date getBid_date() {
 		return bid_date;
@@ -60,12 +54,13 @@ public class BidHistoryWithFirstProductImage {
 	public void setNum_bid(int num_bid) {
 		this.num_bid = num_bid;
 	}
-	public double getLatest_current_price() {
-		return latest_current_price;
+	public double getUser_latest_current_price() {
+		return user_latest_current_price;
 	}
-	public void setLatest_current_price(double latest_current_price) {
-		this.latest_current_price = latest_current_price;
+	public void setUser_latest_current_price(double user_latest_current_price) {
+		this.user_latest_current_price = user_latest_current_price;
 	}
+	
 	
 	
 	

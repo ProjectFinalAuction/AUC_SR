@@ -22,7 +22,7 @@ public class SmtpMailSender {
 		
 		helper.setSubject(subject);
 		helper.setTo(to);
-		helper.setText(body, true); // true indicates html
+		helper.setText(body,false); // true indicates html
 		//continue using helper object for more functionalities like adding
 		
 		

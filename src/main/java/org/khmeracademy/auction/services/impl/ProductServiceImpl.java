@@ -14,7 +14,7 @@ import org.khmeracademy.auction.services.FileUploadService;
 import org.khmeracademy.auction.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -56,7 +56,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int addProduct(ProductInputUpdate p, HttpServletRequest request) {
 		
-		int result = pr.addProduct(p);
+//		int result = pr.addProduct(p);
 		int productId = p.getProduct_id(); 
 		
 		UploadedFileInfo gallery;

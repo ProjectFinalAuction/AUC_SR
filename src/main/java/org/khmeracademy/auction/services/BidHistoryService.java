@@ -21,7 +21,7 @@ public interface BidHistoryService {
 	
 	
 	public ArrayList<BidHistory> findAllBidWinnerRealTime();
-	public ArrayList<BidHistoryWithFirstProductImage> findBidHistoryAndImageByUserName(String user_name);
+//	public ArrayList<BidHistoryWithFirstProductImage> findBidHistoryAndImageByUserName(String user_name);
 	
 	public ArrayList<BidHistoryWithFirstProductImage> findNumberBidByUserIdForEachAuctionInDetails(int user_id);
 }

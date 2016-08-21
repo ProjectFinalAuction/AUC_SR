@@ -7,7 +7,6 @@ import org.khmeracademy.auction.entities.BidHistory;
 import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
 import org.khmeracademy.auction.entities.BidHistoryWithFirstProductImage;
 import org.khmeracademy.auction.repositories.BidHistoryRepository;
-import org.khmeracademy.auction.repositories.UserCreditHistoryRepository;
 import org.khmeracademy.auction.services.BidHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +16,7 @@ public class BidHistoryServiceImpl implements BidHistoryService{
 	@Autowired
 	private BidHistoryRepository bidHistoryRepository;
 	
-	@Autowired
-	private UserCreditHistoryRepository userCreditHistoryRepository;
-	
+		
 	@Override
 	public ArrayList<BidHistory> findAllBidHistory() {
 		return bidHistoryRepository.findAllBidHistory();
@@ -68,11 +65,11 @@ public class BidHistoryServiceImpl implements BidHistoryService{
 		return bidHistoryRepository.findAllBidWinnerRealTime();
 	}
 
-	@Override
-	public ArrayList<BidHistoryWithFirstProductImage> findBidHistoryAndImageByUserName(String user_name) {
-		// TODO Auto-generated method stub
-		return bidHistoryRepository.findBidHistoryAndImageByUserName(user_name);
-	}
+//	@Override
+//	public ArrayList<BidHistoryWithFirstProductImage> findBidHistoryAndImageByUserName(String user_name) {
+//		// TODO Auto-generated method stub
+//		return bidHistoryRepository.findBidHistoryAndImageByUserName(user_name);
+//	}
 
 	@Override
 	public ArrayList<BidHistoryWithFirstProductImage> findNumberBidByUserIdForEachAuctionInDetails(int user_id) {
