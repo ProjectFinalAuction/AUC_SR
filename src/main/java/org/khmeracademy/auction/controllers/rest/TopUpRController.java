@@ -7,7 +7,9 @@ import java.util.Map;
 
 import org.khmeracademy.auction.entities.TopUp;
 import org.khmeracademy.auction.entities.TopUpInputUpdate;
+import org.khmeracademy.auction.entities.UserCreditHistory;
 import org.khmeracademy.auction.services.TopUpService;
+import org.khmeracademy.auction.services.UserCreditHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class TopUpRController {
 	@Autowired
 	private TopUpService topUpService;
+	
+	@Autowired
+	private UserCreditHistoryService userCreditHistoryService;
 	
 	/**
 	 * Help method to get map object when select query
@@ -93,11 +98,30 @@ public class TopUpRController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
+	//TODO: ADD TOP UP BALANCE AND CHECK ENDING AMOUNT CREDIT
 	@RequestMapping(value="/add-top-up",method=RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> addTopUp(@RequestBody TopUpInputUpdate t){
-		Map<String,Object> map = getMapObjectAfterTransaction(topUpService.addTopUp(t));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		UserCreditHistory userCredit = userCreditHistoryService.checkEndingAmound(t.getUser_id());
+		if(userCredit != null){
+			if(userCredit.getEnding_amount()<500){
+				map.put("MASSAGE", "YOUR CREDIT NOT ENOUGH!");
+				map.put("CODE", "OOOO");
+				map.put("DATA", userCredit.getEnding_amount());
+			}else{
+				map.put("MASSAGE", "YOU CAN BIT MORE...");
+				map.put("CODE", "9999");
+				map.put("DATA", userCredit.getEnding_amount());
+				map = getMapObjectAfterTransaction(topUpService.addTopUp(t));
+			}
+		}else{
+			map.put("MASSAGE", "USER NOT FOUND!");
+			map.put("CODE", "1111");
+		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
+	
 	
 	@RequestMapping(value="/update-top-up",method=RequestMethod.PUT)
 	public ResponseEntity<Map<String,Object>> updateTopUp(@RequestBody TopUpInputUpdate t){
