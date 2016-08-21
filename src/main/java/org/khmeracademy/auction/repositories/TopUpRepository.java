@@ -109,8 +109,8 @@ public interface TopUpRepository {
 	public ArrayList<TopUp> findTopUpByDate(Date top_up_date);
 	
 	final String ADD_TOP_UP=
-			" INSERT INTO auc_top_up(user_id,currency,amount,top_up_date,payment_method_id) "+
-			" VALUES(#{user_id},#{currency},#{amount},#{top_up_date},#{payment_method_id}) ";
+			" INSERT INTO auc_top_up(user_id,currency,amount) "+
+			" VALUES(#{user_id},#{currency},#{amount}) ";
 	@Insert(ADD_TOP_UP)
 	public boolean addTopUp(TopUpInputUpdate t);
 	
