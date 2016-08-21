@@ -6,11 +6,13 @@ import java.util.Map;
 import javax.mail.MessagingException;
 
 import org.khmeracademy.auction.SmtpMailSender;
+import org.khmeracademy.auction.entities.SendMail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,17 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class SmtpSendMailController {
 	@Autowired
 	private SmtpMailSender smtpMailSender;	
-	@RequestMapping("/send-mail/{to}")	
-	public ResponseEntity<Map<String,Object>> sendMail(@PathVariable String to) {
+	@RequestMapping(value="/send-mail",method=RequestMethod.POST)	
+	public ResponseEntity<Map<String,Object>> sendMail(@RequestBody SendMail sendMail) {
 		Map<String,Object> map = new HashMap<String,Object>();
 		try{
 		smtpMailSender.send(
-				"chomrern@gmail.com", 
-				"Denh Tlia <the cambodia auction website>", 
-				"សូមអបអរសាទរ  "
-				+ "អ្នកបាន​ ធ្វើការដេញថ្លៃដោយជោគជ័យ ហើយ\n"
-				+ "សូមមកធ្វើការទទួលយក នូវអីវ៉ាន លេខ :' test123 ' នៅមជ្ឈមណ្ឌល HRD\n"
-				+ "ព័ត៌មានបន្ថែមសូមទំនាក់ទំនងមកកាន់ : +855675255");
+				sendMail.getTo(), 
+				sendMail.getSubject(), 
+				sendMail.getBody());
 				// mail is sent
 				map.put("MESSAGE", "Sending mail successfully");
 				map.put("STATUS", true);
