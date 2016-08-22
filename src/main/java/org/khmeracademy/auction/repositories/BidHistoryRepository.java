@@ -346,6 +346,7 @@ public interface BidHistoryRepository {
 				@Result(property="user.last_name", column="last_name"),			
 				@Result(property="user.gender", column="gender"),
 				@Result(property="user.dob", column="dob"),
+				@Result(property="user.address", column="address"),
 				@Result(property="user.email", column="email"),
 				@Result(property="user.photo", column="photo"),
 				@Result(property="user.type", column="type"),
@@ -361,6 +362,7 @@ public interface BidHistoryRepository {
 				@Result(property="auction.current_price", column="auction_current_price"),
 				@Result(property="auction.start_date", column="start_date"),
 				@Result(property="auction.end_date", column="end_date"),
+				@Result(property="auction.status", column="auction_status"),
 				
 				// product
 				@Result(property="auction.product.product_id", column="product_id"),
