@@ -50,8 +50,7 @@ public interface UserCreditHistoryRepository {
 			@Result(property="user.status", column="status")
 	})
 	public ArrayList<UserCreditHistory> findUserCreditHistoryByUserName(String user_name);
-	
-	
+		
 	final String ADD_USER_CREDIT_HISTORY=
 					"	INSERT INTO auc_user_credit_history(	"+
 					"	credit_date,	"+
@@ -88,5 +87,10 @@ public interface UserCreditHistoryRepository {
 	
 	@Select("SELECT ending_amount FROM v_find_bid_ending_amount WHERE user_id = #{user_id}")
 	public UserCreditHistory checkingEndingAmount(int user_id);
+	
+	final String FIND_USER_CREDIT_HISTORY_BY_USER_ID=
+			" SELECT * FROM v_find_bid_ending_amount WHERE user_id = #{userId}";
+	@Select(FIND_USER_CREDIT_HISTORY_BY_USER_ID)
+	public UserCreditHistory findUserCreditHistoryByUserId(int userId);
 
 }

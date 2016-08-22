@@ -44,5 +44,10 @@ public class UserCreditHistoryServiceImpl implements UserCreditHistoryService {
 		return userCreditHistoryRepository.checkingEndingAmount(userId);
 	}
 	
+	@Override
+	public UserCreditHistory findByUserId(int userId) {
+		return userCreditHistoryRepository.findUserCreditHistoryByUserId(userId);
+	}
+	
 	
 }

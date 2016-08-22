@@ -103,22 +103,18 @@ public class TopUpRController {
 	public ResponseEntity<Map<String,Object>> addTopUp(@RequestBody TopUpInputUpdate t){
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		UserCreditHistory userCredit = userCreditHistoryService.checkEndingAmound(t.getUser_id());
-		if(userCredit != null){
-			if(userCredit.getEnding_amount()<500){
-				map.put("MASSAGE", "YOUR CREDIT NOT ENOUGH!");
-				map.put("CODE", "OOOO");
-				map.put("DATA", userCredit.getEnding_amount());
-			}else{
-				map.put("MASSAGE", "YOU CAN BIT MORE...");
-				map.put("CODE", "9999");
-				map.put("DATA", userCredit.getEnding_amount());
-				map = getMapObjectAfterTransaction(topUpService.addTopUp(t));
-			}
+		
+		//1. ADDING TO BID HISTORY
+		if(topUpService.addTopUp(t)){
+			UserCreditHistory userCreditHistory = userCreditHistoryService.findByUserId(t.getUser_id());
+			map.put("CODE", "9999");
+			map.put("MESSAGE", "SUCCESSFULLY");
+			map.put("DATA", userCreditHistory);
 		}else{
-			map.put("MASSAGE", "USER NOT FOUND!");
-			map.put("CODE", "1111");
+			map.put("CODE", "0000");
+			map.put("MESSAGE", "FAILURE");
 		}
+		
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	

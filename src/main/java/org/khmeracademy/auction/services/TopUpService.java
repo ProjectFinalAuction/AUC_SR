@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.TopUp;
 import org.khmeracademy.auction.entities.TopUpInputUpdate;
+import org.khmeracademy.auction.entities.UserCreditHistory;
 
 public interface TopUpService {
 	public ArrayList<TopUp> findAllTopUp();	

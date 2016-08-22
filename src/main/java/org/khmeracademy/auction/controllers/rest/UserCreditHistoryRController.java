@@ -109,4 +109,24 @@ public class UserCreditHistoryRController {
 		}
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/{userId}/find-user-credit-by-id/", method= RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> findUserCreditHistoryByUserId(@PathVariable int userId){
+		Map<String, Object> map = new HashMap<String, Object>();
+		UserCreditHistory user = userCreditHistoryService.findByUserId(userId);
+		try{
+			if(user != null){
+				map.put("DATA", user);
+				map.put("MESSAGE", "SUCCESS");
+				map.put("CODE", "9999");
+			}else{
+				map.put("MESSAGE", "UNSUCCESS");
+				map.put("CODE", "9999");
+			}				
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("CODE", "1111");
+		}
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	}
 }

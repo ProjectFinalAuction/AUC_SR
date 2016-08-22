@@ -12,4 +12,6 @@ public interface UserCreditHistoryService {
 	public boolean updateUserCreditHistory(UserCreditHistoryInputUpdate uch);
 	public boolean deleteUserCreditHistory(int credit_id);	
 	public UserCreditHistory checkEndingAmound(int userId);
+	
+	public UserCreditHistory findByUserId(int userId);
 }

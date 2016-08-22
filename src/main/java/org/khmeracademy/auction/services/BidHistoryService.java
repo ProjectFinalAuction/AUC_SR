@@ -20,6 +20,7 @@ public interface BidHistoryService {
 	public ArrayList<BidHistory> findAllBidWinner();
 	
 	
+	
 	public ArrayList<BidHistory> findAllBidWinnerRealTime();
 //	public ArrayList<BidHistoryWithFirstProductImage> findBidHistoryAndImageByUserName(String user_name);
 	

@@ -5,8 +5,11 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.TopUp;
 import org.khmeracademy.auction.entities.TopUpInputUpdate;
+import org.khmeracademy.auction.entities.UserCreditHistory;
 import org.khmeracademy.auction.repositories.TopUpRepository;
+import org.khmeracademy.auction.repositories.UserCreditHistoryRepository;
 import org.khmeracademy.auction.services.TopUpService;
+import org.khmeracademy.auction.services.UserCreditHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,9 @@ import org.springframework.stereotype.Service;
 public class TopUpServiceImpl implements TopUpService {
 	@Autowired
 	private TopUpRepository topUpRepository;
+	
+	@Autowired 
+	private UserCreditHistoryRepository userCreditHistoryRepository;
 
 	@Override
 	public ArrayList<TopUp> findAllTopUp() {
@@ -38,6 +44,7 @@ public class TopUpServiceImpl implements TopUpService {
 	@Override
 	public boolean addTopUp(TopUpInputUpdate t) {
 		return topUpRepository.addTopUp(t);
+		//return userCreditHistoryRepository.findUserCreditHistoryByUserId(t.getUser_id());
 	}
 
 	@Override
