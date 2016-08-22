@@ -56,7 +56,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int addProduct(ProductInputUpdate p, HttpServletRequest request) {
 		
-//		int result = pr.addProduct(p);
+		int result = pr.addProduct(p);
 		int productId = p.getProduct_id(); 
 		
 		UploadedFileInfo gallery;
