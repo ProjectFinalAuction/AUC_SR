@@ -58,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
 		
 		int result = pr.addProduct(p);
 		int productId = p.getProduct_id(); 
-		
+		System.out.println(">>>>>>>>>>>>>>>>>>>> i'm here >>>>>>>>>>>>>>>>>>"+p);
 		UploadedFileInfo gallery;
 		gallery = fileUploadService.upload(p.getImages(), "gallery",request);
 		GalleryInputUpdate g = new GalleryInputUpdate(productId, gallery.getNames());

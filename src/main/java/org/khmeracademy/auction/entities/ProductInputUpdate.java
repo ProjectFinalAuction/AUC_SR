@@ -12,7 +12,7 @@ public class ProductInputUpdate {
 	private int category_id;
 	private int qty;
 	private int brand_id;
-	private boolean status;
+	private int status;
 	private List<MultipartFile> images;
 	
 	public List<MultipartFile> getImages() {
@@ -63,10 +63,10 @@ public class ProductInputUpdate {
 	public void setBrand_id(int brand_id) {
 		this.brand_id = brand_id;
 	}
-	public boolean isStatus() {
+	public int isStatus() {
 		return status;
 	}
-	public void setStatus(boolean status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 	@Override
