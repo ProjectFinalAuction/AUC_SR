@@ -15,21 +15,20 @@ import org.khmeracademy.auction.services.FileUploadService;
 import org.khmeracademy.auction.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	ProductRepository pr;
-	
+
 	@Autowired
 	GalleryRepository galleryrepository;
-	
+
 	@Autowired
 	FileUploadService fileUploadService;
-	
-	
+
 	@Override
 	public ArrayList<Product> findAllProducts() {
 		// TODO Auto-generated method stub
@@ -56,23 +55,45 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public int addProduct(ProductInputUpdate p, HttpServletRequest request) {
-		
+
 		int result = pr.addProduct(p);
-		int productId = p.getProduct_id(); 
-		System.out.println(">>>>>>>>>>>>>>>>>>>> i'm here >>>>>>>>>>>>>>>>>>"+p);
+		int productId = p.getProduct_id();
+		System.out.println(">>>>>>>>>>>>>>>>>>>> i'm here >>>>>>>>>>>>>>>>>>" + p);
 		UploadedFileInfo gallery;
-		gallery = fileUploadService.upload(p.getImages(), "gallery",request);
+		gallery = fileUploadService.upload(p.getImages(), "gallery", request);
 		GalleryInputUpdate g = new GalleryInputUpdate(productId, gallery.getNames());
-		if(galleryrepository.addImage(g))
+		if (galleryrepository.addImage(g))
 			return 1;
 		return 0;
 	}
 
-//	@Override
-//	public boolean updateProduct(ProductInputUpdate p) {
-//		// TODO Auto-generated method stub
-//		return pr.updateProduct(p);
-//	}
+	@Override
+	public boolean updateProduct(ProductUpdate p, HttpServletRequest request) {
+		if (pr.updateProduct(p)) {
+			
+			GalleryInputUpdate g = new GalleryInputUpdate();
+			g.setProduct_id(p.getProduct_id());
+			
+			if (!p.getImages().isEmpty()) {
+				UploadedFileInfo gallery = fileUploadService.upload(p.getImages(), "gallery", request);
+				g.setImage_path(gallery.getNames());
+				galleryrepository.addImage(g);
+			}
+			
+			if (!p.getDeletedImageId().isEmpty()){
+				g.setImage_delete(p.getDeletedImageId());
+				galleryrepository.deleteImage(g);
+			}
+		}
+
+		return pr.updateProduct(p);
+	}
+
+	// @Override
+	// public boolean updateProduct(ProductInputUpdate p) {
+	// // TODO Auto-generated method stub
+	// return pr.updateProduct(p);
+	// }
 
 	@Override
 	public boolean deleteProduct(int product_id) {
@@ -84,12 +105,6 @@ public class ProductServiceImpl implements ProductService {
 	public ArrayList<Product> findProductsHasSupplier(int supplier_id) {
 		// TODO Auto-generated method stub
 		return pr.findProductsHasSupplier(supplier_id);
-	}
-
-	@Override
-	public boolean updateProduct(ProductUpdate p, HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return pr.updateProduct(p);
 	}
 
 }

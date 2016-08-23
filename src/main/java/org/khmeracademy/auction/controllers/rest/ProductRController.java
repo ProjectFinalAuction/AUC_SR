@@ -1,8 +1,6 @@
 package org.khmeracademy.auction.controllers.rest;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 
 @RestController
 @RequestMapping("/api")
@@ -125,21 +121,25 @@ public class ProductRController {
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
+	
+	
+	//========================update product======================//
+	
 	@RequestMapping(value="/update-product", method= RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> updateProduct(
 			@RequestParam("json_string") String jsonString, 
-//			@RequestParam("imageAdd") List<MultipartFile> galleryFiles,
-//			@RequestParam("imageDelete") List<String> deletedImageName,
+			@RequestParam("imageAdd") List<MultipartFile> galleryFiles,
+			@RequestParam("imageDelete") List<Integer> deletedImageId,
 			HttpServletRequest request) throws Exception {
 		
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> API");
 		jsonString = URLDecoder.decode(jsonString, "UTF-8");
 		Map<String,Object> map = new HashMap<String,Object>();		
-//		System.out.println(jsonString + galleryFiles + deletedImageName);
+		System.out.println(jsonString + "Galler" +  galleryFiles.size() +  "Deleted " + deletedImageId.size());
 		ProductUpdate p = new Gson().fromJson(jsonString, ProductUpdate.class);
-//		p.setImages(galleryFiles);
-//		p.setDeletedImageName(deletedImageName);	
-//		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+p.getImages());
+		p.setImages(galleryFiles);
+		p.setDeletedImageId(deletedImageId);	
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+p.getImages());
 		try{
 			if(ps.updateProduct(p, request)){
 				map.put("MESSAGE", "SUCCESS");

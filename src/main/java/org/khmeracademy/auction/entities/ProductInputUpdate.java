@@ -83,19 +83,19 @@ public class ProductInputUpdate {
 	}
 	
 	public static class ProductUpdate extends ProductInputUpdate{
-		private List<String> deletedImageName;
+		private List<Integer> deletedImageId;
 
-		public List<String> getDeletedImageName() {
-			return deletedImageName;
+		public List<Integer> getDeletedImageId() {
+			return deletedImageId;
 		}
 
-		public void setDeletedImageName(List<String> deletedImageName) {
-			this.deletedImageName = deletedImageName;
+		public void setDeletedImageId(List<Integer> deletedImageId) {
+			this.deletedImageId = deletedImageId;
 		}
 
 		@Override
 		public String toString() {
-			return "ProductUpdate [deletedImageName=" + deletedImageName + "]";
+			return "ProductUpdate [deletedImageId=" + deletedImageId + "]";
 		}
 		
 	}

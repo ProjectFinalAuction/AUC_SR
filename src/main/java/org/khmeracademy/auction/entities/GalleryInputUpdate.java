@@ -6,7 +6,7 @@ public class GalleryInputUpdate {
 	private int image_id;
 	private int product_id;
 	private List<String> image_path;
-	private List<String> image_delete;
+	private List<Integer> image_delete;
 	
 	
 	public GalleryInputUpdate(int product_id, List<String> image_path) {
@@ -15,11 +15,15 @@ public class GalleryInputUpdate {
 		this.image_path = image_path;
 	}
 	
+	public GalleryInputUpdate(){
+		
+	}
+	
 
-	public List<String> getImage_delete() {
+	public List<Integer> getImage_delete() {
 		return image_delete;
 	}
-	public void setImage_delete(List<String> image_delete) {
+	public void setImage_delete(List<Integer> image_delete) {
 		this.image_delete = image_delete;
 	}
 	
