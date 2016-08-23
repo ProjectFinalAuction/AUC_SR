@@ -13,10 +13,20 @@ public class ProductInputUpdate {
 	private int qty;
 	private int brand_id;
 	private int status;
+	
+	
+
 	private List<MultipartFile> images;
 	
 	public List<MultipartFile> getImages() {
 		return images;
+	}
+	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	public void setImages(List<MultipartFile> images) {
 		this.images = images;
@@ -63,18 +73,31 @@ public class ProductInputUpdate {
 	public void setBrand_id(int brand_id) {
 		this.brand_id = brand_id;
 	}
-	public int isStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
+	
 	@Override
 	public String toString() {
 		return "ProductInputUpdate [product_id=" + product_id + ", product_name=" + product_name
 				+ ", product_description=" + product_description + ", supplier_id=" + supplier_id + ", category_id="
 				+ category_id + ", qty=" + qty + ", brand_id=" + brand_id + ", status=" + status + ", images=" + images
 				+ "]";
+	}
+	
+	public static class ProductUpdate extends ProductInputUpdate{
+		private List<String> deletedImageName;
+
+		public List<String> getDeletedImageName() {
+			return deletedImageName;
+		}
+
+		public void setDeletedImageName(List<String> deletedImageName) {
+			this.deletedImageName = deletedImageName;
+		}
+
+		@Override
+		public String toString() {
+			return "ProductUpdate [deletedImageName=" + deletedImageName + "]";
+		}
+		
 	}
 	
 	

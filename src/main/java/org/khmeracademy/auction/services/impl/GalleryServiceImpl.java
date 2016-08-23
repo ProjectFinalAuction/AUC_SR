@@ -34,9 +34,15 @@ public class GalleryServiceImpl implements GalleryService {
 	}
 
 	@Override
-	public boolean deleteImage(int image_id) {
+	public boolean deleteImage(GalleryInputUpdate g) {
 		// TODO Auto-generated method stub
-		return gr.deleteImage(image_id);
+		return gr.deleteImage(g);
 	}
+
+//	@Override
+//	public boolean deleteImage(int image_id) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 
 }

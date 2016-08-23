@@ -79,10 +79,10 @@ public class GalleryRController {
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/delete-image/{image_id}", method=RequestMethod.DELETE)
-	public ResponseEntity<Map<String, Object>> deleteImage(@PathVariable int  image_id ){
-		Map<String, Object> map= getMapObjectAfterTransaction(gs.deleteImage(image_id));
-		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
-	}
+//	@RequestMapping(value="/delete-image/{image_id}", method=RequestMethod.DELETE)
+//	public ResponseEntity<Map<String, Object>> deleteImage(@PathVariable int  image_id ){
+//		Map<String, Object> map= getMapObjectAfterTransaction(gs.deleteImage(image_id));
+//		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+//	}
 
 }

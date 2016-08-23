@@ -13,5 +13,7 @@ public interface GalleryService {
 
 	public boolean updateImagePath(GalleryInputUpdate g);
 
-	public boolean deleteImage(int image_id);
+//	public boolean deleteImage(int image_id);
+
+	boolean deleteImage(GalleryInputUpdate g);
 }

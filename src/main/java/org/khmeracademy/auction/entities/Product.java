@@ -10,7 +10,7 @@ public class Product {
 	private Category category;  // category object
 	private int qty;
 	private Brand brand;		// brand object
-	private boolean status;
+	private String status;
 	private List<Gallery> gallery;
 	
 	public List<Gallery> getGallery() {
@@ -61,10 +61,11 @@ public class Product {
 	public void setBrand(Brand brand) {
 		this.brand = brand;
 	}
-	public boolean isStatus() {
+	
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	@Override

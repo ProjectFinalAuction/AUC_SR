@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.khmeracademy.auction.entities.GalleryInputUpdate;
 import org.khmeracademy.auction.entities.Product;
 import org.khmeracademy.auction.entities.ProductInputUpdate;
+import org.khmeracademy.auction.entities.ProductInputUpdate.ProductUpdate;
 import org.khmeracademy.auction.entities.UploadedFileInfo;
 import org.khmeracademy.auction.repositories.GalleryRepository;
 import org.khmeracademy.auction.repositories.ProductRepository;
@@ -67,11 +68,11 @@ public class ProductServiceImpl implements ProductService {
 		return 0;
 	}
 
-	@Override
-	public boolean updateProduct(ProductInputUpdate p) {
-		// TODO Auto-generated method stub
-		return pr.updateProduct(p);
-	}
+//	@Override
+//	public boolean updateProduct(ProductInputUpdate p) {
+//		// TODO Auto-generated method stub
+//		return pr.updateProduct(p);
+//	}
 
 	@Override
 	public boolean deleteProduct(int product_id) {
@@ -83,6 +84,12 @@ public class ProductServiceImpl implements ProductService {
 	public ArrayList<Product> findProductsHasSupplier(int supplier_id) {
 		// TODO Auto-generated method stub
 		return pr.findProductsHasSupplier(supplier_id);
+	}
+
+	@Override
+	public boolean updateProduct(ProductUpdate p, HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		return pr.updateProduct(p);
 	}
 
 }

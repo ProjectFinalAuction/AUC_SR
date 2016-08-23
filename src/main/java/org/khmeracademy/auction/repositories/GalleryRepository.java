@@ -59,6 +59,16 @@ public interface GalleryRepository {
 	@Insert(C_BATCH_GALLERY)
 	public boolean addImage(GalleryInputUpdate g);
 	
+	final String U_BATCH_GALLERY  =""
+			+ "<script>	"
+			+ "	<foreach  collection='g.image_path' item='path' separator=';'>"
+			+ " 	UPDATE auc_gallery SET image_path = #{path}"
+			+ 		"WHERE product_id= #{g.product_id}"
+			+ 	"</foreach>"
+			+ "</script>";
+	@Insert(U_BATCH_GALLERY)
+	public boolean updateImage(GalleryInputUpdate g);
+	
 /*	String U_GALLERY=" UPDATE auc_gallery "
 			+ "SET "
 			+ " 	product_id= #{product_id}, "
@@ -68,8 +78,14 @@ public interface GalleryRepository {
 	@Update(U_GALLERY)
 	public boolean updateImagePath(GalleryInputUpdate g);*/
 	
-	String D_GALLERY=" DELETE FROM auc_gallery WHERE image_id = #{image_id} ";
+	String D_GALLERY=""
+			+ "<script>"
+			+ "	<foreach  collection='g.image_delete' item='path' separator=';'>"
+			+ " 	DELETE FROM auc_gallery"
+			+ 		"WHERE auc_gallery.image_path = #{g.image_delete}"
+			+ 	"</foreach>"
+			+ "</script>";
 	@Delete(D_GALLERY)
-	public boolean deleteImage(int image_id);
+	public boolean deleteImage(GalleryInputUpdate g);
 	
 }

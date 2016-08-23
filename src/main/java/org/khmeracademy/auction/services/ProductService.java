@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.khmeracademy.auction.entities.Product;
 import org.khmeracademy.auction.entities.ProductInputUpdate;
+import org.khmeracademy.auction.entities.ProductInputUpdate.ProductUpdate;
 
 
 public interface ProductService {
@@ -22,7 +23,7 @@ public interface ProductService {
 
 	public int addProduct(ProductInputUpdate p, HttpServletRequest request);
 
-	public boolean updateProduct(ProductInputUpdate p);
+	public boolean updateProduct(ProductUpdate p, HttpServletRequest request);
 
 	public boolean deleteProduct(int  product_id);
 }

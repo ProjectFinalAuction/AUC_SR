@@ -25,7 +25,6 @@ public interface ProductRepository {
 	
 	
 	
-	
 	@Select(R_PRODUCTS)
 	@Results(value={
 			// supplier
@@ -169,15 +168,17 @@ public interface ProductRepository {
 			" WHERE product_id = #{product_id} ";	
 	@Update(U_PRODUCT)
 	public boolean updateProduct(ProductInputUpdate p);
+	
+	
 			
-	String D_PRODUCT= "UPDATE auc_product SET status = false WHERE product_id = #{product_id}";
+	String D_PRODUCT= "UPDATE auc_product SET status = 2 WHERE product_id = #{product_id}";
 	@Delete(D_PRODUCT)
 	public boolean deleteProduct(int  product_id);
 	
 	
 	
 	String R_PRODUCT_HAS_SUPPLIER=
-			"SELECT *FROM v_find_all_products P INNER JOIN auc_supplier S ON P.supplier_id = S.supplier_id WHERE P.supplier_id = #{supplier_id}";
+			"SELECT *FROM v_find_all_products P INNER JOIN auc_supplier S ON P.supplier_id = S.supplier_id WHERE P.supplier_id = #{supplier_id} and P.status IN ('0','1')";
 	@Select(R_PRODUCT_HAS_SUPPLIER)
 	@Results(value={
 			// supplier
