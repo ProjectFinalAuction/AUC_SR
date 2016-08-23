@@ -1,6 +1,9 @@
 package org.khmeracademy.auction;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.BidHistory;
@@ -41,7 +44,60 @@ public class Schedule {
 	 * 
 	 */
 	@Scheduled(fixedRate = 5000)
+	public void findExpiredAuctionAndNeverBidden(){
+		// call findAuctionEndDateIsExpiredAndNeverBidden to get list of expired auctions which have never been bidden
+		ArrayList<Auction> arr = auctionService.findAuctionEndDateIsExpiredAndNeverBidden();
+		try{
+			if(!arr.isEmpty()){
+				// Create date for updating comment
+				DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				
+				// get current date time with Date()
+				Date date = new Date();
+				
+				// create message body
+				String msgBody="Please be informed, the following auctions are expired and never bidden at all: \r\n";
+				
+				// check if at least one record has been updated
+				boolean isUpdated = false;
+				
+				for(int i=0; i < arr.size(); i++){
+					Auction a = arr.get(i);
+					System.out.println(a.toString());
+					
+					// update comment
+					a.setComment(
+							(a.getComment()==null) ? "": a.getComment() + "\r\nSchedule - "+dateFormat.format(date)+": update expired auction which is never bidden (Status: from 1 (active) to 0 (inactive))");
+					// update status to inactive(0)
+					a.setStatus("0");
+					// call updateStatusAndWinnerIdInAuction to update and
+					// return true if it is updated successfully
+					boolean isUpdateSuccess = auctionService.updateStatusAndWinnerIdInAuction(a.getStatus(),
+							a.getWinner_id(),a.getComment(), a.getAuction_id());
+					if (isUpdateSuccess) {
+						msgBody=msgBody + "auction_id = "+a.getAuction_id() + ", product_id = "+a.getProduct().getProduct_id()+ ", product_name = "+a.getProduct().getProduct_name()+"\r\n";
+						System.out.println("Update Successfully");
+						isUpdated = true;												
+					}
+				}
+				if(isUpdated){
+				// send mail to DENH TLAI to know about expired auctions which have never been bidden at all.
+				smtpMailSender.send("denhtlai@gmail.com", "Denh Tlai - List of expired auctins and never biddend",
+						msgBody);
+				}
+			}
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
+	}
+	
+	@Scheduled(fixedRate = 5000)
 	public void findWinner() {
+		// Create date for updating comment
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		// get current date time with Date()
+		Date date = new Date();
 		// call findAllBidWinnerRealTime to get list of winner
 		ArrayList<BidHistory> arr = bidHistoryService.findAllBidWinnerRealTime();
 		try {
@@ -58,11 +114,14 @@ public class Schedule {
 					// update status and winner_id in auc_auction
 					a.setStatus("3"); // completed
 					a.setWinner_id(b.getUser().getUser_id());
+					// update comment
+					a.setComment(
+							(a.getComment()==null) ? "": a.getComment() + "Schedule - "+dateFormat.format(date)+": update winning auction which status is changed to 3 (completed) and winner_id = "+a.getWinner_id());
 
 					// call updateStatusAndWinnerIdInAuction to update and
 					// return true if it is updated successfully
 					boolean isUpdateSuccess = auctionService.updateStatusAndWinnerIdInAuction(a.getStatus(),
-							a.getWinner_id(), a.getAuction_id());
+							a.getWinner_id(), a.getComment(), a.getAuction_id());
 					
 					// Message is to be sent.
 					String enMessage = "Congratulations! \r\n" + "Yours was the winning bid on DENH TLAI item #"

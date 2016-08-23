@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
-
 import org.khmeracademy.auction.entities.BiddingAuction;
 import org.khmeracademy.auction.filtering.AuctionFilter;
 import org.khmeracademy.auction.repositories.AuctionRepository;
@@ -75,15 +74,21 @@ public class AuctionServiceImpl implements AuctionService{
 	}
 
 	@Override
-	public boolean updateStatusAndWinnerIdInAuction(String status, int winner_id, int auction_id) {
+	public boolean updateStatusAndWinnerIdInAuction(String status, int winner_id, String comment, int auction_id) {
 		// TODO Auto-generated method stub
-		return auctionRepository.updateStatusAndWinnerIdInAuction(status, winner_id, auction_id);
+		return auctionRepository.updateStatusAndWinnerIdInAuction(status, winner_id, comment, auction_id);
 	}
 
 	@Override
 	public ArrayList<Auction> findAllBestBiddingAuctions(AuctionFilter filter, Pagination pagination) {
 		pagination.setTotalCount(auctionRepository.countNumBid(filter));
 		return auctionRepository.findAllBestBiddingAuctions(filter, pagination);
+	}
+
+	@Override
+	public ArrayList<Auction> findAuctionEndDateIsExpiredAndNeverBidden() {
+		
+		return auctionRepository.findAuctionEndDateIsExpiredAndNeverBidden();
 	}
 
 }

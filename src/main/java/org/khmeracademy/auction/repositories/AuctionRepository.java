@@ -268,10 +268,10 @@ public interface AuctionRepository {
 	})
 	public BiddingAuction findBiddingAuctionByAuctionId(int auction_id);
 	
-	// === Update status and winner_id
-	final String UPDATE_STATUS_AND_WINNER_ID_IN_AUCTION = "UPDATE auc_auction SET status=#{status}, winner_id=#{winner_id} WHERE auction_id=#{auction_id} ";
+	// === Update status, winner_id and comment. This function can be called by winner or expired auction
+	final String UPDATE_STATUS_AND_WINNER_ID_IN_AUCTION = "UPDATE auc_auction SET status=#{status}, winner_id=#{winner_id}, comment=#{comment} WHERE auction_id=#{auction_id} ";
 	@Update(UPDATE_STATUS_AND_WINNER_ID_IN_AUCTION)
-	public boolean updateStatusAndWinnerIdInAuction(@Param("status") String status,@Param("winner_id") int winner_id, @Param("auction_id") int auction_id);
+	public boolean updateStatusAndWinnerIdInAuction(@Param("status") String status,@Param("winner_id") int winner_id, @Param("comment") String comment, @Param("auction_id") int auction_id);
 
 	
 	//FIND BEST BIDDING
@@ -318,6 +318,41 @@ public interface AuctionRepository {
 	public Long countNumBid(@Param("filter") AuctionFilter filter);
 	
 	
+	
+	// Find all expired auctions which have never been bidden. Then update status to inactive(0)
+	// Criteria in view of database are: status = '1' AND end_date <= now() AND num_bid = 0 
+	final String FIND_AUCTION_END_DATE_IS_EXPIRED_AND_NEVER_BIDDEN = " SELECT * FROM v_find_auction_end_date_is_expired_and_never_bidden ";
+
+	@Select(FIND_AUCTION_END_DATE_IS_EXPIRED_AND_NEVER_BIDDEN)
+	@Results(value = {
+			// Product
+			@Result(property = "product.product_id", column = "product_id"),
+			@Result(property = "product.product_name", column = "product_name"),
+			@Result(property = "product.product_description", column = "product_description"),
+			@Result(property = "product.status", column = "product_status"),
+
+			// Brand
+			@Result(property = "product.brand.brand_id", column = "brand_id"),
+			@Result(property = "product.brand.brand_name", column = "brand_name"),
+			@Result(property = "product.brand.brand_description", column = "brand_description"),
+			@Result(property = "product.brand.status", column = "brand_status"),
+
+			// Category
+			@Result(property = "product.category.category_id", column = "category_id"),
+			@Result(property = "product.category.category_name", column = "category_name"),
+			@Result(property = "product.category.category_description", column = "category_description"),
+
+			// Supplier
+			@Result(property = "product.supplier.supplier_id", column = "supplier_id"),
+			@Result(property = "product.supplier.contact_name", column = "contact_name"),
+			@Result(property = "product.supplier.address", column = "address"),
+			@Result(property = "product.supplier.phone", column = "phone"),
+			@Result(property = "product.supplier.email", column = "email"),
+
+			// gallery
+			@Result(property = "product.product_id", column = "product_id"),
+			@Result(property = "product.gallery", javaType = List.class, column = "product_id", many = @Many(select = "findAllGalleryByProductID") ) })
+	public ArrayList<Auction> findAuctionEndDateIsExpiredAndNeverBidden();
 	
 	
 }

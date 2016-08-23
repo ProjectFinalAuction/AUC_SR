@@ -2,7 +2,7 @@ package org.khmeracademy.auction.services;
 
 import java.util.ArrayList;
 
-import org.apache.ibatis.annotations.Param;
+
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
 
@@ -25,7 +25,9 @@ public interface AuctionService {
 	public BiddingAuction findBiddingAuctionByAuctionId(int auction_id);
 	public ArrayList<Auction> findAuctionBrandByCategory(int category_id);
 	
-	public boolean updateStatusAndWinnerIdInAuction(String status, int winner_id, int auction_id);
+	public boolean updateStatusAndWinnerIdInAuction(String status, int winner_id, String comment, int auction_id);
 	
 	public ArrayList<Auction> findAllBestBiddingAuctions(AuctionFilter filter, Pagination pagination);
+	
+	public ArrayList<Auction> findAuctionEndDateIsExpiredAndNeverBidden();
 }
