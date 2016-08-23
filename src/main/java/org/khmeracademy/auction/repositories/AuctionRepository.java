@@ -272,4 +272,52 @@ public interface AuctionRepository {
 	final String UPDATE_STATUS_AND_WINNER_ID_IN_AUCTION = "UPDATE auc_auction SET status=#{status}, winner_id=#{winner_id} WHERE auction_id=#{auction_id} ";
 	@Update(UPDATE_STATUS_AND_WINNER_ID_IN_AUCTION)
 	public boolean updateStatusAndWinnerIdInAuction(@Param("status") String status,@Param("winner_id") int winner_id, @Param("auction_id") int auction_id);
+
+	
+	//FIND BEST BIDDING
+	final String FIND_ALL_BEST_BIDDING_AUCTIONS = "SELECT * " + "FROM v_find_number_bid_in_auction_product_by_auction_id "
+			+ "WHERE status<>'2' AND "  // excludes status 2 (deleted)
+			+ " num_bid >=5 AND "
+			+" LOWER(product_name) LIKE LOWER('%' || #{filter.productName} || '%')" + "ORDER BY num_bid DESC "
+			+ "LIMIT #{pagination.limit} " + "OFFSET #{pagination.offset} ";
+
+	@Select(FIND_ALL_BEST_BIDDING_AUCTIONS)
+	@Results(value = {
+			// Product
+			@Result(property = "product.product_id", column = "product_id"),
+			@Result(property = "product.product_name", column = "product_name"),
+			@Result(property = "product.product_description", column = "product_description"),
+			@Result(property = "product.status", column = "product_status"),
+
+			// Brand
+			@Result(property = "product.brand.brand_id", column = "brand_id"),
+			@Result(property = "product.brand.brand_name", column = "brand_name"),
+			@Result(property = "product.brand.brand_description", column = "brand_description"),
+			@Result(property = "product.brand.status", column = "brand_status"),
+
+			// Category
+			@Result(property = "product.category.category_id", column = "category_id"),
+			@Result(property = "product.category.category_name", column = "category_name"),
+			@Result(property = "product.category.category_description", column = "category_description"),
+
+			// Supplier
+			@Result(property = "product.supplier.supplier_id", column = "supplier_id"),
+			@Result(property = "product.supplier.contact_name", column = "contact_name"),
+			@Result(property = "product.supplier.address", column = "address"),
+			@Result(property = "product.supplier.phone", column = "phone"),
+			@Result(property = "product.supplier.email", column = "email"),
+
+			// gallery
+			@Result(property = "product.product_id", column = "product_id"),
+			@Result(property = "product.gallery", javaType = List.class, column = "product_id", many = @Many(select = "findAllGalleryByProductID")) 
+	})	
+	public ArrayList<Auction> findAllBestBiddingAuctions(@Param("filter") AuctionFilter filter,
+			@Param("pagination") Pagination pagination);
+	
+	@Select("SELECT COUNT(auction_id) FROM v_find_number_bid_in_auction_product_by_auction_id WHERE NUM_BID>=5")
+	public Long countNumBid(@Param("filter") AuctionFilter filter);
+	
+	
+	
+	
 }

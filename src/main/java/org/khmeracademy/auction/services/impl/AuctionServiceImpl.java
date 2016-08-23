@@ -80,4 +80,10 @@ public class AuctionServiceImpl implements AuctionService{
 		return auctionRepository.updateStatusAndWinnerIdInAuction(status, winner_id, auction_id);
 	}
 
+	@Override
+	public ArrayList<Auction> findAllBestBiddingAuctions(AuctionFilter filter, Pagination pagination) {
+		pagination.setTotalCount(auctionRepository.countNumBid(filter));
+		return auctionRepository.findAllBestBiddingAuctions(filter, pagination);
+	}
+
 }

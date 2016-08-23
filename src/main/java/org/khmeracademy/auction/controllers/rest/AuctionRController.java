@@ -214,4 +214,19 @@ public class AuctionRController {
 		Map<String,Object> map = getMapObjectAfterTransaction(auctionService.updateStatusAndWinnerIdInAuction(status, winner_id, auction_id));		
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
+	
+	
+	@RequestMapping(value="/find-all-best-bidding-auctions",method=RequestMethod.GET)
+	@ApiImplicitParams({
+			@ApiImplicitParam(name="page", paramType="query", defaultValue="1", dataType="int" ) ,
+			@ApiImplicitParam(name="limit", paramType="query", defaultValue="15", dataType="int"),
+			@ApiImplicitParam(name="productName", paramType="query", defaultValue="")
+	})
+	public ResponseEntity<Map<String,Object>> findAllBestBiddingAuctions(@ApiIgnore AuctionFilter filter, @ApiIgnore Pagination pagination) {
+		
+		ArrayList<Auction> arr = auctionService.findAllBestBiddingAuctions(filter, pagination);
+		Map<String,Object> map = getMapObject(arr);
+		map.put("PAGINATION", pagination);
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
 }
