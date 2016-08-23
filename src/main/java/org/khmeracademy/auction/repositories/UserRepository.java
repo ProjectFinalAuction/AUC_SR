@@ -13,6 +13,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.Role;
 import org.khmeracademy.auction.entities.User;
+import org.khmeracademy.auction.entities.UserInputUpdate;
 import org.khmeracademy.auction.filtering.UserFilter;
 import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.stereotype.Repository;
@@ -88,16 +89,15 @@ public interface UserRepository {
 	 * "		#{status}," + "		#{created_by}," + "		#{created_date}," +
 	 * "		#{comment})";
 	 */
-	String C_USER = "select * from pr_add_user(" + "		#{user_name}, " + "		#{first_name}, "
-			+ "		#{last_name}, " + " 	#{gender}," + "		#{dob}, " + " 	#{address}, " + " 	#{email}, "
-			+ " 	#{password}, " + " 	#{contact}, " + " 	#{photo}, " + " 	#{type}," + "		#{status},"
-
-			+ "		#{created_date}," + "		#{created_by}," + "		#{comment})";
-
+	String C_USER = "INSERT INTO auc_user(user_name, first_name, last_name, gender,"
+			+ "	dob, address, email, password, contact, photo, type, status, "
+			+ " created_date, created_by, comment, role_id) "
+			+ "VALUES(#{user_name}, #{first_name}, #{last_name}, #{gender}, "
+			+ "	#{dob}, #{address}, #{email}, #{password}, #{contact}, #{photo}, #{type}, #{status},"
+			+ " #{created_date}, #{created_by}, #{comment}, #{role_id})";
 	@Insert(C_USER)
-	public int addUser(User user); // return int because it doesn't work with
-									// true value from database
-
+	public boolean addUser(UserInputUpdate u);
+	
 	// Update User
 	String U_USER = "UPDATE auc_user SET " + "		user_name=#{user_name}, " + "		first_name=#{first_name}, "
 			+ "		last_name=#{last_name}, " + "		gender=#{gender}," + "		dob=#{dob}, "

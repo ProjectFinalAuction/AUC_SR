@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.khmeracademy.auction.entities.User;
+import org.khmeracademy.auction.entities.UserInputUpdate;
 import org.khmeracademy.auction.filtering.UserFilter;
 import org.khmeracademy.auction.services.UserService;
 import org.khmeracademy.auction.utils.Pagination;
@@ -171,21 +172,39 @@ public class UserRController {
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/add-user", method= RequestMethod.POST)
-	public ResponseEntity<Map<String, Object>> addUser(@RequestBody User user){
-		Map<String, Object> map= new HashMap<String, Object>();
-		try {
-			if(userService.addUser(user)){
-				map.put("MESSAGE", "USER SUCCESSFULLY ADDED");
-				map.put("STATUS", true);
+//	@RequestMapping(value="/add-user", method= RequestMethod.POST)
+//	public ResponseEntity<Map<String, Object>> addUser(@RequestBody UserInputUpdate u){
+//		Map<String, Object> map= new HashMap<String, Object>();
+//		try {
+//			if(userService.addUser(u)){
+//				map.put("MESSAGE", "USER SUCCESSFULLY ADDED");
+//				map.put("STATUS", true);
+//			}else{
+//				map.put("MESSAGE", "ERROR!");
+//				map.put("STATUS", false);
+//			} 
+//		} catch (Exception e) {
+//				map.put("MESSAGE", "ERROR!");
+//				map.put("STATUS", false);
+//				e.printStackTrace();
+//		}
+//		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+//	}
+	@RequestMapping(value="/add-user", method = RequestMethod.POST)
+	public ResponseEntity<Map<String, Object>> addUser(@RequestBody UserInputUpdate u){
+		Map<String, Object> map = new HashMap<String , Object>();
+		try{
+			if(userService.addUser(u)){
+				map.put("MASSAGE", "USER HAS BEEN INSERTED!");
+				map.put("CODE", "9999");
 			}else{
-				map.put("MESSAGE", "ERROR!");
-				map.put("STATUS", false);
-			} 
-		} catch (Exception e) {
-				map.put("MESSAGE", "ERROR!");
-				map.put("STATUS", false);
-				e.printStackTrace();
+				map.put("MASSAGE", "USER NOT FOUND!");
+				map.put("CODE", "0000");
+			}
+		}catch(Exception e){
+			map.put("MASSAGE", "ERROR!");
+			map.put("CODE", "1111");
+			e.printStackTrace();
 		}
 		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 	}

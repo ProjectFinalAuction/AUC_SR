@@ -3,6 +3,7 @@ package org.khmeracademy.auction.services.impl;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.User;
+import org.khmeracademy.auction.entities.UserInputUpdate;
 import org.khmeracademy.auction.filtering.UserFilter;
 import org.khmeracademy.auction.repositories.UserRepository;
 import org.khmeracademy.auction.services.UserService;
@@ -47,15 +48,6 @@ public class UserServiceImpl implements UserService {
 		return userRepository.getUserByAnyField(user_name);
 	} 
 	
-	@Override
-	public boolean addUser(User user) {
-		// TODO Auto-generated method stub
-		int i = userRepository.addUser(user);
-//		System.out.println(i+" result");
-		if(i==-1)
-			return true;
-		return false;
-	}
 
 	@Override
 	public boolean updateUser(User user) {
@@ -78,8 +70,10 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 
-
-
-	
+	@Override
+	public boolean addUser(UserInputUpdate u) {
+		// TODO Auto-generated method stub
+		return userRepository.addUser(u);
+	}
 
 }

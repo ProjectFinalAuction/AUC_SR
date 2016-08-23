@@ -3,6 +3,7 @@ package org.khmeracademy.auction.services;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.User;
+import org.khmeracademy.auction.entities.UserInputUpdate;
 import org.khmeracademy.auction.filtering.UserFilter;
 import org.khmeracademy.auction.utils.Pagination;
 
@@ -20,7 +21,7 @@ public interface UserService {
 	
 	public ArrayList<User> getUserByAnyField(String user_name);
 	
-	public boolean addUser( User user);
+	public boolean addUser(UserInputUpdate u);
 	
 	public boolean updateUser(User user);
 	
