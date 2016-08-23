@@ -21,6 +21,7 @@ public interface InvoiceDetailRepository {
 			@Result(property="invoice.invoice_id", column="invoice_id"),
 			@Result(property="buy_price", column="invoice_buy_price"),
 			@Result(property="invoice.invoice_date", column="invoice_date"),
+			@Result(property="invoice.status", column="status"),
 			
 			// user
 			@Result(property="invoice.user.user_id", column="user_id"),
