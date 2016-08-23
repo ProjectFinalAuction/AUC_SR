@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.BidHistory;
+
 import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
 import org.khmeracademy.auction.entities.BidHistoryWithFirstProductImage;
 import org.springframework.stereotype.Repository;
@@ -354,7 +355,6 @@ public interface BidHistoryRepository {
 				
 				// auction
 				@Result(property="auction.auction_id", column="auction_id"),
-				@Result(property="auction.product.product_id", column="product_id"),
 				@Result(property="auction.product_condition", column="product_condition"),
 				@Result(property="auction.start_price", column="start_price"),
 				@Result(property="auction.buy_price", column="buy_price"),
@@ -391,5 +391,72 @@ public interface BidHistoryRepository {
 							
 		})
 		public ArrayList<BidHistoryWithFirstProductImage> findNumberBidByUserIdForEachAuctionInDetails(int user_id);
+		
+		
+		// Function is used in viewbidhistory - 20160823 - BY EAN SOKCHOMRERN
+		final String FIND_NUM_BID_AND_BIDDER_IN_AUCTION_PRODUCT_BY_AUC_ID = " SELECT * FROM v_find_num_bid_and_bidder_in_auction_product_by_auc_id  WHERE auction_id = #{auction_id}";
+
+		@Select(FIND_NUM_BID_AND_BIDDER_IN_AUCTION_PRODUCT_BY_AUC_ID)
+		@Results(value = {
+				
+				//bidhistory
+				@Result(property="current_price", column="user_current_price"), // for each user, not for the whole auction
+				
+				// auction
+				@Result(property="auction.auction_id", column="auction_id"),
+				@Result(property="auction.product_condition", column="product_condition"),
+				@Result(property="auction.start_price", column="start_price"),
+				@Result(property="auction.buy_price", column="buy_price"),
+				@Result(property="auction.increment_price", column="increment_price"),
+				@Result(property="auction.current_price", column="auction_current_price"),
+				@Result(property="auction.start_date", column="start_date"),
+				@Result(property="auction.end_date", column="end_date"),
+				@Result(property="auction.status", column="auction_status"),
+				@Result(property="auction.created_by", column="created_by"),
+				@Result(property="auction.created_date", column="created_date"),
+				@Result(property="auction.comment", column="comment"),
+				@Result(property="auction.winner_id", column="winner_id"),
+				@Result(property="auction.num_bid", column="num_bid"),  // number_bid of auction
+				@Result(property="auction.bid_current_price", column="bid_current_price"), // bid_current_price of auction
+				
+				
+				// product
+				@Result(property="auction.product.product_id", column="product_id"),
+				@Result(property="auction.product.product_name", column="product_name"),
+				@Result(property="auction.product.product_description", column="product_description"),
+				@Result(property="auction.product.qty", column="qty"),
+				@Result(property="auction.product.status", column="product_status"),
+				
+				// supplier
+				@Result(property="auction.product.supplier.supplier_id", column="supplier_id"),
+				
+				// category
+				@Result(property="auction.product.category.category_id", column="category_id"),
+				@Result(property="auction.product.category.category_name", column="category_name"),
+				
+				
+								
+				// brand
+				@Result(property="auction.product.brand.brand_id", column="brand_id"),
+			
+								
+				// user
+				// number of bid & latest current price which user bids on each auction
+				@Result(property="user.user_id", column="user_id"),
+				@Result(property="user.user_name", column="user_name"),
+				@Result(property="user.first_name", column="first_name"),
+				@Result(property="user.last_name", column="last_name"),	
+				@Result(property="user.gender", column="gender"),
+				@Result(property="user.dob", column="dob"),
+				@Result(property="user.address", column="address"),
+				@Result(property="user.email", column="email"),
+				@Result(property="user.contact", column="contact"),
+				@Result(property="user.photo", column="photo"),
+				@Result(property="user.type", column="type"),
+				@Result(property="user.status", column="user_status"),
+				
+		})
+		public  ArrayList<BidHistory> findNumBidAndBidderInAuctionProductByAuctionId(int auction_id);
+		
 	
 }

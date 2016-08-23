@@ -5,6 +5,7 @@ package org.khmeracademy.auction.services;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.BidHistory;
+
 import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
 import org.khmeracademy.auction.entities.BidHistoryWithFirstProductImage;
 
@@ -25,4 +26,6 @@ public interface BidHistoryService {
 //	public ArrayList<BidHistoryWithFirstProductImage> findBidHistoryAndImageByUserName(String user_name);
 	
 	public ArrayList<BidHistoryWithFirstProductImage> findNumberBidByUserIdForEachAuctionInDetails(int user_id);
+	
+	public  ArrayList<BidHistory> findNumBidAndBidderInAuctionProductByAuctionId(int auction_id);
 }
