@@ -129,4 +129,14 @@ public class UserCreditHistoryRController {
 		}
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
+	
+	// Find all active user credit history with ending amount - for Chanthem (23/08/2016)
+	@RequestMapping(value="/find-all-active-user-credit-history-with-ending-amount", method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findAllActiveUserCreditHistoryWithEndingAmount(){
+		ArrayList<UserCreditHistory> arr = userCreditHistoryService.findAllActiveUserCreditHistoryWithEndingAmount();
+		Map<String,Object> map = getMapObject(arr);
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
+	
+	
 }

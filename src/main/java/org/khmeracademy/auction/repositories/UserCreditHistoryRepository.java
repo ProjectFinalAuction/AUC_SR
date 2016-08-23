@@ -100,4 +100,15 @@ public interface UserCreditHistoryRepository {
 	})
 	public UserCreditHistory findUserCreditHistoryByUserId(int userId);
 
+	final String FIND_ALL_ACTIVE_USER_CREDIT_HISTORY_WITH_ENDING_AMOUNT=
+			" SELECT * FROM v_find_bid_ending_amount ";
+	@Select(FIND_ALL_ACTIVE_USER_CREDIT_HISTORY_WITH_ENDING_AMOUNT)
+	@Results(value={
+			@Result(property="user.user_id", column="user_id"),
+			@Result(property="user.user_name", column="user_name"),
+			@Result(property="user.first_name", column="first_name"),
+			@Result(property="user.last_name", column="last_name"),
+			@Result(property="user.status", column="user_status")
+	})
+	public ArrayList<UserCreditHistory> findAllActiveUserCreditHistoryWithEndingAmount();
 }

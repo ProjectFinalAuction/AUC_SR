@@ -14,4 +14,6 @@ public interface UserCreditHistoryService {
 	public UserCreditHistory checkEndingAmound(int userId);
 	
 	public UserCreditHistory findByUserId(int userId);
+	
+	public ArrayList<UserCreditHistory> findAllActiveUserCreditHistoryWithEndingAmount();
 }

@@ -48,6 +48,14 @@ public class UserCreditHistoryServiceImpl implements UserCreditHistoryService {
 	public UserCreditHistory findByUserId(int userId) {
 		return userCreditHistoryRepository.findUserCreditHistoryByUserId(userId);
 	}
+
+	@Override
+	public ArrayList<UserCreditHistory> findAllActiveUserCreditHistoryWithEndingAmount() {
+		// 23-08-2016
+		return userCreditHistoryRepository.findAllActiveUserCreditHistoryWithEndingAmount();
+	}
+	
+	
 	
 	
 }
