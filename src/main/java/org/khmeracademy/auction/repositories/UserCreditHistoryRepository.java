@@ -91,6 +91,13 @@ public interface UserCreditHistoryRepository {
 	final String FIND_USER_CREDIT_HISTORY_BY_USER_ID=
 			" SELECT * FROM v_find_bid_ending_amount WHERE user_id = #{userId}";
 	@Select(FIND_USER_CREDIT_HISTORY_BY_USER_ID)
+	@Results(value={
+			@Result(property="user.user_id", column="user_id"),
+			@Result(property="user.user_name", column="user_name"),
+			@Result(property="user.first_name", column="first_name"),
+			@Result(property="user.last_name", column="last_name"),
+			@Result(property="user.status", column="user_status")
+	})
 	public UserCreditHistory findUserCreditHistoryByUserId(int userId);
 
 }
