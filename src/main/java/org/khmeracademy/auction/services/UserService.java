@@ -3,10 +3,12 @@ package org.khmeracademy.auction.services;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.User;
+import org.khmeracademy.auction.filtering.UserFilter;
+import org.khmeracademy.auction.utils.Pagination;
 
 public interface UserService {
 	
-	public ArrayList<User> getAllUsers();
+	public ArrayList<User> getAllUsers(UserFilter filter, Pagination pagination);
 	
 	public User findUserById(int user_id);
 	

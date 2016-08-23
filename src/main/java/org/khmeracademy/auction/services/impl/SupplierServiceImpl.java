@@ -3,8 +3,10 @@ package org.khmeracademy.auction.services.impl;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Supplier;
+import org.khmeracademy.auction.filtering.SupplierFilter;
 import org.khmeracademy.auction.repositories.SupplierRepository;
 import org.khmeracademy.auction.services.SupplierService;
+import org.khmeracademy.auction.utils.Pagination;
 //import org.khmeracademy.auction.services.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +16,10 @@ public class SupplierServiceImpl implements SupplierService {
 	@Autowired SupplierRepository suplrepo;
 	
 	@Override
-	public ArrayList<Supplier> findAllSuppliers() {
-		// TODO Auto-generated method stub
-		return suplrepo.findAllSuppliers();
+	public ArrayList<Supplier> findAllSuppliers(SupplierFilter filter,Pagination pagination) {
+		System.out.println(pagination);
+		pagination.setTotalCount(suplrepo.count(filter));
+		return suplrepo.findAllSuppliers(filter, pagination);
 	}
 
 	@Override

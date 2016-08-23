@@ -7,12 +7,19 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.Supplier;
+import org.khmeracademy.auction.filtering.AuctionFilter;
+import org.khmeracademy.auction.filtering.SupplierFilter;
+import org.khmeracademy.auction.utils.Pagination;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SupplierRepository {
 	//READ
-	String R_SUPPLIERS = " SELECT * FROM auc_supplier where status <> '2'"; // statis=2 i.e deleted
+	String R_SUPPLIERS = " SELECT * FROM auc_supplier where status <> '2'"
+			+ "AND LOWER(contact_name) LIKE LOWER('%' || #{filter.supplierName} || '%')" + "ORDER BY supplier_id DESC "
+			+ "LIMIT #{pagination.limit} " + "OFFSET #{pagination.offset} "; // statis=2 i.e deleted
+	
 	String R_SUPPLIER_ByNAME = "SELECT * FROM auc_supplier WHERE contact_name = #{contact_name} ";
 	String R_SUPPLIER_ByEMAIL = "SELECT * FROM auc_supplier WHERE email = #{email} ";
 	String R_SUPPLIER_ByAnyFIELD = "SELECT * FROM auc_supplier WHERE "
@@ -45,8 +52,9 @@ public interface SupplierRepository {
 	String D_USER = "UPDATE auc_supplier SET status = '2' WHERE supplier_id = #{supplier_id}";
 
 	@Select(R_SUPPLIERS)
-	public ArrayList<Supplier> findAllSuppliers();
-	
+	public ArrayList<Supplier> findAllSuppliers(@Param("filter") SupplierFilter filter,
+			@Param("pagination") Pagination pagination);
+
 	@Select(R_SUPPLIER_ByNAME)
 	public ArrayList<Supplier> findSupplierByName(String contact_name);
 	
@@ -70,5 +78,8 @@ public interface SupplierRepository {
 	
 	@Select(R_SUPPLIERS_InPRODUCTS)
 	public ArrayList<Supplier> findSupplierInProducts();
+
+	@Select("SELECT COUNT(supplier_id) FROM auc_supplier WHERE LOWER(contact_name) LIKE LOWER('%' || #{filter.supplierName} || '%')")
+	public Long count(@Param("filter") SupplierFilter filter);
 	
 }

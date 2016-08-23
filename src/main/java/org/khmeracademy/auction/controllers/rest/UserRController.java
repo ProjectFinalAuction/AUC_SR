@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.khmeracademy.auction.entities.User;
+import org.khmeracademy.auction.filtering.UserFilter;
 import org.khmeracademy.auction.services.UserService;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import springfox.documentation.annotations.ApiIgnore;
+
 @RestController
 @RequestMapping("/api")
 public class UserRController {
@@ -22,24 +28,32 @@ public class UserRController {
 	private UserService userService;
 	//Request All Users
 	@RequestMapping(value="/get-all-users", method= RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> getAllUsers(){
+	@ApiImplicitParams({
+		@ApiImplicitParam(name="page", dataType="int", paramType="query", defaultValue="1"),
+		@ApiImplicitParam(name="limit", dataType="int", paramType="query", defaultValue="10"),
+		@ApiImplicitParam(name="userName", paramType="query", defaultValue="")
+	})
+	public ResponseEntity<Map<String, Object>> getAllUsers(@ApiIgnore UserFilter filter, @ApiIgnore Pagination pagination){
 		Map<String, Object> map= new HashMap<String, Object>();
 		try {
-			ArrayList<User> user = userService.getAllUsers();
+			ArrayList<User> user = userService.getAllUsers(filter, pagination);
 			if(!user.isEmpty()){
 				map.put("DATA", user);
 				map.put("STATUS", true);
 				map.put("MESSAGE", "DATA FOUND!");
+				map.put("PAGINATION", pagination);
 			}
 			else{
 				map.put("STATUS", true);
 				map.put("MESSAGE", "DATA NOT FOUND!");
+				map.put("PAGINATION", pagination);
 			}
 		} catch (Exception e) {
 			map.put("STATUS", false);
 			map.put("MESSAGE", "Error!");
 			e.printStackTrace();
 		}
+		
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	

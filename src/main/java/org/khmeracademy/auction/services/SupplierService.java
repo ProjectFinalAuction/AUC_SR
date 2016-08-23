@@ -3,10 +3,12 @@ package org.khmeracademy.auction.services;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Supplier;
+import org.khmeracademy.auction.filtering.SupplierFilter;
+import org.khmeracademy.auction.utils.Pagination;
 
 public interface SupplierService {
 
-	public ArrayList<Supplier> findAllSuppliers();
+	public ArrayList<Supplier> findAllSuppliers(SupplierFilter filter, Pagination pagination);
 	
 	public ArrayList<Supplier> findSupplierByName(String contact_name);
 	

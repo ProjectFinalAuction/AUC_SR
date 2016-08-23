@@ -3,8 +3,10 @@ package org.khmeracademy.auction.services.impl;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.User;
+import org.khmeracademy.auction.filtering.UserFilter;
 import org.khmeracademy.auction.repositories.UserRepository;
 import org.khmeracademy.auction.services.UserService;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,10 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 	
 	@Override
-	public ArrayList<User> getAllUsers() {
-		// TODO Auto-generated method stub
-		return userRepository.getAllUsers();
+	public ArrayList<User> getAllUsers(UserFilter filter, Pagination pagination) {
+		
+		pagination.setTotalCount(userRepository.count(filter));
+		return userRepository.getAllUsers(filter, pagination);
 	}
 	
 	@Override
