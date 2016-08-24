@@ -1,6 +1,6 @@
 package org.khmeracademy.auction.entities;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Auction {
 	
@@ -12,7 +12,7 @@ public class Auction {
 	private double increment_price;
 	private double current_price;
 	private Date start_date;
-	private String end_date;
+	private Date end_date;
 	private String status; // 0: Inactive, 1: active, 2: deleted, 3: completed, 4: Checkout
 	private String created_by;
 	private Date created_date;
@@ -68,10 +68,10 @@ public class Auction {
 	public void setStart_date(Date start_date) {
 		this.start_date = start_date;
 	}
-	public String getEnd_date() {
+	public Date getEnd_date() {
 		return end_date;
 	}
-	public void setEnd_date(String end_date) {
+	public void setEnd_date(Date end_date) {
 		this.end_date = end_date;
 	}
 	public String getStatus() {
