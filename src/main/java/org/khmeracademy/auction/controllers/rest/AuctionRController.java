@@ -168,6 +168,7 @@ public class AuctionRController {
 
 	@RequestMapping(value="/add-auction", method=RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> addAuction(@RequestBody AuctionInputUpdate a) {
+		System.out.println(a);
 		Map<String,Object> map = getMapObjectAfterTransaction(auctionService.addAuction(a));
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
