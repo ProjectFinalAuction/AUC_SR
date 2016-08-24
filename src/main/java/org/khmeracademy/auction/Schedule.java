@@ -67,7 +67,7 @@ public class Schedule {
 					
 					// update comment
 					a.setComment(
-							(a.getComment()==null) ? "": a.getComment() + "\r\nSchedule - "+dateFormat.format(date)+": update expired auction which is never bidden (Status: from 1 (active) to 0 (inactive))");
+							(a.getComment()==null) ? "Schedule - "+dateFormat.format(date)+": update expired auction which is never bidden (Status: from 1 (active) to 0 (inactive))" : a.getComment() + "\r\nSchedule - "+dateFormat.format(date)+": update expired auction which is never bidden (Status: from 1 (active) to 0 (inactive))");
 					// update status to inactive(0)
 					a.setStatus("0");
 					// call updateStatusAndWinnerIdInAuction to update and
@@ -116,7 +116,7 @@ public class Schedule {
 					a.setWinner_id(b.getUser().getUser_id());
 					// update comment
 					a.setComment(
-							(a.getComment()==null) ? "": a.getComment() + "Schedule - "+dateFormat.format(date)+": update winning auction which status is changed to 3 (completed) and winner_id = "+a.getWinner_id());
+							(a.getComment()==null) ? "Schedule - "+dateFormat.format(date)+": update winning auction which status is changed to 3 (completed) and winner_id = "+a.getWinner_id() : a.getComment() + "\r\nSchedule - "+dateFormat.format(date)+": update winning auction which status is changed to 3 (completed) and winner_id = "+a.getWinner_id());
 
 					// call updateStatusAndWinnerIdInAuction to update and
 					// return true if it is updated successfully
