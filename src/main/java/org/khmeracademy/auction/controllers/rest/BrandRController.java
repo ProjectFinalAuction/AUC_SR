@@ -83,6 +83,7 @@ public class BrandRController {
 	
 	@RequestMapping(value="/add-brand", method= RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> addBrand(@RequestBody Brand b){
+		System.out.println("Brand =============>>>>>>"+b.getStatus());
 		Map<String, Object> map= getMapObjectAfterTransaction(bs.addBrand(b));
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}

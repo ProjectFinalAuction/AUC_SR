@@ -22,7 +22,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AuctionRepository {
 	final String FIND_ALL_AUCTIONS = "SELECT * " + "FROM v_find_number_bid_in_auction_product_by_auction_id "
-			+ "WHERE status<>'2' AND "  // excludes status 2 (deleted)
+			+ "WHERE status='1' AND "  // excludes status 2 (deleted)
 			+" LOWER(product_name) LIKE LOWER('%' || #{filter.productName} || '%')" + "ORDER BY auction_id DESC "
 			+ "LIMIT #{pagination.limit} " + "OFFSET #{pagination.offset} ";
 
@@ -160,7 +160,7 @@ public interface AuctionRepository {
 	})
 	public ArrayList<Auction> findAuctionByDate(String trans_date);
 
-	final String FIND_AUCTION_PRODUCT_BY_CATEGORY = "SELECT * FROM v_find_all_auctions WHERE category_id = #{category_id}";
+	final String FIND_AUCTION_PRODUCT_BY_CATEGORY = "SELECT * FROM v_find_all_auctions_with_num_bid WHERE category_id = #{category_id} AND status='1' ";
 
 	@Select(FIND_AUCTION_PRODUCT_BY_CATEGORY)
 	@Results(value = {
@@ -191,6 +191,8 @@ public interface AuctionRepository {
 			// gallery
 			@Result(property = "product.product_id", column = "product_id"),
 			@Result(property = "product.gallery", javaType = List.class, column = "product_id", many = @Many(select = "findAllGalleryByProductID") ) })
+			
+			
 	public ArrayList<Auction> findAuctionProductByCategory(int category_id);
 
 	final String SLELECT_AUCTION_BRAND_BY_CATEGORY = "SELECT brand_name FROM v_find_all_auctions WHERE category_id= #{category_id}";
@@ -276,7 +278,7 @@ public interface AuctionRepository {
 	
 	//FIND BEST BIDDING
 	final String FIND_ALL_BEST_BIDDING_AUCTIONS = "SELECT * " + "FROM v_find_number_bid_in_auction_product_by_auction_id "
-			+ "WHERE status<>'2' AND "  // excludes status 2 (deleted)
+			+ "WHERE status='1' AND "  // excludes status 2 (deleted)
 			+ " num_bid >=5 AND "
 			+" LOWER(product_name) LIKE LOWER('%' || #{filter.productName} || '%')" + "ORDER BY num_bid DESC "
 			+ "LIMIT #{pagination.limit} " + "OFFSET #{pagination.offset} ";
