@@ -91,5 +91,14 @@ public class AuctionServiceImpl implements AuctionService{
 		
 		return auctionRepository.findAuctionEndDateIsExpiredAndNeverBidden();
 	}
+	
+	
+	//TODO: FIND AUCTION STATUS 1 ACTIVE
+	@Override
+	public ArrayList<Auction> findAllAuctionsActive(AuctionFilter filter, Pagination pagination) {
+		pagination.setTotalCount(auctionRepository.countActive(filter));
+		return auctionRepository.findAllAuctionsActive(filter, pagination);
+	}
+
 
 }

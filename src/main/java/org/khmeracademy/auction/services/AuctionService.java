@@ -30,4 +30,8 @@ public interface AuctionService {
 	public ArrayList<Auction> findAllBestBiddingAuctions(AuctionFilter filter, Pagination pagination);
 	
 	public ArrayList<Auction> findAuctionEndDateIsExpiredAndNeverBidden();
+	
+	//TODO: FIND ALL ACTION STATUS 1 ACITVE
+	public ArrayList<Auction> findAllAuctionsActive(AuctionFilter filter, Pagination pagination);
+
 }

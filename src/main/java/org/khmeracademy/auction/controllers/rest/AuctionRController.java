@@ -242,4 +242,19 @@ public class AuctionRController {
 		
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
+	
+	//TODO: FIND ALL ACTION STATUS 1 ACTIVE FOR FRONT END
+	@RequestMapping(value="/find-all-auctions-active",method=RequestMethod.GET)
+	@ApiImplicitParams({
+			@ApiImplicitParam(name="page", paramType="query", defaultValue="1", dataType="int" ) ,
+			@ApiImplicitParam(name="limit", paramType="query", defaultValue="15", dataType="int"),
+			@ApiImplicitParam(name="productName", paramType="query", defaultValue="")
+	})
+	public ResponseEntity<Map<String,Object>> findAllAuctionsActive(@ApiIgnore AuctionFilter filter, @ApiIgnore Pagination pagination) {
+		ArrayList<Auction> arr = auctionService.findAllAuctionsActive(filter, pagination);
+		Map<String,Object> map = getMapObject(arr);
+		map.put("PAGINATION", pagination);
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
+
 }
