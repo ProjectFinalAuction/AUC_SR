@@ -178,14 +178,14 @@ public interface ProductRepository {
 	
 	
 			
-	String D_PRODUCT= "UPDATE auc_product SET status = 2 WHERE product_id = #{product_id}";
+	String D_PRODUCT= "UPDATE auc_product SET status = '2' WHERE product_id = #{product_id}";
 	@Delete(D_PRODUCT)
 	public boolean deleteProduct(int  product_id);
 	
 	
 	
 	String R_PRODUCT_HAS_SUPPLIER=
-			"SELECT *FROM v_find_all_products P INNER JOIN auc_supplier S ON P.supplier_id = S.supplier_id WHERE P.supplier_id = #{supplier_id} and P.status IN ('0','1')";
+			"SELECT *FROM v_find_all_products P INNER JOIN auc_supplier S ON P.supplier_id = S.supplier_id WHERE P.supplier_id = #{supplier_id} and P.status='1' ";
 	@Select(R_PRODUCT_HAS_SUPPLIER)
 	@Results(value={
 			// supplier
