@@ -1,8 +1,6 @@
 package org.khmeracademy.auction.entities;
 
-import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AuctionInputUpdate {
 	private int product_id;
@@ -11,13 +9,13 @@ public class AuctionInputUpdate {
 	private double buy_price;
 	private double increment_price;
 	private double current_price;
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date start_date;
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date end_date;
+	//@JsonFormat(pattern = "yyyy-mm-dd hh24:mi:ss")
+	private String start_date;
+	//@JsonFormat(pattern = "yyyy-mm-dd hh24:mi:ss")
+	private String end_date;
 	private String status;
 	private String created_by;
-	private Date created_date;
+	private String created_date;
 	private String comment;
 	
 	public AuctionInputUpdate() {
@@ -26,8 +24,8 @@ public class AuctionInputUpdate {
 	}
 	private int auction_id; 
 	public AuctionInputUpdate(int auction_id, int product_id, String product_condition, double start_price,
-			double buy_price, double increment_price, double current_price, Date start_date, Date end_date,
-			String status, String created_by, Date created_date, String comment) {
+			double buy_price, double increment_price, double current_price, String start_date, String end_date,
+			String status, String created_by, String created_date, String comment) {
 		super();
 		this.auction_id = auction_id;
 		this.product_id = product_id;
@@ -86,16 +84,16 @@ public class AuctionInputUpdate {
 	public void setCurrent_price(double current_price) {
 		this.current_price = current_price;
 	}
-	public Date getStart_date() {
+	public String getStart_date() {
 		return start_date;
 	}
-	public void setStart_date(Date start_date) {
+	public void setStart_date(String start_date) {
 		this.start_date = start_date;
 	}
-	public Date getEnd_date() {
+	public String getEnd_date() {
 		return end_date;
 	}
-	public void setEnd_date(Date end_date) {
+	public void setEnd_date(String end_date) {
 		this.end_date = end_date;
 	}
 	public String getStatus() {
@@ -110,10 +108,10 @@ public class AuctionInputUpdate {
 	public void setCreated_by(String created_by) {
 		this.created_by = created_by;
 	}
-	public Date getCreated_date() {
+	public String getCreated_date() {
 		return created_date;
 	}
-	public void setCreated_date(Date created_date) {
+	public void setCreated_date(String created_date) {
 		this.created_date = created_date;
 	}
 	public String getComment() {

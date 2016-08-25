@@ -70,6 +70,7 @@ public class AuctionServiceImpl implements AuctionService{
 	@Override
 	public ArrayList<Auction> findAuctionBrandByCategory(int category_id) {
 		// TODO Auto-generated method stub
+		System.out.println(AuctionRepository.ADD_AUCTION);
 		return auctionRepository.findAuctionBrandByCategory(category_id);
 	}
 

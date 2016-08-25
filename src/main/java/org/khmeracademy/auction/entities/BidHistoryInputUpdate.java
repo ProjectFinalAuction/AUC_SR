@@ -7,7 +7,7 @@ public class BidHistoryInputUpdate {
 	private int auction_id;
 	private int user_id;
 	private double current_price;
-	private Date bid_date;
+	private String bid_date;
 	public int getBid_id() {
 		return bid_id;
 	}
@@ -32,10 +32,10 @@ public class BidHistoryInputUpdate {
 	public void setCurrent_price(double current_price) {
 		this.current_price = current_price;
 	}
-	public Date getBid_date() {
+	public String getBid_date() {
 		return bid_date;
 	}
-	public void setBid_date(Date bid_date) {
+	public void setBid_date(String bid_date) {
 		this.bid_date = bid_date;
 	}
 	
