@@ -20,7 +20,7 @@ public class InvoiceDetailServiceImpl implements InvoiceDetailService {
 	}
 
 	@Override
-	public ArrayList<InvoiceDetail> findInvoiceDetailByInvoiceId(int invoice_id) {
+	public InvoiceDetail findInvoiceDetailByInvoiceId(int invoice_id) {
 		return invoiceDetailRepository.findInvoiceDetailByInvoiceId(invoice_id);
 	}
 

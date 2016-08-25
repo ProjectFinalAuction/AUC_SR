@@ -71,8 +71,21 @@ public class InvoiceDetailRController {
 	
 	@RequestMapping(value="/find-invoice-detail-by-invoice-id/{invoice_id}", method=RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findInvoiceDetailByInvoiceId(@PathVariable int invoice_id){
-		ArrayList<InvoiceDetail> arr = invoiceDetailService.findInvoiceDetailByInvoiceId(invoice_id);
-		Map<String,Object> map = getMapObject(arr);
+		InvoiceDetail inv = invoiceDetailService.findInvoiceDetailByInvoiceId(invoice_id);
+		Map<String,Object> map = new HashMap<String, Object>();
+		try{
+			if(inv!=null){
+				map.put("DATA", inv);
+				map.put("MESSAGE", "SUCCESS");
+				map.put("STATUS", true);
+			}else{
+				map.put("MESSAGE", "UNSUCCESS");
+				map.put("STATUS", true);
+			}				
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	

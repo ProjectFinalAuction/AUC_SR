@@ -210,8 +210,8 @@ public interface AuctionRepository {
 			+ "	start_date,	" + "	end_date,	" + "	status,	" + "	created_by,	" + "	created_date,	"
 			+ "	comment)	" + "	VALUES (	" + "	#{product_id},	" + "	#{product_condition},	"
 			+ "	#{start_price}, " + " #{buy_price},	" + " #{increment_price},	" + "	#{current_price},	"
-			+ "	to_timestamp(#{start_date}, 'yyyy-mm-dd hh24:mi:ss')	" + ",	to_timestamp(#{end_date}, 'yyyy-mm-dd hh24:mi:ss'),	" + "	#{status},	" + "	#{created_by},	"
-			+ "	to_timestamp(#{created_date}, 'yyyy-mm-dd hh24:mi:ss'),	" + "	#{comment}	" + "	)	";
+			+ "	to_timestamp(#{start_date}, 'DD/MM/YYYY HH24:MI:SS')	" + ",	to_timestamp(#{end_date}, 'DD/MM/YYYY HH24:MI:SS'),	" + "	#{status},	" + "	#{created_by},	"
+			+ "	to_timestamp(#{created_date}, 'DD/MM/YYYY HH24:MI:SS'),	" + "	#{comment}	" + "	)	";
 
 	@Insert(ADD_AUCTION)
 	public boolean addAuction(AuctionInputUpdate a);
@@ -219,8 +219,8 @@ public interface AuctionRepository {
 	final String UPDATE_AUCTION = "	UPDATE auc_auction	" + "	SET product_id = #{product_id},	"
 			+ "	product_condition = #{product_condition},	" + "	start_price = #{start_price},	"
 			+ "	buy_price = #{buy_price},	" + "	increment_price = #{increment_price},	"
-			+ "	current_price = #{current_price},	" + "	start_date = to_timestamp(#{start_date}, 'yyyy-mm-dd hh24:mi:ss'),	"
-			+ "	end_date = to_timestamp(#{end_date}, 'yyyy-mm-dd hh24:mi:ss'),	" + "	status = #{status},	" + "	comment = #{comment}	"
+			+ "	current_price = #{current_price},	" + "	start_date = to_timestamp(#{start_date}, 'DD/MM/YYYY HH24:MI:SS'),	"
+			+ "	end_date = to_timestamp(#{end_date}, 'DD/MM/YYYY HH24:MI:SS'),	" + "	status = #{status},	" + "	comment = #{comment}	"
 			+ "	WHERE auction_id = #{auction_id}	";
 
 	@Update(UPDATE_AUCTION)

@@ -8,7 +8,7 @@ import org.khmeracademy.auction.entities.InvoiceDetailInputUpdate;
 public interface InvoiceDetailService {
 	
 	public ArrayList<InvoiceDetail> findAllInvoiceDetails();	
-	public ArrayList<InvoiceDetail> findInvoiceDetailByInvoiceId(int invoice_id);	
+	public InvoiceDetail findInvoiceDetailByInvoiceId(int invoice_id);	
 	public ArrayList<InvoiceDetail> findInvoiceDetailByAuctionId(int auction_id);	
 	public boolean addInvoiceDetail(InvoiceDetailInputUpdate invd);	
 	public boolean updateInvoiceDetail(InvoiceDetailInputUpdate invd);	
