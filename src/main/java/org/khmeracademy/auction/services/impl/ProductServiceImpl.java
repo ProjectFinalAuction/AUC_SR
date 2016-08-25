@@ -13,6 +13,7 @@ import org.khmeracademy.auction.repositories.GalleryRepository;
 import org.khmeracademy.auction.repositories.ProductRepository;
 import org.khmeracademy.auction.services.FileUploadService;
 import org.khmeracademy.auction.services.ProductService;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,9 +31,10 @@ public class ProductServiceImpl implements ProductService {
 	FileUploadService fileUploadService;
 
 	@Override
-	public ArrayList<Product> findAllProducts() {
+	public ArrayList<Product> findAllProducts(Pagination pagination) {
 		// TODO Auto-generated method stub
-		return pr.findAllProducts();
+		pagination.setTotalCount(pr.count());
+		return pr.findAllProducts(pagination);
 	}
 
 	@Override

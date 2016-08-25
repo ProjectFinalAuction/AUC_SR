@@ -14,12 +14,16 @@ import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.Gallery;
 import org.khmeracademy.auction.entities.Product;
 import org.khmeracademy.auction.entities.ProductInputUpdate;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductRepository {
 	//READ
-	String R_PRODUCTS="SELECT * FROM v_find_all_products WHERE status<>'2'";
+	String R_PRODUCTS="SELECT * FROM v_find_all_products WHERE status<>'2' "
+			+ "ORDER BY product_id DESC LIMIT #{limit} OFFSET #{offset}";
+	
+	String COUNT="SELECT COUNT(product_id) FROM v_find_all_products WHERE status<>'2' ";
 	
 	String R_GALLERY_BY_ID ="SELECT * FROM auc_gallery WHERE product_id = #{product_id}";
 	
@@ -52,7 +56,10 @@ public interface ProductRepository {
 		
 			
 	})
-	public ArrayList<Product> findAllProducts();
+	public ArrayList<Product> findAllProducts(Pagination pagination);
+	
+	@Select(COUNT)
+	public Long count();
 	
 	
 	@Select(R_GALLERY_BY_ID)

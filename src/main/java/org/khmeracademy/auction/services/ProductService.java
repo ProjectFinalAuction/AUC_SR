@@ -7,11 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.khmeracademy.auction.entities.Product;
 import org.khmeracademy.auction.entities.ProductInputUpdate;
 import org.khmeracademy.auction.entities.ProductInputUpdate.ProductUpdate;
+import org.khmeracademy.auction.utils.Pagination;
 
 
 public interface ProductService {
 
-	public ArrayList<Product> findAllProducts();
+	public ArrayList<Product> findAllProducts(Pagination pagination);
 
 	public ArrayList<Product> findProductByName(String product_name);
 
