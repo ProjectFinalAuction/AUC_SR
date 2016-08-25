@@ -1,6 +1,8 @@
 package org.khmeracademy.auction.entities;
 
-public class Auction {
+import java.util.Date;
+
+public class Auction_Org {
 	
 	private int auction_id; 
 	private Product product;  // Object
@@ -9,11 +11,11 @@ public class Auction {
 	private double buy_price;
 	private double increment_price;
 	private double current_price;
-	private String start_date;
-	private String end_date;
+	private Date start_date;
+	private Date end_date;
 	private String status; // 0: Inactive, 1: active, 2: deleted, 3: completed, 4: Checkout
 	private String created_by;
-	private String created_date;
+	private Date created_date;
 	private String comment;
 	private int winner_id;
 	private int num_bid;
@@ -60,16 +62,16 @@ public class Auction {
 	public void setCurrent_price(double current_price) {
 		this.current_price = current_price;
 	}
-	public String getStart_date() {
+	public Date getStart_date() {
 		return start_date;
 	}
-	public void setStart_date(String start_date) {
+	public void setStart_date(Date start_date) {
 		this.start_date = start_date;
 	}
-	public String getEnd_date() {
+	public Date getEnd_date() {
 		return end_date;
 	}
-	public void setEnd_date(String end_date) {
+	public void setEnd_date(Date end_date) {
 		this.end_date = end_date;
 	}
 	public String getStatus() {
@@ -84,10 +86,10 @@ public class Auction {
 	public void setCreated_by(String created_by) {
 		this.created_by = created_by;
 	}
-	public String getCreated_date() {
+	public Date getCreated_date() {
 		return created_date;
 	}
-	public void setCreated_date(String created_date) {
+	public void setCreated_date(Date created_date) {
 		this.created_date = created_date;
 	}
 	public String getComment() {
@@ -114,7 +116,6 @@ public class Auction {
 	public void setBid_current_price(double bid_current_price) {
 		this.bid_current_price = bid_current_price;
 	}
-	
 	@Override
 	public String toString() {
 		return "Auction [auction_id=" + auction_id + ", product=" + product + ", product_condition=" + product_condition
@@ -124,6 +125,5 @@ public class Auction {
 				+ comment + ", winner_id=" + winner_id + ", num_bid=" + num_bid + ", bid_current_price="
 				+ bid_current_price + "]";
 	}
-	
 	
 }

@@ -2,12 +2,12 @@ package org.khmeracademy.auction.entities;
 
 import java.sql.Date;
 
-public class BidHistory {
+public class BidHistory_Org {
 	private int bid_id;
 	private Auction auction;  // Auction Object
 	private User user;		  // User Object
 	private double current_price;
-	private String bid_date;
+	private Date bid_date;
 	public int getBid_id() {
 		return bid_id;
 	}
@@ -32,14 +32,17 @@ public class BidHistory {
 	public void setCurrent_price(double current_price) {
 		this.current_price = current_price;
 	}
-	public String getBid_date() {
+	public Date getBid_date() {
 		return bid_date;
 	}
-	public void setBid_date(String bid_date) {
+	public void setBid_date(Date bid_date) {
 		this.bid_date = bid_date;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "BidHistory [bid_id=" + bid_id + ", auction=" + auction + ", user=" + user + ", current_price="
+				+ current_price + ", bid_date=" + bid_date + "]";
+	}
 	
 	
 }
