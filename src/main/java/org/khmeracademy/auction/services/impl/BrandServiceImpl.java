@@ -3,8 +3,10 @@ package org.khmeracademy.auction.services.impl;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Brand;
+import org.khmeracademy.auction.filtering.BrandFilter;
 import org.khmeracademy.auction.repositories.BrandRepository;
 import org.khmeracademy.auction.services.BrandService;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,9 @@ public class BrandServiceImpl implements BrandService {
 	BrandRepository br;
 	
 	@Override
-	public ArrayList<Brand> findAllBrands() {
-		// TODO Auto-generated method stub
-		return br.findAllBrands();
+	public ArrayList<Brand> findAllBrands(BrandFilter filter, Pagination pagination) {
+		pagination.setTotalCount(br.count(filter));
+		return br.findAllBrands(filter, pagination);
 	}
 
 	@Override
@@ -53,4 +55,5 @@ public class BrandServiceImpl implements BrandService {
 	public Brand findBrandById(int brand_id){
 		return br.findBrandById(brand_id);
 	}
+
 }

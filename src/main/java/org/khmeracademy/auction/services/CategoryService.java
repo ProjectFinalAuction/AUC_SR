@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Category;
 import org.khmeracademy.auction.entities.CategoryInputUpdate;
+import org.khmeracademy.auction.filtering.CategoryFilter;
+import org.khmeracademy.auction.utils.Pagination;
 
 
 
 public interface CategoryService {
-	public ArrayList<CategoryInputUpdate> findAllCategories();
+	public ArrayList<CategoryInputUpdate> findAllCategories(CategoryFilter filter, Pagination pagination);
 	
 	public ArrayList<Category> findMainCategories();
 	
@@ -25,4 +27,5 @@ public interface CategoryService {
 	public boolean deleteCategory(int category_id);
 	
 	public CategoryInputUpdate findCategoryById(int category_id);
+
 }

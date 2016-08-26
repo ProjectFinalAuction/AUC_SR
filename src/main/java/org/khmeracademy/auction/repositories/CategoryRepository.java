@@ -6,19 +6,25 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Many;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.Category;
 import org.khmeracademy.auction.entities.CategoryInputUpdate;
+import org.khmeracademy.auction.filtering.CategoryFilter;
+import org.khmeracademy.auction.filtering.SupplierFilter;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CategoryRepository {
 	//READ
 	String R_CATEGORIES="SELECT * FROM auc_category WHERE status != '2' AND parent_id IN (NULL,0)";
-	String R_ALL_CATEGORIES="SELECT * FROM auc_category WHERE status != '2'";
+	String R_ALL_CATEGORIES="SELECT * FROM auc_category WHERE status != '2'"
+			+ "AND LOWER(category_name) LIKE LOWER('%' || #{filter.categoryName} || '%')" + "ORDER BY category_id DESC "
+			+ "LIMIT #{pagination.limit} " + "OFFSET #{pagination.offset} ";
 	String R_CATEGORY_ByID="SELECT c.* , p.category_name parent_name FROM auc_category c LEFT JOIN auc_category p ON c.parent_id = p.category_id WHERE c.category_id = #{category_id}";
 	
 	String R_SUB_CATEGORIES = "SELECT * FROM auc_category WHERE status !='2' AND parent_id = #{category_id}";
@@ -60,7 +66,7 @@ public interface CategoryRepository {
 	String D_CATEGORY="UPDATE auc_category SET status = '2' WHERE category_id = #{category_id}";
 	
 	@Select(R_ALL_CATEGORIES)	
-	public ArrayList<CategoryInputUpdate> findAllCategories();
+	public ArrayList<CategoryInputUpdate> findAllCategories(@Param("filter") CategoryFilter filter, @Param("pagination") Pagination pagination);
 	
 	@Select(R_CATEGORIES)
 	@Results(value={
@@ -94,4 +100,7 @@ public interface CategoryRepository {
 	
 	@Select(R_CATEGORY_ByID)
 	public CategoryInputUpdate findCategoryById(int category_id);
+	
+	@Select("SELECT COUNT(category_id) FROM auc_category WHERE LOWER(category_name) LIKE LOWER('%' || #{filter.categoryName} || '%')")
+	public Long count(@Param("filter") CategoryFilter filter);
 }

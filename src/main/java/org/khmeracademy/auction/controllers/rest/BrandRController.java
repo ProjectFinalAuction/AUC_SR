@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.khmeracademy.auction.entities.Brand;
+import org.khmeracademy.auction.filtering.BrandFilter;
 import org.khmeracademy.auction.services.BrandService;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/api")
@@ -61,9 +67,16 @@ public class BrandRController {
 	}
 
 	@RequestMapping(value="/find-all-brands",method=RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> findAllBrands() {
-		ArrayList<Brand> arr = bs.findAllBrands();
+	//get input box in swagger
+		@ApiImplicitParams({
+			@ApiImplicitParam(name="page", paramType="query", defaultValue="1", dataType="int" ) ,
+			@ApiImplicitParam(name="limit", paramType="query", defaultValue="10", dataType="int"),
+			@ApiImplicitParam(name="brandName", paramType="query", defaultValue="")
+		})
+	public ResponseEntity<Map<String, Object>> findAllBrands(@ApiIgnore BrandFilter filter, @ApiIgnore Pagination pagination) {
+		ArrayList<Brand> arr = bs.findAllBrands(filter, pagination);
 		Map<String, Object> map = getMapObject(arr);
+		map.put("PAGINATION", pagination);
 		return new ResponseEntity<Map<String, Object>>(map,HttpStatus.OK);
 	}
 	

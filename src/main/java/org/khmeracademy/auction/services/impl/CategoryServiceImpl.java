@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.Category;
 import org.khmeracademy.auction.entities.CategoryInputUpdate;
+import org.khmeracademy.auction.filtering.CategoryFilter;
 import org.khmeracademy.auction.repositories.CategoryRepository;
 import org.khmeracademy.auction.services.CategoryService;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
@@ -15,9 +17,9 @@ public class CategoryServiceImpl implements CategoryService {
 	private CategoryRepository cat;
 	
 	@Override
-	public ArrayList<CategoryInputUpdate> findAllCategories() {
-		// TODO Auto-generated method stub
-		return cat.findAllCategories();
+	public ArrayList<CategoryInputUpdate> findAllCategories(CategoryFilter filter, Pagination pagination) {
+		pagination.setTotalCount(cat.count(filter));
+		return cat.findAllCategories(filter, pagination);
 	}
 	
 	@Override
