@@ -5,16 +5,20 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.InvoiceInputUpdate;
+import org.khmeracademy.auction.filtering.InvoiceFilter;
+import org.khmeracademy.auction.filtering.TopupFilter;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface InvoiceRepository {
-	final String FIND_ALL_INVOICES ="SELECT * FROM v_find_all_invoices where status<>'2'";  // Status 2 is deleted
+	final String FIND_ALL_INVOICES ="SELECT * FROM v_find_all_invoices where status<>'2'";// Status 2 is deleted
 	@Select(FIND_ALL_INVOICES)
 	@Results(value={
 			@Result(property="user.user_id", column="user_id"),
@@ -31,6 +35,7 @@ public interface InvoiceRepository {
 			@Result(property="user.status", column="user_status")
 	})
 	public ArrayList<InvoiceInputUpdate> findAllInvoices();
+
 	
 	final String FIND_INVOICE_BY_USER_NAME=
 					" SELECT * FROM v_find_all_invoices WHERE user_name = #{user_name} ";

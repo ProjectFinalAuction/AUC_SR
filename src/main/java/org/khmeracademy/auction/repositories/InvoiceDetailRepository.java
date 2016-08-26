@@ -4,17 +4,22 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.InvoiceDetail;
 import org.khmeracademy.auction.entities.InvoiceDetailInputUpdate;
+import org.khmeracademy.auction.filtering.InvoiceFilter;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface InvoiceDetailRepository {
-	final String FIND_ALL_INVOICE_DETAILS="SELECT * FROM v_find_all_invoice_details WHERE status<>'2'"; // status 2 is deleted
+	final String FIND_ALL_INVOICE_DETAILS="SELECT * FROM v_find_all_invoice_details WHERE status<>'2'"
+			+ "AND LOWER(first_name) LIKE LOWER('%' || #{filter.fullName} || '%')" + "ORDER BY invoice_id DESC "
+			+ "LIMIT #{pagination.limit} " + "OFFSET #{pagination.offset} ";// status 2 is deleted
 	@Select(FIND_ALL_INVOICE_DETAILS)
 	@Results(value={
 			// Invoice
@@ -54,7 +59,10 @@ public interface InvoiceDetailRepository {
 			@Result(property="auction.product.product_description", column="product_description"),
 			@Result(property="auction.product.qty", column="product_qty")
 	})
-	public ArrayList<InvoiceDetail> findAllInvoiceDetails();
+	public ArrayList<InvoiceDetail> findAllInvoiceDetails(@Param("filter") InvoiceFilter filter, @Param("pagination") Pagination pagination);
+	
+	@Select("SELECT COUNT(invoice_id) FROM v_find_all_invoice_details WHERE LOWER(first_name) LIKE LOWER('%' || #{filter.fullName} || '%')")
+	public Long count(@Param("filter") InvoiceFilter filter);
 	
 	final String FIND_INVOICE_DETAIL_BY_INVOICE_ID="SELECT * FROM v_find_all_invoice_details WHERE invoice_id = #{invoice_id}";
 	@Select(FIND_INVOICE_DETAIL_BY_INVOICE_ID)

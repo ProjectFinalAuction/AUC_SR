@@ -9,8 +9,10 @@ import org.khmeracademy.auction.entities.BidHistory;
 import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
 import org.khmeracademy.auction.entities.BidHistoryWithFirstProductImage;
 import org.khmeracademy.auction.entities.UserCreditHistory;
+import org.khmeracademy.auction.filtering.BidFilter;
 import org.khmeracademy.auction.services.BidHistoryService;
 import org.khmeracademy.auction.services.UserCreditHistoryService;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import springfox.documentation.annotations.ApiIgnore;
 
 @RestController()
 @RequestMapping("/api")
@@ -71,10 +77,16 @@ public class BidHistoryRController {
 	}
 
 	@RequestMapping(value = "/find-all-bid-history", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> findAllBidHistory() {
-
-		ArrayList<BidHistory> arr = bidHistoryService.findAllBidHistory();
+	@ApiImplicitParams({
+		@ApiImplicitParam(name="page", paramType="query", defaultValue="1", dataType="int"),
+		@ApiImplicitParam(name="limit", paramType="query", defaultValue="10", dataType="int"),
+		@ApiImplicitParam(name="userName", paramType="query", defaultValue="")
+	})
+	public ResponseEntity<Map<String, Object>> findAllBidHistory(@ApiIgnore BidFilter filter, @ApiIgnore Pagination pagination) {
+		
+		ArrayList<BidHistory> arr = bidHistoryService.findAllBidHistory(filter, pagination);
 		Map<String, Object> map = getMapObject(arr);
+		map.put("PAGINATION", pagination);
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 

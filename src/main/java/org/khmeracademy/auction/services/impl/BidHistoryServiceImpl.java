@@ -7,8 +7,10 @@ import org.khmeracademy.auction.entities.BidHistory;
 
 import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
 import org.khmeracademy.auction.entities.BidHistoryWithFirstProductImage;
+import org.khmeracademy.auction.filtering.BidFilter;
 import org.khmeracademy.auction.repositories.BidHistoryRepository;
 import org.khmeracademy.auction.services.BidHistoryService;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +21,9 @@ public class BidHistoryServiceImpl implements BidHistoryService{
 	
 		
 	@Override
-	public ArrayList<BidHistory> findAllBidHistory() {
-		return bidHistoryRepository.findAllBidHistory();
+	public ArrayList<BidHistory> findAllBidHistory(BidFilter filter, Pagination pagination) {
+		pagination.setTotalCount(bidHistoryRepository.count(filter));
+		return bidHistoryRepository.findAllBidHistory(filter, pagination);
 	}
 
 	@Override

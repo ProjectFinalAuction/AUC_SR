@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.InvoiceDetail;
 import org.khmeracademy.auction.entities.InvoiceDetailInputUpdate;
+import org.khmeracademy.auction.filtering.InvoiceFilter;
 import org.khmeracademy.auction.repositories.InvoiceDetailRepository;
 import org.khmeracademy.auction.services.InvoiceDetailService;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +17,9 @@ public class InvoiceDetailServiceImpl implements InvoiceDetailService {
 	private InvoiceDetailRepository invoiceDetailRepository;
 
 	@Override
-	public ArrayList<InvoiceDetail> findAllInvoiceDetails() {
-		return invoiceDetailRepository.findAllInvoiceDetails();
+	public ArrayList<InvoiceDetail> findAllInvoiceDetails(InvoiceFilter filter, Pagination pagination) {
+		pagination.setTotalCount(invoiceDetailRepository.count(filter));
+		return invoiceDetailRepository.findAllInvoiceDetails(filter, pagination);
 	}
 
 	@Override

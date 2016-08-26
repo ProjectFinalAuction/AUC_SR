@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.UserCreditHistory;
 import org.khmeracademy.auction.entities.UserCreditHistoryInputUpdate;
+import org.khmeracademy.auction.filtering.TopupFilter;
 import org.khmeracademy.auction.repositories.UserCreditHistoryRepository;
 import org.khmeracademy.auction.services.UserCreditHistoryService;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,9 +52,10 @@ public class UserCreditHistoryServiceImpl implements UserCreditHistoryService {
 	}
 
 	@Override
-	public ArrayList<UserCreditHistory> findAllActiveUserCreditHistoryWithEndingAmount() {
+	public ArrayList<UserCreditHistory> findAllActiveUserCreditHistoryWithEndingAmount(TopupFilter filter, Pagination pagination) {
 		// 23-08-2016
-		return userCreditHistoryRepository.findAllActiveUserCreditHistoryWithEndingAmount();
+		pagination.setTotalCount(userCreditHistoryRepository.count(filter));
+		return userCreditHistoryRepository.findAllActiveUserCreditHistoryWithEndingAmount(filter, pagination);
 	}
 	
 	

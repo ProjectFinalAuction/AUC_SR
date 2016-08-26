@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.InvoiceInputUpdate;
+import org.khmeracademy.auction.filtering.InvoiceFilter;
+import org.khmeracademy.auction.utils.Pagination;
 
 public interface InvoiceService {
 	
@@ -13,4 +15,5 @@ public interface InvoiceService {
 	public boolean addInvoice(InvoiceInputUpdate inv);
 	public boolean updateInvoice(InvoiceInputUpdate inv);
 	public boolean deleteInvoice(int invoice_id);
+	
 }

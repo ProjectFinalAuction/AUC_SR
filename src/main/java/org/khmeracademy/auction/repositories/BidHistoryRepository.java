@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -13,11 +14,15 @@ import org.khmeracademy.auction.entities.BidHistory;
 
 import org.khmeracademy.auction.entities.BidHistoryInputUpdate;
 import org.khmeracademy.auction.entities.BidHistoryWithFirstProductImage;
+import org.khmeracademy.auction.filtering.BidFilter;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BidHistoryRepository {
-	final String FIND_ALL_BID_HISTORY = "SELECT * FROM v_find_all_bid_history";
+	final String FIND_ALL_BID_HISTORY = "SELECT * FROM v_find_all_bid_history "
+			+ "WHERE LOWER(user_name) LIKE LOWER('%' || #{filter.userName} || '%')" + "ORDER BY bid_id DESC "
+			+ "LIMIT #{pagination.limit} " + "OFFSET #{pagination.offset} ";
 	@Select(FIND_ALL_BID_HISTORY)
 	@Results(value={
 			// user
@@ -49,7 +54,10 @@ public interface BidHistoryRepository {
 			@Result(property="auction.product.product_description", column="product_description")
 						
 	})
-	public ArrayList<BidHistory> findAllBidHistory();
+	public ArrayList<BidHistory> findAllBidHistory(@Param("filter") BidFilter filter, @Param("pagination") Pagination pagination);
+	
+	@Select("SELECT COUNT(bid_id) FROM v_find_all_bid_history WHERE LOWER(user_name) LIKE LOWER('%' || #{filter.userName} || '%')")
+	public Long count(@Param("filter") BidFilter filter);
 
 	final String FIND_BID_HISTORY_BY_AUCTION_ID="SELECT * FROM v_find_all_bid_history WHERE auction_id = #{auction_id}";
 	@Select(FIND_BID_HISTORY_BY_AUCTION_ID)

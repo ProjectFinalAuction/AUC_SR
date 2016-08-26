@@ -6,7 +6,9 @@ import java.util.Map;
 
 import org.khmeracademy.auction.entities.UserCreditHistory;
 import org.khmeracademy.auction.entities.UserCreditHistoryInputUpdate;
+import org.khmeracademy.auction.filtering.TopupFilter;
 import org.khmeracademy.auction.services.UserCreditHistoryService;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import springfox.documentation.annotations.ApiIgnore;
 
 @RestController()
 @RequestMapping("/api")
@@ -132,9 +138,15 @@ public class UserCreditHistoryRController {
 	
 	// Find all active user credit history with ending amount - for Chanthem (23/08/2016)
 	@RequestMapping(value="/find-all-active-user-credit-history-with-ending-amount", method=RequestMethod.GET)
-	public ResponseEntity<Map<String,Object>> findAllActiveUserCreditHistoryWithEndingAmount(){
-		ArrayList<UserCreditHistory> arr = userCreditHistoryService.findAllActiveUserCreditHistoryWithEndingAmount();
+	@ApiImplicitParams({
+		@ApiImplicitParam(name="page", paramType="query", defaultValue="1", dataType="int"),
+		@ApiImplicitParam(name="limit", paramType="query", defaultValue="10", dataType="int"),
+		@ApiImplicitParam(name="fullName", paramType="query", defaultValue="")
+	})
+	public ResponseEntity<Map<String,Object>> findAllActiveUserCreditHistoryWithEndingAmount(@ApiIgnore TopupFilter filter, @ApiIgnore Pagination pagination){
+		ArrayList<UserCreditHistory> arr = userCreditHistoryService.findAllActiveUserCreditHistoryWithEndingAmount(filter, pagination);
 		Map<String,Object> map = getMapObject(arr);
+		map.put("PAGINATION", pagination);
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	

@@ -4,12 +4,16 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.khmeracademy.auction.entities.UserCreditHistory;
 import org.khmeracademy.auction.entities.UserCreditHistoryInputUpdate;
+import org.khmeracademy.auction.filtering.BidFilter;
+import org.khmeracademy.auction.filtering.TopupFilter;
+import org.khmeracademy.auction.utils.Pagination;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -100,8 +104,9 @@ public interface UserCreditHistoryRepository {
 	})
 	public UserCreditHistory findUserCreditHistoryByUserId(int userId);
 
-	final String FIND_ALL_ACTIVE_USER_CREDIT_HISTORY_WITH_ENDING_AMOUNT=
-			" SELECT * FROM v_find_bid_ending_amount ";
+	final String FIND_ALL_ACTIVE_USER_CREDIT_HISTORY_WITH_ENDING_AMOUNT=" SELECT * FROM v_find_bid_ending_amount "
+			+ "WHERE LOWER(first_name) LIKE LOWER('%' || #{filter.fullName} || '%')" + "ORDER BY credit_id DESC "
+			+ "LIMIT #{pagination.limit} " + "OFFSET #{pagination.offset} ";
 	@Select(FIND_ALL_ACTIVE_USER_CREDIT_HISTORY_WITH_ENDING_AMOUNT)
 	@Results(value={
 			@Result(property="user.user_id", column="user_id"),
@@ -110,5 +115,8 @@ public interface UserCreditHistoryRepository {
 			@Result(property="user.last_name", column="last_name"),
 			@Result(property="user.status", column="user_status")
 	})
-	public ArrayList<UserCreditHistory> findAllActiveUserCreditHistoryWithEndingAmount();
+	public ArrayList<UserCreditHistory> findAllActiveUserCreditHistoryWithEndingAmount(@Param("filter") TopupFilter filter,@Param("pagination") Pagination pagination);
+	
+	@Select("SELECT COUNT(credit_id) FROM v_find_bid_ending_amount WHERE LOWER(first_name) LIKE LOWER('%' || #{filter.fullName} || '%')")
+	public Long count(@Param("filter") TopupFilter filter);
 }

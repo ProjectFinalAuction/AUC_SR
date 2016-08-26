@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.khmeracademy.auction.entities.UserCreditHistory;
 import org.khmeracademy.auction.entities.UserCreditHistoryInputUpdate;
+import org.khmeracademy.auction.filtering.TopupFilter;
+import org.khmeracademy.auction.utils.Pagination;
 
 public interface UserCreditHistoryService {
 	public ArrayList<UserCreditHistory> findAllUserCreditHistory();
@@ -15,5 +17,7 @@ public interface UserCreditHistoryService {
 	
 	public UserCreditHistory findByUserId(int userId);
 	
-	public ArrayList<UserCreditHistory> findAllActiveUserCreditHistoryWithEndingAmount();
+	public ArrayList<UserCreditHistory> findAllActiveUserCreditHistoryWithEndingAmount(TopupFilter filter,
+			Pagination pagination);
+	
 }
