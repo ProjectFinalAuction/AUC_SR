@@ -26,4 +26,6 @@ public interface UserService {
 	public boolean updateUser(User user);
 	
 	public boolean deleteUsers(int userId);
+	
+	public User findUserByVerifiedCode(String verified_code);
 }

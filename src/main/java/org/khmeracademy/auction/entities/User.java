@@ -23,6 +23,7 @@ public class User {
 		private Date created_date;
 		private String comment;
 		private List<Role> roles;
+		private String verified_code;
 		
 		public List<Role> getRoles() {
 			return roles;
@@ -126,4 +127,11 @@ public class User {
 		public void setComment(String comment) {
 			this.comment = comment;
 		}
+		public String getVerified_code() {
+			return verified_code;
+		}
+		public void setVerified_code(String verified_code) {
+			this.verified_code = verified_code;
+		}
+		
 }

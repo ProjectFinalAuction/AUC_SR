@@ -20,6 +20,8 @@ public class UserInputUpdate {
 	private Date created_date;
 	private String comment;
 	private int role_id;
+	private String verified_code;
+	
 	public int getUser_id() {
 		return user_id;
 	}
@@ -122,4 +124,11 @@ public class UserInputUpdate {
 	public void setRole_id(int role_id) {
 		this.role_id = role_id;
 	}
+	public String getVerified_code() {
+		return verified_code;
+	}
+	public void setVerified_code(String verified_code) {
+		this.verified_code = verified_code;
+	}
+	
 }

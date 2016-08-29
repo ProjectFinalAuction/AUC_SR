@@ -38,8 +38,7 @@ public interface UserRepository {
 	String R_USER_ByNAME = "SELECT * FROM auc_user WHERE user_name = #{user_name} or first_name = #{user_name} or last_name = #{user_name}";
 
 	@Select(R_USER_ByNAME)
-	@Results(value = {
-			@Result(property = "roles", column = "role_id", many = @Many(select = "findUserRoleByUserId") ) })
+	@Results(value = { @Result(property = "roles", column = "role_id", many = @Many(select = "findUserRoleByUserId")) })
 	public User getUserByName(@Param("user_name") String user_name);
 
 	String R_ROLE_ByROLEID = "SELECT role_id, role_name FROM auc_role WHERE role_id = #{role_id}";
@@ -91,13 +90,14 @@ public interface UserRepository {
 	 */
 	String C_USER = "INSERT INTO auc_user(user_name, first_name, last_name, gender,"
 			+ "	dob, address, email, password, contact, photo, type, status, "
-			+ " created_date, created_by, comment, role_id) "
+			+ " created_date, created_by, comment, role_id, verified_code) "
 			+ "VALUES(#{user_name}, #{first_name}, #{last_name}, #{gender}, "
 			+ "	#{dob}, #{address}, #{email}, #{password}, #{contact}, #{photo}, #{type}, #{status},"
-			+ " #{created_date}, #{created_by}, #{comment}, #{role_id})";
+			+ " #{created_date}, #{created_by}, #{comment}, #{role_id}, #{verified_code})";
+
 	@Insert(C_USER)
 	public boolean addUser(UserInputUpdate u);
-	
+
 	// Update User
 	String U_USER = "UPDATE auc_user SET " + "		user_name=#{user_name}, " + "		first_name=#{first_name}, "
 			+ "		last_name=#{last_name}, " + "		gender=#{gender}," + "		dob=#{dob}, "
@@ -125,4 +125,11 @@ public interface UserRepository {
 
 	@Select("SELECT COUNT(user_id) FROM auc_user WHERE LOWER(user_name) LIKE LOWER('%'|| #{filter.userName} ||'%')")
 	public Long count(@Param("filter") UserFilter filter);
+
+	
+	
+	// get user by verified_code for confirming email
+	String R_USER_BY_VERIFIED_CODE = "SELECT * FROM auc_user WHERE verified_code = #{verified_code}";
+	@Select(R_USER_BY_VERIFIED_CODE)
+	public User findUserByVerifiedCode(String verified_code);
 }

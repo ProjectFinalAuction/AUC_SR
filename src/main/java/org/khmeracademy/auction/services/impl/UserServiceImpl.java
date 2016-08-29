@@ -76,4 +76,10 @@ public class UserServiceImpl implements UserService {
 		return userRepository.addUser(u);
 	}
 
+	@Override
+	public User findUserByVerifiedCode(String verified_code) {
+		// TODO Auto-generated method stub
+		return userRepository.findUserByVerifiedCode(verified_code);
+	}
+
 }
