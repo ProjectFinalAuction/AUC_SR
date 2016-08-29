@@ -42,9 +42,9 @@ public class InvoiceDetailServiceImpl implements InvoiceDetailService {
 		return invoiceDetailRepository.updateInvoiceDetail(invd);
 	}
 
-	@Override
-	public boolean deleteInvoiceDetail(int invoice_id, int auction_id) {
-		return invoiceDetailRepository.deleteInvoiceDetail(invoice_id, auction_id);
-	}	
+//	@Override
+//	public boolean deleteInvoiceDetail(int invoice_id, int auction_id) {
+//		return invoiceDetailRepository.deleteInvoiceDetail(invoice_id, auction_id);
+//	}	
 	
 }

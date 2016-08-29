@@ -153,13 +153,13 @@ public interface InvoiceDetailRepository {
 	public boolean addInvoiceDetail(InvoiceDetailInputUpdate invd);
 	
 	final String UPDATE_INVOICE_DETAIL="UPDATE auc_invoice_detail "+
-									" SET buy_price = #{buy_price}, qty = #{qty}, status=#{status} "+
+									" SET buy_price = #{buy_price}, qty = #{qty} "+
 									" WHERE invoice_id = #{invoice_id} AND auction_id = #{auction_id} ";
 	@Update(UPDATE_INVOICE_DETAIL)
 	public boolean updateInvoiceDetail(InvoiceDetailInputUpdate invd);
 	
-	final String DELETE_INVOICE_DETAIL="UPDATE auc_invoice_detail SET status = '2' "+
+	/*final String DELETE_INVOICE_DETAIL="UPDATE auc_invoice_detail SET status = '2' "+
 			" WHERE invoice_id = #{invoice_id} AND auction_id = #{auction_id}";
 	@Delete(DELETE_INVOICE_DETAIL)
-	public boolean deleteInvoiceDetail(int invoice_id, int auction_id);
+	public boolean deleteInvoiceDetail(int invoice_id, int auction_id);*/
 }

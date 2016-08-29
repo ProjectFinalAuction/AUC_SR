@@ -120,9 +120,9 @@ public class InvoiceDetailRController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/delete-invoice-detail/{invoice_id}/{auction_id}", method=RequestMethod.DELETE)
-	public ResponseEntity<Map<String,Object>> deleteInvoiceDetail(@PathVariable int invoice_id,@PathVariable  int auction_id){
-		Map<String,Object> map = getMapObjectAfterTransaction(invoiceDetailService.deleteInvoiceDetail(invoice_id, auction_id));
-		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
-	}
+//	@RequestMapping(value="/delete-invoice-detail/{invoice_id}/{auction_id}", method=RequestMethod.DELETE)
+//	public ResponseEntity<Map<String,Object>> deleteInvoiceDetail(@PathVariable int invoice_id,@PathVariable  int auction_id){
+//		Map<String,Object> map = getMapObjectAfterTransaction(invoiceDetailService.deleteInvoiceDetail(invoice_id, auction_id));
+//		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+//	}
 }

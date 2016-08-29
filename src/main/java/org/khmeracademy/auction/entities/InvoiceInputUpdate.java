@@ -8,6 +8,14 @@ public class InvoiceInputUpdate {
 	private int auction_id;
 	private double buy_price;
 	private int qty;
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getInvoice_id() {
 		return invoice_id;
 	}

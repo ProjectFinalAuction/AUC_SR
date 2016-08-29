@@ -83,7 +83,8 @@ public interface InvoiceRepository {
 	
 	final String UPDATE_INVOICE=
 					"	UPDATE auc_invoice	"+
-					"	SET user_id = #{user_id}, 	"+					
+					"	SET user_id = #{user_id}, 	"+	
+					"   status = #{status} "+		
 					"	WHERE invoice_id = #{invoice_id}	";
 	@Update(UPDATE_INVOICE)
 	public boolean updateInvoice(InvoiceInputUpdate inv);

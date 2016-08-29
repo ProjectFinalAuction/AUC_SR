@@ -14,5 +14,5 @@ public interface InvoiceDetailService {
 	public ArrayList<InvoiceDetail> findInvoiceDetailByAuctionId(int auction_id);	
 	public boolean addInvoiceDetail(InvoiceDetailInputUpdate invd);	
 	public boolean updateInvoiceDetail(InvoiceDetailInputUpdate invd);	
-	public boolean deleteInvoiceDetail(int invoice_id, int auction_id);
+//	public boolean deleteInvoiceDetail(int invoice_id, int auction_id);
 }
