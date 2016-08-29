@@ -74,15 +74,16 @@ public interface InvoiceRepository {
 	})
 	public ArrayList<InvoiceInputUpdate> findInvoiceByDate(Date invoice_date);
 	
-	final String ADD_INVOICE="INSERT INTO auc_invoice(user_id,invoice_date) VALUES(#{user_id},#{invoice_date}) ";
+	final String ADD_INVOICE=" INSERT INTO auc_invoice(user_id,invoice_date) VALUES(#{user_id}, now()); " + 
+							" INSERT INTO auc_invoice_detail(invoice_id, auction_id, buy_price, qty) " +
+							" SELECT MAX(invoice_id), #{auction_id},#{buy_price},#{qty} " + 
+							" FROM auc_invoice; ";
 	@Insert(ADD_INVOICE)
 	public boolean addInvoice(InvoiceInputUpdate inv);
 	
 	final String UPDATE_INVOICE=
 					"	UPDATE auc_invoice	"+
-					"	SET user_id = #{user_id}, 	"+
-					"	invoice_date = #{invoice_date},	"+
-					"	status = #{status}	"+
+					"	SET user_id = #{user_id}, 	"+					
 					"	WHERE invoice_id = #{invoice_id}	";
 	@Update(UPDATE_INVOICE)
 	public boolean updateInvoice(InvoiceInputUpdate inv);

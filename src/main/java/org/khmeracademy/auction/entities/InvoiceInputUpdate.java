@@ -4,9 +4,10 @@ import java.sql.Date;
 
 public class InvoiceInputUpdate {
 	private int invoice_id;
-	private int user_id;
-	private Date invoice_date;
-	private String status;
+	private int user_id;	
+	private int auction_id;
+	private double buy_price;
+	private int qty;
 	public int getInvoice_id() {
 		return invoice_id;
 	}
@@ -19,18 +20,25 @@ public class InvoiceInputUpdate {
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
-	public Date getInvoice_date() {
-		return invoice_date;
+	public int getAuction_id() {
+		return auction_id;
 	}
-	public void setInvoice_date(Date invoice_date) {
-		this.invoice_date = invoice_date;
+	public void setAuction_id(int auction_id) {
+		this.auction_id = auction_id;
 	}
-	public String getStatus() {
-		return status;
+	public double getBuy_price() {
+		return buy_price;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setBuy_price(double buy_price) {
+		this.buy_price = buy_price;
 	}
+	public int getQty() {
+		return qty;
+	}
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+	
 	
 	
 	
