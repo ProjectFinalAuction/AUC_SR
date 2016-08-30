@@ -35,7 +35,7 @@ public interface UserRepository {
 	public User findUserById(int user_id);
 
 	// get user by name(name | first | last)
-	String R_USER_ByNAME = "SELECT * FROM auc_user WHERE user_name = #{user_name} or first_name = #{user_name} or last_name = #{user_name}";
+	String R_USER_ByNAME = "SELECT * FROM auc_user WHERE user_name = #{user_name} AND status = '1'";
 
 	@Select(R_USER_ByNAME)
 	@Results(value = {
