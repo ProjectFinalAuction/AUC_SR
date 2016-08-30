@@ -82,4 +82,10 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findUserByVerifiedCode(verified_code);
 	}
 
+	@Override
+	public boolean updateUserConfirmEmail(String verified_code) {
+		// TODO Auto-generated method stub
+		return userRepository.updateUserConfirmEmail(verified_code);
+	}
+
 }

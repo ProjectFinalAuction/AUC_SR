@@ -264,4 +264,23 @@ public class UserRController {
 		}
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/update-user-confirm-email/{verified_code}", method = RequestMethod.PUT)
+	public ResponseEntity<Map<String, Object>> updateUserConfirmEmail(@PathVariable String verified_code) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			if (userService.updateUserConfirmEmail(verified_code)) {
+				map.put("MESSAGE", "SUCCESSFULLY UPDATED!");
+				map.put("STATUS", true);
+			} else {
+				map.put("MESSAGE", "UPDATE FAIL!!");
+				map.put("STATUS", true);
+			}
+		} catch (Exception e) {
+			map.put("MESSAGE", "ERROR!");
+			map.put("STATUS", false);
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	}
 }

@@ -28,4 +28,6 @@ public interface UserService {
 	public boolean deleteUsers(int userId);
 	
 	public User findUserByVerifiedCode(String verified_code);
+	
+	public boolean updateUserConfirmEmail(String verified_code);
 }
