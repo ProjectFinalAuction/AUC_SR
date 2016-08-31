@@ -88,4 +88,20 @@ public class UserServiceImpl implements UserService {
 		return userRepository.updateUserConfirmEmail(verified_code);
 	}
 
+	@Override
+	public boolean updateUserProfile(User user) {
+		// TODO Auto-generated method stub
+		return userRepository.updateUserProfile(user);
+	}
+
+	@Override
+	public boolean updateUserPassword(User user) {
+		// TODO Auto-generated method stub
+		return userRepository.updateUserPassword(user);
+	}
+	
+	
+	
+	
+
 }

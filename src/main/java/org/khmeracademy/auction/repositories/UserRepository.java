@@ -38,8 +38,7 @@ public interface UserRepository {
 	String R_USER_ByNAME = "SELECT * FROM auc_user WHERE user_name = #{user_name} AND status = '1'";
 
 	@Select(R_USER_ByNAME)
-	@Results(value = {
-			@Result(property = "roles", column = "role_id", many = @Many(select = "findUserRoleByUserId") ) })
+	@Results(value = { @Result(property = "roles", column = "role_id", many = @Many(select = "findUserRoleByUserId")) })
 	public User getUserByName(@Param("user_name") String user_name);
 
 	String R_ROLE_ByROLEID = "SELECT role_id, role_name FROM auc_role WHERE role_id = #{role_id}";
@@ -134,8 +133,23 @@ public interface UserRepository {
 	public User findUserByVerifiedCode(String verified_code);
 
 	// Update User status when confirming email
-	String U_USER_CONFIRM_EMAIL = "UPDATE auc_user SET status = '1' WHERE verified_code = #{verified_code}";  
+	String U_USER_CONFIRM_EMAIL = "UPDATE auc_user SET status = '1' WHERE verified_code = #{verified_code}";
 
 	@Update(U_USER_CONFIRM_EMAIL)
 	public boolean updateUserConfirmEmail(String verified_code);
+
+	// Update User Detail in user profile (Front End)
+	String U_USER_PROFILE = "UPDATE auc_user SET first_name=#{first_name}, last_name=#{last_name}, "
+			+ " gender=#{gender}, dob=#{dob}, email=#{email}, contact=#{contact}, "
+			+ " address=#{address} WHERE user_id=#{user_id} ";
+
+	@Update(U_USER_PROFILE)
+	public boolean updateUserProfile(User user);
+
+	// Update User password in user profile (Front End)
+	String U_USER_PASSWORD = "UPDATE auc_user SET password=#{password} WHERE user_id = #{user_id} ";
+
+	@Update(U_USER_PASSWORD)
+	public boolean updateUserPassword(User user);
+
 }

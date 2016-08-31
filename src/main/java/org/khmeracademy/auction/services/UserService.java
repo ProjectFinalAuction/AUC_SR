@@ -30,4 +30,8 @@ public interface UserService {
 	public User findUserByVerifiedCode(String verified_code);
 	
 	public boolean updateUserConfirmEmail(String verified_code);
+	
+	public boolean updateUserProfile(User user);
+	
+	public boolean updateUserPassword(User user);
 }
