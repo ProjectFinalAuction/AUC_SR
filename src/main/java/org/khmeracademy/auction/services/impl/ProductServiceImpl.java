@@ -109,4 +109,12 @@ public class ProductServiceImpl implements ProductService {
 		return pr.findProductsHasSupplier(supplier_id);
 	}
 
+	@Override
+	public ArrayList<Product> findProductsHasSupplierForUpdate(int supplier_id) {
+		// TODO Auto-generated method stub
+		return pr.findProductsHasSupplierForUpdate(supplier_id);
+	}
+	
+	
+
 }

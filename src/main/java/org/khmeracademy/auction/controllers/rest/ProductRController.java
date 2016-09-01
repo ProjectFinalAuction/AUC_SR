@@ -170,4 +170,12 @@ public class ProductRController {
 		Map<String, Object> map= getMapObjectAfterTransaction(ps.deleteProduct(product_id));
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
+	
+	
+	@RequestMapping(value="/find-products-has-supplier-for-update/{supplier_id}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> findProductsHasSupplierForUpdate(@PathVariable int supplier_id){
+		ArrayList<Product> arr = ps.findProductsHasSupplierForUpdate(supplier_id);
+		Map<String, Object> map=getMapObject(arr);
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	}
 }

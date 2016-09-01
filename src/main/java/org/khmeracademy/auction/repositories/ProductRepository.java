@@ -207,4 +207,27 @@ public interface ProductRepository {
 	})
 	public ArrayList<Product> findProductsHasSupplier(int supplier_id);
 		
+	
+	String R_PRODUCT_HAS_SUPPLIER_FOR_UPDATE=
+			"SELECT *FROM v_find_all_products P INNER JOIN auc_supplier S ON P.supplier_id = S.supplier_id WHERE P.supplier_id = #{supplier_id} and P.status='3' ";
+	@Select(R_PRODUCT_HAS_SUPPLIER_FOR_UPDATE)
+	@Results(value={
+			// supplier
+			@Result(property="supplier.supplier_id",column="supplier_id"),
+			@Result(property="supplier.contact_name",column="contact_name"),
+			@Result(property="supplier.address",column="address"),
+			@Result(property="supplier.phone",column="phone"),
+			@Result(property="supplier.email",column="email"),
+			
+			// category
+			@Result(property="category.category_id",column="category_id"),
+			@Result(property="category.category_name",column="category_name"),
+			@Result(property="category.category_description",column="category_description"),
+			
+			// brand
+			@Result(property="brand.brand_id",column="brand_id"),
+			@Result(property="brand.brand_name",column="brand_name"),
+			@Result(property="brand.brand_description",column="brand_description")			
+	})
+	public ArrayList<Product> findProductsHasSupplierForUpdate(int supplier_id);
 }

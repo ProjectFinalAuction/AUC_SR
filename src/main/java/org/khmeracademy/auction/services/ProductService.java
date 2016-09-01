@@ -27,4 +27,7 @@ public interface ProductService {
 	public boolean updateProduct(ProductUpdate p, HttpServletRequest request);
 
 	public boolean deleteProduct(int  product_id);
+	
+	
+	public ArrayList<Product> findProductsHasSupplierForUpdate(int supplier_id);
 }
