@@ -107,7 +107,7 @@ public class BidHistoryRController {
 	}
 
 	@RequestMapping(value = "/find-bid-history-by-bid-date/{bid_date}", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> findBidHistoryByDate(String bid_date) {
+	public ResponseEntity<Map<String, Object>> findBidHistoryByDate(@PathVariable String bid_date) {
 
 		ArrayList<BidHistory> arr = bidHistoryService.findBidHistoryByDate(bid_date);
 		Map<String, Object> map = getMapObject(arr);
