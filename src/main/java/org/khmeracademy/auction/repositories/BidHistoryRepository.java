@@ -127,7 +127,7 @@ public interface BidHistoryRepository {
 	})
 	public ArrayList<BidHistory> findBidHistoryByUserName(String user_name);
 
-	final String FIND_BID_HISTORY_BY_DATE="SELECT * FROM v_find_all_bid_history WHERE SUBSTRING(bid_date,1,10) = #{bid_date}";
+	final String FIND_BID_HISTORY_BY_DATE="SELECT * FROM v_find_all_bid_history WHERE SUBSTRING(bid_date,1,10) = #{bid_date} LIMIT 10";
 	@Select(FIND_BID_HISTORY_BY_DATE)
 	@Results(value={
 			// user
