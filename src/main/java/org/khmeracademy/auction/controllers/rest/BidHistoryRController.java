@@ -90,6 +90,9 @@ public class BidHistoryRController {
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 
+	
+	
+	
 	@RequestMapping(value = "/find-bid-history-by-auction-id/{auction_id}", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> findBidHistoryByAuctionId(@PathVariable int auction_id) {
 
@@ -229,5 +232,20 @@ public class BidHistoryRController {
 		}
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
+	
+	// find all bid winners - 04/10/2016 - Ean Sokchomrern
+	@RequestMapping(value = "/find-all-bid-winners-with-winner-id", method = RequestMethod.GET)
+	@ApiImplicitParams({
+		@ApiImplicitParam(name="page", paramType="query", defaultValue="1", dataType="int"),
+		@ApiImplicitParam(name="limit", paramType="query", defaultValue="10", dataType="int"),
+		@ApiImplicitParam(name="userName", paramType="query", defaultValue="")
+	})
+	public ResponseEntity<Map<String, Object>> findAllBidWinnersWithWinnerID(@ApiIgnore BidFilter filter, @ApiIgnore Pagination pagination) {
 
+		ArrayList<BidHistory> arr = bidHistoryService.findAllBidWinnersWithWinnerID(filter, pagination);
+		Map<String, Object> map = getMapObject(arr);
+		map.put("PAGINATION", pagination);
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	}
+	
 }

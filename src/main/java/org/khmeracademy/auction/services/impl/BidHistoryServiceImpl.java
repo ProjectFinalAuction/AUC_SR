@@ -87,6 +87,13 @@ public class BidHistoryServiceImpl implements BidHistoryService{
 		return bidHistoryRepository.findNumBidAndBidderInAuctionProductByAuctionId(auction_id);
 	}
 
+	@Override
+	public ArrayList<BidHistory> findAllBidWinnersWithWinnerID(BidFilter filter, Pagination pagination){
+		// TODO Auto-generated method stub
+		pagination.setTotalCount(bidHistoryRepository.count_winner(filter));
+		return bidHistoryRepository.findAllBidWinnersWithWinnerID(filter, pagination);
+	}
+
 
 	
 	

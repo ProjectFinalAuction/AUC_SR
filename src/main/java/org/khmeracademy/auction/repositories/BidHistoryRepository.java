@@ -466,5 +466,81 @@ public interface BidHistoryRepository {
 		})
 		public  ArrayList<BidHistory> findNumBidAndBidderInAuctionProductByAuctionId(int auction_id);
 		
-	
+		// Function is used to find all bid winners - 20161004 - BY EAN SOKCHOMRERN
+				final String FIND_ALL_BID_WINNERS_WITH_WINNER_ID = " SELECT * FROM v_all_bid_winners "
+				+ " WHERE LOWER(user_name) LIKE LOWER('%' || #{filter.userName} || '%')" + "ORDER BY bid_id DESC "
+				+ " LIMIT #{pagination.limit} " + "OFFSET #{pagination.offset} ";
+				
+				@Select(FIND_ALL_BID_WINNERS_WITH_WINNER_ID)
+				@Results(value = {
+						
+						//bidhistory
+						@Result(property="current_price", column="current_price"), 
+						@Result(property="bid_date", column="bid_date"),
+						
+						// auction
+						@Result(property="auction.auction_id", column="auction_id"),
+						@Result(property="auction.product_condition", column="product_condition"),
+						@Result(property="auction.start_price", column="start_price"),
+						@Result(property="auction.buy_price", column="buy_price"),
+						@Result(property="auction.increment_price", column="increment_price"),
+						@Result(property="auction.current_price", column="auction_current_price"),
+						@Result(property="auction.start_date", column="start_date"),
+						@Result(property="auction.end_date", column="end_date"),
+						@Result(property="auction.status", column="auction_status"),
+//						@Result(property="auction.created_by", column="created_by"),
+//						@Result(property="auction.created_date", column="created_date"),
+//						@Result(property="auction.comment", column="comment"),
+						@Result(property="auction.winner_id", column="winner_id"),
+						//@Result(property="auction.num_bid", column="num_bid"),  // number_bid of auction
+						//@Result(property="auction.bid_current_price", column="bid_current_price"), // bid_current_price of auction
+						
+						
+						// product
+						@Result(property="auction.product.product_id", column="product_id"),
+						@Result(property="auction.product.product_name", column="product_name"),
+						@Result(property="auction.product.product_description", column="product_description"),
+						@Result(property="auction.product.qty", column="qty"),
+						@Result(property="auction.product.status", column="product_status"),
+						
+						// supplier
+						@Result(property="auction.product.supplier.supplier_id", column="supplier_id"),
+						@Result(property="auction.product.supplier.contact_name", column="contact_name"),
+						@Result(property="auction.product.supplier.address", column="supplier_address"),
+						@Result(property="auction.product.supplier.email", column="supplier_email"),
+						@Result(property="auction.product.supplier.phone", column="supplier_phone"),
+						
+						
+						// category
+						@Result(property="auction.product.category.category_id", column="category_id"),
+						@Result(property="auction.product.category.category_name", column="category_name"),
+						@Result(property="auction.product.category.category_description", column="category_description"),
+						
+										
+						// brand
+						@Result(property="auction.product.brand.brand_id", column="brand_id"),
+						@Result(property="auction.product.brand.brand_name", column="brand_name"),
+						@Result(property="auction.product.brand.brand_description", column="brand_description"),
+						@Result(property="auction.product.brand.status", column="brand_status"),
+					
+										
+						// user
+						// number of bid & latest current price which user bids on each auction
+						@Result(property="user.user_id", column="user_id"),
+						@Result(property="user.user_name", column="user_name"),
+						@Result(property="user.first_name", column="first_name"),
+						@Result(property="user.last_name", column="last_name"),	
+						@Result(property="user.gender", column="gender"),
+						@Result(property="user.dob", column="dob"),
+						@Result(property="user.address", column="address"),
+						@Result(property="user.email", column="email"),
+						@Result(property="user.contact", column="contact"),
+						@Result(property="user.photo", column="photo"),
+						@Result(property="user.type", column="type"),
+						@Result(property="user.status", column="user_status"),
+						
+				})
+		public  ArrayList<BidHistory> findAllBidWinnersWithWinnerID(@Param("filter") BidFilter filter, @Param("pagination") Pagination pagination);
+		@Select("SELECT COUNT(bid_id) FROM v_all_bid_winners WHERE LOWER(user_name) LIKE LOWER('%' || #{filter.userName} || '%')")
+		public Long count_winner(@Param("filter") BidFilter filter);		
 }

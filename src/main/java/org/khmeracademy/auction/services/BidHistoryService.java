@@ -31,4 +31,5 @@ public interface BidHistoryService {
 	
 	public  ArrayList<BidHistory> findNumBidAndBidderInAuctionProductByAuctionId(int auction_id);
 	
+	public  ArrayList<BidHistory> findAllBidWinnersWithWinnerID(BidFilter filter, Pagination pagination);
 }
