@@ -256,5 +256,91 @@ public class AuctionRController {
 		map.put("PAGINATION", pagination);
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
+	
+	// ==== Today's Auction Transactions ==== EAN SOKCHOMRERN === 06/10/2016
+	@RequestMapping(value="/find-all-today-bid", method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findAllTodayBid() {
+		
+		int num = auctionService.findAllTodayBid();
+		Map<String,Object> map = new HashMap<String, Object>();
+		try{
+			map.put("DATA", num);
+			map.put("MESSAGE", "SUCCESS");
+			map.put("STATUS", true);
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value="/find-all-today-bidden-products", method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findAllTodayBiddenProducts() {
+		
+		int num = auctionService.findAllTodayBiddenProducts();
+		Map<String,Object> map = new HashMap<String, Object>();
+		try{
+			map.put("DATA", num);
+			map.put("MESSAGE", "SUCCESS");
+			map.put("STATUS", true);
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value="/find-all-today-bidders", method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findAllTodayBidders() {
+		
+		int num = auctionService.findAllTodayBidders();
+		Map<String,Object> map = new HashMap<String, Object>();
+		try{
+			map.put("DATA", num);
+			map.put("MESSAGE", "SUCCESS");
+			map.put("STATUS", true);
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value="/find-all-today-new-products", method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findAllTodayNewProducts() {
+		
+		int num = auctionService.findAllTodayNewProducts();
+		Map<String,Object> map = new HashMap<String, Object>();
+		try{
+			map.put("DATA", num);
+			map.put("MESSAGE", "SUCCESS");
+			map.put("STATUS", true);
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value="/find-today-total-revenue", method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findTodayTotalRevenue() {
+		
+		int num = auctionService.findTodayTotalRevenue();
+		Map<String,Object> map = new HashMap<String, Object>();
+		try{
+			map.put("DATA", num);
+			map.put("MESSAGE", "SUCCESS");
+			map.put("STATUS", true);
+		}catch(Exception e){
+			map.put("MESSAGE", "ERROR");
+			map.put("STATUS", false);
+		}
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+		
+	}
 
 }

@@ -94,6 +94,13 @@ public class BidHistoryServiceImpl implements BidHistoryService{
 		return bidHistoryRepository.findAllBidWinnersWithWinnerID(filter, pagination);
 	}
 
+	// FIND HIGH BIDDING. EAN SOKCHOMRERN. 06/10/2016
+	@Override
+	public ArrayList<BidHistory> findHighBidding() {
+		// TODO Auto-generated method stub
+		return bidHistoryRepository.findHighBidding();
+	}
+
 
 	
 	

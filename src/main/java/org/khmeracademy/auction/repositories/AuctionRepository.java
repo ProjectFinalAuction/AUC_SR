@@ -398,4 +398,32 @@ public interface AuctionRepository {
 	@Select("SELECT COUNT(auction_id) FROM v_find_number_bid_in_auction_product_by_auction_id WHERE status = '1'")
 	public Long countActive(@Param("filter") AuctionFilter filter);
 	
+	// ==== Today's Auction Transactions ==== EAN SOKCHOMRERN === 06/10/2016
+	@Select("SELECT * FROM v_find_all_today_bid")
+	public int findAllTodayBid();
+	
+	@Select("SELECT * FROM v_find_all_today_bidden_products")
+	public int findAllTodayBiddenProducts();
+	
+	@Select("SELECT * FROM v_find_all_today_bidders")
+	public int findAllTodayBidders();
+	
+	@Select("SELECT * FROM v_find_all_today_new_products")
+	public int findAllTodayNewProducts();
+	
+	@Select("SELECT * FROM v_find_today_total_revenue")
+	public int findTodayTotalRevenue();
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

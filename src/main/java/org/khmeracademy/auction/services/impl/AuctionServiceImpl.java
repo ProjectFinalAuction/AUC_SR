@@ -100,5 +100,36 @@ public class AuctionServiceImpl implements AuctionService{
 		return auctionRepository.findAllAuctionsActive(filter, pagination);
 	}
 
+	// ==== Today's Auction Transactions ==== EAN SOKCHOMRERN === 06/10/2016
+	@Override
+	public int findAllTodayBid() {
+		// TODO Auto-generated method stub
+		return auctionRepository.findAllTodayBid();
+	}
+
+	@Override
+	public int findAllTodayBiddenProducts() {
+		// TODO Auto-generated method stub
+		return auctionRepository.findAllTodayBiddenProducts();
+	}
+
+	@Override
+	public int findAllTodayBidders() {
+		// TODO Auto-generated method stub
+		return auctionRepository.findAllTodayBidders();
+	}
+
+	@Override
+	public int findAllTodayNewProducts() {
+		// TODO Auto-generated method stub
+		return auctionRepository.findAllTodayNewProducts();
+	}
+
+	@Override
+	public int findTodayTotalRevenue() {
+		// TODO Auto-generated method stub
+		return auctionRepository.findTodayTotalRevenue();
+	}
+
 
 }

@@ -248,4 +248,13 @@ public class BidHistoryRController {
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
+	// FIND HIGH BIDDING. EAN SOKCHOMRERN. 06/10/2016
+	@RequestMapping(value = "/find-high-bidding", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> findHighBidding() {
+
+		ArrayList<BidHistory> arr = bidHistoryService.findHighBidding();
+		Map<String, Object> map = getMapObject(arr);
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	}
+	
 }

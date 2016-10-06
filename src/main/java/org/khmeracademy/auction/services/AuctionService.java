@@ -2,7 +2,6 @@ package org.khmeracademy.auction.services;
 
 import java.util.ArrayList;
 
-
 import org.khmeracademy.auction.entities.Auction;
 import org.khmeracademy.auction.entities.AuctionInputUpdate;
 
@@ -34,4 +33,14 @@ public interface AuctionService {
 	//TODO: FIND ALL ACTION STATUS 1 ACITVE
 	public ArrayList<Auction> findAllAuctionsActive(AuctionFilter filter, Pagination pagination);
 
+	// ==== Today's Auction Transactions ==== EAN SOKCHOMRERN === 06/10/2016
+	public int findAllTodayBid();
+	
+	public int findAllTodayBiddenProducts();
+	
+	public int findAllTodayBidders();
+	
+	public int findAllTodayNewProducts();
+	
+	public int findTodayTotalRevenue();
 }

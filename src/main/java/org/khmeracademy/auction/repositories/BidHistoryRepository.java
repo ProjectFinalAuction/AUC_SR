@@ -541,6 +541,28 @@ public interface BidHistoryRepository {
 						
 				})
 		public  ArrayList<BidHistory> findAllBidWinnersWithWinnerID(@Param("filter") BidFilter filter, @Param("pagination") Pagination pagination);
+		
 		@Select("SELECT COUNT(bid_id) FROM v_all_bid_winners WHERE LOWER(user_name) LIKE LOWER('%' || #{filter.userName} || '%')")
 		public Long count_winner(@Param("filter") BidFilter filter);		
+		
+		// FIND HIGH BIDDING. EAN SOKCHOMRERN. 06/10/2016
+		final String FIND_HIGH_BIDDING="SELECT * FROM v_find_high_bidding ORDER BY bid_date DESC ";
+		@Select(FIND_HIGH_BIDDING)
+		@Results(value={
+				// user
+				@Result(property="user.user_name", column="user_name"),
+								
+				// auction
+				@Result(property="auction.auction_id", column="auction_id"),
+								
+				// product
+				@Result(property="auction.product.product_name", column="product_name"),
+				
+				//bidhistory
+				@Result(property="current_price", column="current_price"), 
+				@Result(property="bid_date", column="bid_date")			
+							
+		})
+		public ArrayList<BidHistory> findHighBidding();
+		
 }

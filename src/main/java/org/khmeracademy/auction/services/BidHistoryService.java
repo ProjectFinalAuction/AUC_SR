@@ -32,4 +32,7 @@ public interface BidHistoryService {
 	public  ArrayList<BidHistory> findNumBidAndBidderInAuctionProductByAuctionId(int auction_id);
 	
 	public  ArrayList<BidHistory> findAllBidWinnersWithWinnerID(BidFilter filter, Pagination pagination);
+
+	// FIND HIGH BIDDING. EAN SOKCHOMRERN. 06/10/2016
+	public ArrayList<BidHistory> findHighBidding();
 }
