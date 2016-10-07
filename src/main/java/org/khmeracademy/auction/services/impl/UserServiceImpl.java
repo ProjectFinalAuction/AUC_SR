@@ -99,6 +99,13 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userRepository.updateUserPassword(user);
 	}
+
+	// Knongdai user integration. EAN SOKCHOMRERN. 07/10/2016
+	@Override
+	public User findUserByUserHash(String user_hash) {
+		// TODO Auto-generated method stub
+		return userRepository.findUserByUserHash(user_hash);
+	}
 	
 	
 	

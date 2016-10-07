@@ -24,7 +24,14 @@ public class User {
 		private String comment;
 		private List<Role> roles;
 		private String verified_code;
+		private String user_hash;
 		
+		public String getUser_hash() {
+			return user_hash;
+		}
+		public void setUser_hash(String user_hash) {
+			this.user_hash = user_hash;
+		}
 		public List<Role> getRoles() {
 			return roles;
 		}

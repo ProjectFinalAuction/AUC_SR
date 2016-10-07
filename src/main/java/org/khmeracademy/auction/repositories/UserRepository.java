@@ -41,6 +41,15 @@ public interface UserRepository {
 	@Results(value = { @Result(property = "roles", column = "role_id", many = @Many(select = "findUserRoleByUserId")) })
 	public User getUserByName(@Param("user_name") String user_name);
 
+	
+	// Knongdai user integration. EAN SOKCHOMRERN. 07/10/2016	
+	String R_USER_BY_USER_HASH = "SELECT * FROM auc_user WHERE user_hash = #{user_hash} ";
+
+	@Select(R_USER_BY_USER_HASH)
+	@Results(value = { @Result(property = "roles", column = "role_id", many = @Many(select = "findUserRoleByUserId")) })
+	public User findUserByUserHash(@Param("user_hash") String user_hash);
+	
+
 	String R_ROLE_ByROLEID = "SELECT role_id, role_name FROM auc_role WHERE role_id = #{role_id}";
 
 	@Select(R_ROLE_ByROLEID)
@@ -151,5 +160,7 @@ public interface UserRepository {
 
 	@Update(U_USER_PASSWORD)
 	public boolean updateUserPassword(User user);
-
+	
+	
+	
 }

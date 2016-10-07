@@ -322,4 +322,26 @@ public class UserRController {
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 	
+	
+	// Knongdai user integration. EAN SOKCHOMRERN. 07/10/2016
+	@RequestMapping(value = "/find-user-by-user-hash/{user_hash}", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> findUserByUserHash(@PathVariable String user_hash) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		User user = userService.findUserByUserHash(user_hash);
+		try {
+			if (user != null) {
+				map.put("DATA", user);
+				map.put("MESSAGE", "GET USER SUCCESSFULLY");
+				map.put("STATUS", true);
+			} else {
+				map.put("MESSAGE", "GET USER FAIL!");
+				map.put("STATE", true);
+			}
+		} catch (Exception e) {
+			map.put("MESSAGE", "Error!");
+			map.put("STATUS", false);
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+	}
 }

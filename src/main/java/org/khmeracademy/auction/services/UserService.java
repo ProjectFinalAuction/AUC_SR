@@ -2,6 +2,7 @@ package org.khmeracademy.auction.services;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
 import org.khmeracademy.auction.entities.User;
 import org.khmeracademy.auction.entities.UserInputUpdate;
 import org.khmeracademy.auction.filtering.UserFilter;
@@ -34,4 +35,7 @@ public interface UserService {
 	public boolean updateUserProfile(User user);
 	
 	public boolean updateUserPassword(User user);
+	
+	// Knongdai user integration. EAN SOKCHOMRERN. 07/10/2016
+	public User findUserByUserHash(String user_hash);
 }
