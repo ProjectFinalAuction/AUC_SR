@@ -99,10 +99,10 @@ public interface UserRepository {
 	 */
 	String C_USER = "INSERT INTO auc_user(user_name, first_name, last_name, gender,"
 			+ "	dob, address, email, password, contact, photo, type, status, "
-			+ " created_date, created_by, comment, role_id, verified_code) "
+			+ " created_date, created_by, comment, role_id, verified_code, user_hash) "
 			+ "VALUES(#{user_name}, #{first_name}, #{last_name}, #{gender}, "
 			+ "	#{dob}, #{address}, #{email}, #{password}, #{contact}, #{photo}, #{type}, #{status},"
-			+ " #{created_date}, #{created_by}, #{comment}, #{role_id}, #{verified_code})";
+			+ " #{created_date}, #{created_by}, #{comment}, #{role_id}, #{verified_code}, #{user_hash})";
 
 	@Insert(C_USER)
 	public boolean addUser(UserInputUpdate u);

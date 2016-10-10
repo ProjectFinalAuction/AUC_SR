@@ -21,7 +21,17 @@ public class UserInputUpdate {
 	private String comment;
 	private int role_id;
 	private String verified_code;
+	private String user_hash;
 	
+	
+	
+	
+	public String getUser_hash() {
+		return user_hash;
+	}
+	public void setUser_hash(String user_hash) {
+		this.user_hash = user_hash;
+	}
 	public int getUser_id() {
 		return user_id;
 	}
